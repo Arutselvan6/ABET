@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	<!--Define each of your definitions here-->
+	<definition name="A_blue" template="/theme/blue.jsp">
+	</definition>
+	<definition name="blue2" template="/theme/bluedevice.jsp">
+	</definition>
+	<definition name="bluedr" template="/theme/bluedr.jsp">
+	</definition>
+	<definition name="bluempdr" template="/theme/bluempdr.jsp">
+	</definition>
+	<definition name="bluelogout" template="/theme/bluelogout.jsp">
+	</definition>
+	<definition name="mona" template="/mona.jsp">
+	</definition>
+	<definition name="bluedevcat" template="/theme/bluedevcat.jsp">
+	</definition>
+	<definition name="contact" template="/theme/contact.jsp">
+	</definition>
+	<definition name="iblue" template="/theme/iblue.jsp">
+	</definition>
+</tiles-definitions>
