@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Books>
+  <Join>
+    
+    <html xmlns="http://www.w3.org/1999/xhtml">
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Untitled Document</title>
+      </head>
+
+      <body>
+        <H1>
+          <FONT COLOR="RED">CREATING A DATABASE</FONT>
+        </H1>Before you can store data in a database, you must first define the structure of the data.<br />
+        Suppose you want to expand the sample database by adding a table of data about the<br />
+        products sold by your company. For each product, the data to be stored includes:&lt;/H3&gt;<br />
+
+        <FONT COLOR="GREEN">
+          <B>
+            � a three-character manufacturer ID code,<br />
+            � a five-character product ID code,<br />
+            � a description of up to thirty characters,<br />
+            � the price of the product, and<br />
+            � the quantity currently on hand.<br />
+          </B>
+          <br />
+        </FONT>
+        <H3>
+          This SQL CREATE TABLE statement defines a new table to store the products data:<br />
+        </H3>
+        <FONT COLOR="GREEN">
+          <B>
+            CREATE TABLE PRODUCTS<br />
+            (MFR_ID CHAR(3),<br />
+
+            PRODUCT_ID CHAR(5),<br />
+            DESCRIPTION VARCHAR(20),<br />
+            PRICE MONEY,<br />
+            QTY_ON_HAND INTEGER)<br />
+          </B>
+          <br />
+        </FONT>
+        Table created.
+        <H3>
+          Although more cryptic than the previous SQL statements, the CREATE TABLE statement<br />
+          is still fairly straightforward. It assigns the name PRODUCTS to the new table and specifies<br />
+          the name and type of data stored in each of its five columns.<br />
+
+          Once the table has been created, you can fill it with data. Here's an INSERT statement<br />
+          for a new shipment of 250 size 7 widgets (product ACI-41007), which cost $225.00<br />
+          apiece:
+        </H3>
+        <br />
+        <FONT COLOR="GREEN">
+          <B>
+            QTY_ON_HAND)<br />
+            VALUES ('ACI', '41007', 'Size 7 Widget', 225.00, 250)<br />
+
+          </B>
+        </FONT><br />
+        1 row inserted.
+        <H3>
+          Finally, if you discover later that you no longer need to store the products data in the<br />
+
+          database, you can erase the table (and all of the data it contains) with the DROP TABLE<br />
+          statement:<br />
+        </H3>
+        <FONT COLOR="GREEN">
+          <B>
+            DROP TABLE PRODUCTS<br />
+
+          </B>
+        </FONT>
+        Table dropped.
+      </body>
+    </html>
+
+
+
+  </Join>
+
+  <Objective>
+    <HTML>
+      <HEAD>
+        <TITLE>Chapter 1 -- Creating the User Interface</TITLE>
+
+
+      </HEAD>
+      <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+        <H1>    
+        The Development Tools and Languages</H1>
+        <HR/>
+
+        <font color="green"><h3>The Oracle server technologies include various facilities for developing applications,
+        some existing within the database, others external to it.
+        Anything that can be done
+        with OEM can also be done through SQL
+        statements. The OCP examinations test
+        the use of SQL for administration work
+        extensively. It is vital to be familiar with
+        command-line techniques.
+<p/>        Position the Oracle Product Family 9
+        Within the database, it is possible to use three languages:
+        </h3>
+        </font>
+        <b>
+          <p/>
+          ■ SQL<p/>
+          ■ PL/SQL<p/>
+          ■ Java<p/>
+          Applications running externally to the database can be written in a wide variety
+          of 3GLs (notably Java) or in the tools shipped with Oracle Application Server.
+          Predominant among these are
+          ■ Forms<p/>
+          ■ Reports<p/>
+          ■ XML Publisher<p/>
+          ■ Discoverer<p/>
+        </b>
+        <h5> There is also a wide variety of third-party tools and environments that can be used
+        for developing<p/> applications that will connect to an Oracle database; in particular
+        .NET from Microsoft, for which Oracle provides a comprehensive developers’<p/> toolkit.
+        </h5>
+   
+
+      </BODY>
+    </HTML>
+      </Objective>
+  
+  
+  
+  
+  
+  
+ </Books>

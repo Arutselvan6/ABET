@@ -1,0 +1,1129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<questions>
+  <Question Text="QUESTION  NO: 1&#xD;&#xA;Examine the data in the EMPLOYEES and DEPARTMENTS tables.&#xD;&#xA;EMPLOYEES&#xD;&#xA;LAST_NAME DEPARTMENT_ID SALARY&#xD;&#xA;Getz 10 3000&#xD;&#xA;Davis 20 1500&#xD;&#xA;King 20 2200&#xD;&#xA;Davis 30 5000&#xD;&#xA;Kochhar 5000&#xD;&#xA;DEPARTMENTS&#xD;&#xA;DEPARTMENT_ID DEPARTMENT_NAME&#xD;&#xA;10 Sales&#xD;&#xA;20 Marketing&#xD;&#xA;30 Accounts&#xD;&#xA;40 Administration&#xD;&#xA;You want to retrieve all employees, whether or not they have matching departments in&#xD;&#xA;the departments table. Which query would you use?" SelectionType="1">
+    <Answer ID="1">
+    A. SELECT last_name, department_name
+    FROM employees , departments(+);
+  </Answer>
+    <Answer ID="2">
+    B. SELECT last_name, department_name
+    FROM employees JOIN departments (+);
+  </Answer>
+    <Answer ID="3">
+    C. SELECT last_name, department_name
+    FROM employees(+) e JOIN departments d
+    ON (e.department_id = d.department_id);
+
+  </Answer>
+    <Answer ID="4">
+      D. SELECT last_name, department_name
+      FROM employees e
+      RIGHT OUTER JOIN departments d ON (e.department_id = d.department_id);
+    </Answer>
+    <Answer ID="5" Correct="true">
+    E. SELECT last_name, department_name
+    FROM employees e LEFT OUTER
+    JOIN departments d ON (e.department_id = d.department_id);
+  </Answer>
+  </Question>
+  
+  <Question Text="QUESTION NO: 2&#xD;&#xA;Examine the structure of the EMPLOYEES table:&#xD;&#xA;EMPLOYEE_ID NUMBER Primary Key&#xD;&#xA;FIRST_NAME VARCHAR2(25)&#xD;&#xA;LAST_NAME VARCHAR2(25)&#xD;&#xA;Which three statements inserts a row into the table? (Choose three)" SelectionType="2">
+    <Answer ID="1">
+    A. INSERT INTO employees
+    VALUES ( NULL, ‘John’,‘Smith’);
+  </Answer>
+    <Answer ID="2">
+
+    B. INSERT INTO employees( first_name, last_name)
+    VALUES(‘John’,‘Smith’);
+  </Answer>
+    <Answer ID="3" Correct="true">
+    C. INSERT INTO employees
+    VALUES (‘1000’,‘John’,NULL);
+  </Answer>
+    <Answer ID="4" Correct="true">
+    D. INSERT INTO employees (employee_id)
+    VALUES (1000);
+  </Answer>
+    <Answer ID="5" Correct="true">
+    E. INSERT INTO employees (employee_id, first_name, last_name)
+    VALUES ( 1000, ‘John’,‘’);
+  </Answer>
+  </Question>
+  
+  <Question Text="QUESTION NO: 3&#xD;&#xA;You need to give the MANAGER role the ability to select from, insert into, and modify&#xD;&#xA;existing rows in the STUDENT_GRADES table. Anyone given this MANAGER role&#xD;&#xA;should be able to pass those privileges on to others.&#xD;&#xA;Which statement accomplishes this?" SelectionType="1">
+    <Answer ID="1">
+    A. GRANT select, insert, update
+    ON student_grades
+    TO manager;
+  </Answer>
+    <Answer ID="2">
+    B. GRANT select, insert, update
+    ON student_grades
+    TO ROLE manager;
+  </Answer>
+    <Answer ID="3">
+    C. GRANT select, insert, modify
+    ON student_grades
+    TO manager
+    WITH GRANT OPTION;
+  </Answer>
+    <Answer ID="4" Correct="true">
+    D. GRANT select, insert, update
+    ON student_grades
+    TO manager
+    WITH GRANT OPTION;
+  </Answer>
+    <Answer ID="5">
+    E. GRANT select, insert, update
+    ON student_grades
+    TO ROLE manager
+    WITH GRANT OPTION;
+  </Answer>
+  </Question>
+  
+  <Question Text="QUESTION NO: 4&#xD;&#xA;Examine the data in the EMPLOYEES table:&#xD;&#xA;LAST_NAME DEPARTMENT_ID SALARY&#xD;&#xA;Getz 10 3000&#xD;&#xA;Davis 20 1500&#xD;&#xA;King 20 2200&#xD;&#xA;Davis 30 5000&#xD;&#xA;…........&#xD;&#xA;Which three subqueries work? (Choose three)" SelectionType="2">
+    <Answer ID="1">
+    A. SELECT *
+    FROM employees
+    where salary &gt; (SELECT MIN(salary)
+    FROM employees
+    GROUP BY department.id);
+  </Answer>
+    <Answer ID="2">
+    B. SELECT *
+    FROM employees
+    WHERE salary = (SELECT AVG(salary)
+    FROM employees
+    GROUP BY department_id);
+  </Answer>
+    <Answer ID="3" Correct="true">
+    C. SELECT distinct department_id
+    FROM employees
+    Where salary &gt; ANY (SELECT AVG(salary)
+    FROM employees
+    GROUP BY department_id);
+  </Answer>
+    <Answer ID="4" Correct="true">
+    D. SELECT department_id
+    FROM employees
+    WHERE SALARY &gt; ALL (SELECT AVG(salary)
+    FROM employees
+    GROUP BY department_id);
+  </Answer>
+    <Answer ID="5" Correct="true">
+    E. SELECT last_name
+    FROM employees
+    Where salary &gt; ANY (SELECT MAX(salary)
+    FROM employees
+    GROUP BY department_id);
+  </Answer>
+  </Question>
+  
+  <Question Text="QUESTION NO: 5&#xD;&#xA;The database administrator of your company created a public synonym called HR for&#xD;&#xA;the HUMAN_RESOURCES table of the GENERAL schema, because many users&#xD;&#xA;frequently use this table.&#xD;&#xA;As a user of the database, you created a table called HR in your schema. What happens&#xD;&#xA;when you execute this query?&#xD;&#xA;SELECT *&#xD;&#xA;FROM HR;" SelectionType="1">
+    <Answer ID="1">
+    A. You obtain the results retrieved from the public synonym HR created by the database
+    administrator.
+  </Answer>
+    <Answer ID="2" Correct="true">
+    B. You obtain the results retrieved from the HR table that belongs to your schema.
+  </Answer>
+    <Answer ID="3">
+    C. You get an error message because you cannot retrieve from a table that has the same
+    name as a public synonym.
+  </Answer>
+    <Answer ID="4">
+    D. You obtain the results retrieved from both the public synonym HR and the HR table
+    that belongs to your schema, as a Cartesian product.
+  </Answer>
+    <Answer ID="5">
+    E. You obtain the results retrieved from both the public synonym HR and the HR table
+    that belongs to your schema, as a FULL JOIN.
+  </Answer>
+  </Question>
+  
+  <Question Text="QUESTION NO: 6&#xD;&#xA;Which two statements about views are true? (Choose two.)" SelectinType="2">
+    <Answer ID="1" Correct="true">
+    A. A view can be created as read only.
+  </Answer>
+    <Answer ID="2" Correct="true">
+    B. A view can be created as a join on two or more tables.
+  </Answer>
+    <Answer ID="3">
+    C. A view cannot have an ORDER BY clause in the SELECT statement.
+  </Answer>
+    <Answer ID="4">
+    D. A view cannot be created with a GROUP BY clause in the SELECT statement.
+  </Answer>
+    <Answer ID="5">
+    E. A view must have aliases defined for the column names in the SELECT statement.
+  </Answer>
+  </Question>
+  
+  <Question Text="QUESTION NO: 7&#xD;&#xA;Examine the description of the EMPLOYEES table:&#xD;&#xA;EMP_ID NUMBER(4) NOT NULL&#xD;&#xA;LAST_NAME VARCHAR2(30) NOT NULL&#xD;&#xA;FIRST_NAME VARCHAR2(30)&#xD;&#xA;DEPT_ID NUMBER(2)&#xD;&#xA;JOB_CAT VARCHARD2(30)&#xD;&#xA;SALARY NUMBER(8,2)&#xD;&#xA;Which statement shows the maximum salary paid in each job category of each&#xD;&#xA;department?" SelectionType="1">
+    <Answer ID="1">
+      A. SELECT dept_id, job_cat, MAX(salary)
+      FROM employees
+      WHERE salary &gt; MAX(salary);
+    </Answer>
+    <Answer ID="2" Correct="true">
+      B. SELECT dept_id, job_cat, MAX(salary)
+      FROM employees
+      GROUP BY dept_id, job_cat;
+    </Answer>
+    <Answer ID="3">
+      C. SELECT dept_id, job_cat, MAX(salary)
+      FROM employees;
+    </Answer>
+    <Answer ID="4">
+      D. SELECT dept_id, job_cat, MAX(salary)
+      FROM employees
+      GROUP BY dept_id;
+    </Answer>
+    <Answer ID="5">
+      E. SELECT dept_id, job_cat, MAX(salary)
+      FROM employees
+      GROUP BY dept_id, job_cat, salary;
+    </Answer>
+  </Question>
+  
+  <Question Text="QUESTION NO: 8&#xD;&#xA;Management has asked you to calculate the value 12*salary* commission_pct for all the&#xD;&#xA;employees in the EMP table. The EMP table contains these columns:&#xD;&#xA;LAST NAME VARCNAR2(35) NOT NULL&#xD;&#xA;SALARY NUMBER(9,2) NOT NULL&#xD;&#xA;COMMISION_PCT NUMBER(4,2)&#xD;&#xA;Which statement ensures that a value is displayed in the calculated columns for all&#xD;&#xA;employees?" SelectionType="1">
+    <Answer ID="1">
+      A. SELECT last_name, 12*salary* commission_pct
+      FROM emp;
+    </Answer>
+    <Answer ID="2">
+      B. SELECT last_name, 12*salary* (commission_pct,0)
+      FROM emp;
+    </Answer>
+    <Answer ID="3" Correct="true">
+      C. SELECT last_name, 12*salary*(nvl(commission_pct,0))
+      FROM emp;
+    </Answer>
+    <Answer ID="4">
+      D. SELECT last_name, 12*salary*(decode(commission_pct,0))
+      FROM emp;
+    </Answer>
+    <Answer ID="5">None of these.</Answer>
+  </Question>
+  
+  <Question Text="QUESTION NO: 9&#xD;&#xA;Which syntax turns an existing constraint on?" SelectionType="1">
+    <Answer ID="1">
+      A. ALTER TABLE table_name
+      ENABLE constraint_name;
+    </Answer>
+    <Answer ID="2">
+      B. ALTER TABLE table_name
+      STATUS = ENABLE CONSTRAINT constraint_name;
+    </Answer>
+    <Answer ID="3" Correct="true">
+      C. ALTER TABLE table_name
+      ENABLE CONSTRAINT constraint_name;
+    </Answer>
+    <Answer ID="4">
+      D. ALTER TABLE table_name
+      STATUS ENABLE CONSTRAINT constraint_name;
+    </Answer>
+    <Answer ID="5">
+      E. ALTER TABLE table_name
+      TURN ON CONSTRAINT constraint_name;
+    </Answer>
+  </Question>
+  
+  <Question Text="QUESTION NO: 10&#xD;&#xA;Examine the description of the STUDENTS table:&#xD;&#xA;STD_ID NUMBER(4)&#xD;&#xA;COURSE_ID VARCHARD2(10)&#xD;&#xA;START_DATE DATE&#xD;&#xA;END_DATE DATE&#xD;&#xA;Which two aggregate functions are valid on the START_DATE column? (Choose two)" SelectionType="2">
+    <Answer ID="1">
+      A. SUM(start_date)
+    </Answer>
+    <Answer ID="2">
+      B. AVG(start_date)
+    </Answer>
+    <Answer ID="3" Correct="true">
+      C. COUNT(start_date)
+    </Answer>
+    <Answer ID="4">
+      D. AVG(start_date, end_date)
+    </Answer>
+    <Answer ID="5" Correct="true">
+      E. MIN(start_date)
+    </Answer>
+  </Question>
+  
+  <Question Text="QUESTION NO: 11&#xD;&#xA;The EMPLOYEE tables has these columns:&#xD;&#xA;LAST_NAME VARCHAR2(35)&#xD;&#xA;SALARY NUMBER(8,2)&#xD;&#xA;COMMISSION_PCT NUMBER(5,2)&#xD;&#xA;You want to display the name and annual salary multiplied by the commission_pct for&#xD;&#xA;all employees. For records that have a NULL commission_pct, a zero must be displayed&#xD;&#xA;against the calculated column.&#xD;&#xA;Which SQL statement displays the desired results?" SelectionType="1">
+    <Answer ID="1">
+      A. SELECT last_name, (salary * 12) * commission_pct
+      FROM EMPLOYEES;
+    </Answer>
+    <Answer ID="2">
+      B. SELECT last_name, (salary * 12) * IFNULL(commission_pct, 0)
+      FROM EMPLOYEES;
+    </Answer>
+    <Answer ID="3">
+      C. SELECT last_name, (salary * 12) * NVL2(commission_pct, 0)
+      FROM EMPLOYEES;
+    </Answer>
+    <Answer ID="4" Correct="true">
+      D. SELECT last_name, (salary * 12) * NVL(commission_pct, 0)
+      FROM EMPLOYEES;
+    </Answer>
+    <Answer ID="5">
+      None of these
+    </Answer>
+  </Question>
+  
+  
+  
+  <Question Text="QUESTION NO: 12&#xD;&#xA;Examine the data from the ORDERS and CUSTOMERS table.&#xD;&#xA;ORDERS&#xD;&#xA;ORD_ID ORD_DATE CUST_ID ORD_TOTAL&#xD;&#xA;100 12-JAN-2000 15 10000&#xD;&#xA;101 09-MAR-2000 40 8000&#xD;&#xA;102 09-MAR-2000 35 12500&#xD;&#xA;103 15-MAR-2000 15 12000&#xD;&#xA;104 25-JUN-2000 15 6000&#xD;&#xA;105 18-JUL-2000 20 5000&#xD;&#xA;106 18-JUL-2000 35 7000&#xD;&#xA;107 21-JUL-2000 20 6500&#xD;&#xA;108 04-AUG-2000 10 8000&#xD;&#xA;&#xD;&#xA;CUSTOMERS&#xD;&#xA;CUST_ID CUST_NAME CITY&#xD;&#xA;10 Smith Los Angeles&#xD;&#xA;15 Bob San Francisco&#xD;&#xA;20 Martin Chicago&#xD;&#xA;25 Mary New York&#xD;&#xA;30 Rina Chicago&#xD;&#xA;35 Smith New York&#xD;&#xA;40 Linda New York&#xD;&#xA;Which SQL statement retrieves the order ID, customer ID, and order total for the&#xD;&#xA;orders that are placed on the same day that Martin places his orders?" SelectionType="1">
+    <Answer ID="1">
+      A. SELECT ord_id, cust_id, ord_total
+      FROM orders, customers
+      WHERE cust_name=’Mating’
+      AND ord_date IN (’18-JUL-2000’,’21-JUL-2000’);
+    </Answer>
+    <Answer ID="2" Correct="true">
+      B. SELECT ord_id, cust_id, ord_total
+      FROM orders
+      Where ord_date IN (SELECT ord_date
+      FROM orders
+      WHERE cust_id = (SELECT cust_id
+      FROM customers
+      WHERE cust_name =
+      ‘Martin’));
+    </Answer>
+    <Answer ID="3">
+      C. SELECT ord_id, cust_id, ord_total
+      FROM orders
+      Where ord_date IN (SELECT ord_date
+      FROM orders, customers
+      Where cust_name = ‘Martin’);
+    </Answer>
+    <Answer ID="4">
+      D. SELECT ord_id, cust_id, ord_total
+      FROM orders
+      WHERE cust_id IN (SELECT cust_id
+      FROM customers
+      WHERE cust name = ‘Martin’);
+    </Answer>
+    <Answer ID="5">
+      None of these.
+    </Answer>
+  </Question>
+  
+  <Question Text="QUESTION NO: 13&#xD;&#xA;You need to modify the STUDENTS table to add a primary key on the STUDENT_ID&#xD;&#xA;column. The table is currently empty.&#xD;&#xA;Which statement accomplishes this task?" SelectionType="1">
+    <Answer ID="1">
+      A. ALTER TABLE students
+      ADD PRIMARY KEY student_id;
+    </Answer>
+    <Answer ID="2">
+      B. ALTER TABLE students
+      ADD CONSTRAINT PRIMARY KEY (student_id);
+    </Answer>
+    <Answer ID="3">
+      C. ALTER TABLE students
+      ADD CONSTRAINT stud_id_pk PRIMARY KEY student_id;
+    </Answer>
+    <Answer ID="4" Correct="true">
+      D. ALTER TABLE students
+      ADD CONSTRAINT stud_id_pk PRIMARY KEY (student_id);
+    </Answer>
+    <Answer ID="5">
+      E. ALTER TABLE students
+      MODIFY CONSTRAINT stud_id_pk PRIMARY KEY (student_id);
+    </Answer>
+  </Question>
+
+  <Question Text="QUESTION NO: 14
+            Which three are DATETIME data types that can be used when specifying column
+            definitions? (Choose three.)" SelectionType= "2">
+    <Answer ID= "1" Correct="true">A. TIMESTAMP</Answer>
+    <Answer ID= "2">B. INTERVAL MONTH TO DAY</Answer>
+    <Answer ID= "3" Correct="true">C. INTERVAL DAY TO SECOND</Answer>
+    <Answer ID= "4" Correct="true">D. INTERVAL YEAR TO MONTH</Answer>
+    <Answer ID= "5">E. TIMESTAMP WITH DATABASE TIMEZONE</Answer>
+     </Question>
+
+  <Question Text="QUESTION NO: 15
+Examine the data in the EMPLOYEES table:
+LAST_NAME DEPARTMENT_ID SALARY
+Getz 10 3000
+Davis 20 1500
+King 20 2200
+Davis 30 5000
+…
+Which three subqueries work? (Choose three)" SelectionType="2">
+    <Answer ID="1" >
+      A. SELECT *
+      FROM employees
+      where salary > (SELECT MIN(salary)
+      FROM employees
+      GROUP BY department.id);
+    </Answer>
+    <Answer ID="2" >
+      B. SELECT *
+      FROM employees
+      WHERE salary = (SELECT AVG(salary)
+      FROM employees
+      GROUP BY department_id);
+    </Answer>
+    <Answer ID="3" Correct="true" >
+      C. SELECT distinct department_id
+      FROM employees
+      Where salary > ANY (SELECT AVG(salary)
+      FROM employees
+      GROUP BY department_id);
+    </Answer>
+    <Answer ID="4" Correct="true">
+      D. SELECT department_id
+      FROM employees
+      WHERE SALARY > ALL (SELECT AVG(salary)
+      FROM employees
+      GROUP BY department_id);
+    </Answer>
+    <Answer ID="5" Correct="true">
+      E. SELECT last_name
+      FROM employees
+      Where salary > ANY (SELECT MAX(salary)
+      FROM employees
+      GROUP BY department_id);
+    </Answer>
+     </Question>
+
+  <Question Text="QUESTION NO: 16
+Examine the structure of the STUDENTS table:
+STUDENT_ID NUMBER NOT NULL, Primary Key
+STUDENT_NAME VARCHAR2(30)
+COURSE_ID VARCHAR2(10) NOT NULL
+MARKS NUMBER
+START_DATE DATE
+FINISH_DATE DATE
+You need to create a report of the 10 students who achieved the highest ranking in the
+course INT SQL and who completed the course in the year 1999.
+Which SQL statement accomplishes this task?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT student_ id, marks, ROWNUM "Rank"
+      FROM students
+      WHERE ROWNUM &gt;= 10
+      AND finish_date BETWEEN '01-JAN-99' AND '31-DEC-99'
+      AND course_id = 'INT_SQL'
+      ORDER BY marks DESC;
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT student_id, marks, ROWID "Rank"
+      FROM students
+      WHERE ROWID &gt;= 10
+      AND finish_date BETWEEN '01-JAN-99' AND '31-DEC-99'
+      AND course_id = 'INT_SQL'
+      ORDER BY marks;
+    </Answer>
+    <Answer ID= "3">
+      B. SELECT student_id, marks, ROWID "Rank"
+      FROM students
+      WHERE ROWID &gt;= 10
+      AND finish_date BETWEEN '01-JAN-99' AND '31-DEC-99'
+      AND course_id = 'INT_SQL'
+      ORDER BY marks;
+    </Answer>
+    <Answer ID= "4" Correct="true">
+      D. SELECT student_id, marks, ROWNUM "Rank:
+      FROM (SELECT student_id, marks
+      FROM students
+      ORDER BY marks)
+      WHERE ROWNUM &gt;= 10
+      AND finish_date BETWEEN '01-JAN-99' AND '31-DEC-99'
+      AND course_id = 'INT_SQL';
+    </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+     </Question>
+
+  <Question Text="QUESTION NO: 17
+Examine the structure of the EMPLOYEES table:
+EMPLOYEE_ID NUMBER NOT NULL
+EMP_NAME VARCHAR2(30)
+JOB_ID VARCHAR2(20) DEFAULT 'SA_REP'
+SAL NUMBER
+COMM_PCT NUMBER
+MGR_ID NUMBER
+DEPARTMENT_ID NUMBER
+You need to update the records of employees 103 and 115. The UPDATE statement you
+specify should update the rows with the values specified below:
+JOB_ID: Default value specified for this column definition.
+SAL: Maximum salary earned for the job ID SA_REP.
+COMM_PCT: Default value specified for this commission percentage column, if any.
+If no default value is specified for the column, the value should be
+NULL.
+DEPARTMENT_ID: Supplied by the user during run time through substitution variable.
+Which UPDATE statement meets the requirements?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. UPDATE employees
+      SET job_id = DEFAULT
+      AND Sal = (SELECT MAX(sal)
+      FROM employees
+      WHERE job_id = 'SA_REP')
+      AND comm_pct = DEFAULT
+      AND department_id = &amp;did
+      WHERE employee_id IN (103,115);
+    </Answer>
+    <Answer ID= "2">
+      B. UPDATE employees
+      SET job_id = DEFAULT
+      AND Sal = MAX(sal)
+      AND comm_pct = DEFAULT OR NULL
+      AND department_id = &amp;did
+      WHERE employee_id IN (103,115)
+      AND job_id = 'SA_REP';
+    </Answer>
+    <Answer ID= "3" Correct="true">
+      C. UPDATE employees
+      SET job_id = DEFAULT,
+      Sal = (SELECT MAX(sal)
+      FROM employees
+      WHERE job_id = 'SA_REP'),
+      comm_pct = DEFAULT,
+      department_id = &amp;did
+      WHERE employee_id IN (103,115);
+    </Answer>
+    <Answer ID= "4">
+      D. UPDATE employees
+      SET job_id = DEFAULT,
+      Sal = MAX(sal),
+      comm_pct = DEFAULT,
+      department_id = &amp;did
+      WHERE employee_id IN (103,115)
+      AND job_id = 'SA_REP';
+    </Answer>
+    <Answer ID= "5">
+      E. UPDATE employees
+      SET job_id = DEFAULT,
+      Sal = (SELECT MAX(sal)
+      FROM employees
+      WHERE job_id = 'SA_REP')
+      comm_pct = DEFAULT OR NULL,
+      department_id = &amp;did
+      WHERE employee_id IN (103,115);
+    </Answer>
+     </Question>
+
+  <Question Text="QUESTION NO: 18
+The EMP table contains these columns:
+LAST NAME VARCHAR2(25)
+SALARY NUMBER(6,2)
+DEPARTMENT_ID NUMBER(6)
+You need to display the employees who have not been assigned to any department.
+You write the SELECT statement:
+SELECT LAST_NAME, SALARY, DEPARTMENT_ID
+FROM EMP
+WHERE DEPARTMENT_ID = NULL;
+What is true about this SQL statement?" SelectionType="1">
+    <Answer ID="1" >A. The SQL statement displays the desired results.</Answer>
+    <Answer ID="2" >B. The column in the WHERE clause should be changed to display the desired results.</Answer>
+    <Answer ID="3" Correct="true">C. The operator in the WHERE clause should be changed to display the desired results.</Answer>
+    <Answer ID="4" >
+      D. The WHERE clause should be changed to use an outer join to display the desired
+      results.
+    </Answer>
+    <Answer ID="5" >E.None of these.</Answer>
+     </Question>
+
+  <Question Text="QUESTION NO: 19
+The EMPLOYEES table contains these columns:
+LAST_NAME VARCHAR2 (25)
+SALARY NUMBER (6,2)
+COMMISSION_PCT NUMBER (6)
+You need to write a query that will produce these results:
+1. Display the salary multiplied by the commission_pct.
+2. Exclude employees with a zero commission_pct.
+3. Display a zero for employees with a null commission value.
+Evaluate the SQL statement:
+SELECT LAST_NAME, SALARY*COMMISSION_PCT
+FROM EMPLOYEES
+WHERE COMMISSION_PCT IS NOT NULL;
+What does the statement provide?" SelectionType= "1">
+    <Answer ID= "1" >A. All of the desired results</Answer>
+    <Answer ID= "2">B. Two of the desired results</Answer>
+    <Answer ID= "3" Correct="true">C. One of the desired results</Answer>
+    <Answer ID= "4">D. An error statement</Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+      </Question>
+
+  <Question Text="QUESTION NO: 20
+You need to change the definition of an existing table. The COMMERCIALS table needs
+its DESCRIPTION column changed to hold varying length characters up to 2000 bytes.
+The column can currently hold 1000 bytes per value. The table contains 20000 rows.
+Which statement is valid?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. ALTER TABLE commercials
+      MODIFY (description CHAR2(2000));
+    </Answer>
+    <Answer ID= "2">
+      B. ALTER TABLE commercials
+      CHANGE (description CHAR2(2000));
+    </Answer>
+    <Answer ID= "3">
+      C. ALTER TABLE commercials
+      CHANGE (description VARCHAR2(2000));
+    </Answer>
+    <Answer ID= "4" Correct="true">
+      D. ALTER TABLE commercials
+      MODIFY (description VARCHAR2(2000));
+    </Answer>
+    <Answer ID= "5">E. You cannot increase the size of a column if the table has rows.</Answer>
+  </Question>
+
+  <Question Text="QUESTION NO: 21
+Which four statements correctly describe functions that are available in SQL? (Choose
+three)" SelectionType= "2">
+    <Answer ID= "1" Correct="true">A. INSTR returns the numeric position of a named character.</Answer>
+    <Answer ID= "2">B. NVL2 returns the first non-null expression in the expression list.</Answer>
+    <Answer ID= "3">C. TRUNCATE rounds the column, expression, or value to n decimal places.</Answer>
+    <Answer ID= "4" Correct="true">D. DECODE translates an expression after comparing it to each search value.</Answer>
+    <Answer ID= "5" Correct="true">E. TRIM trims the heading of trailing characters (or both) from a character string.</Answer>
+    </Question>
+
+  <Question Text="QUESTION NO: 22
+From SQL*Plus, you issue this SELECT statement:
+SELECT*
+From orders;
+You use this statement to retrieve data from a data table for __________. (Choose all
+that apply)" SelectionType= "2">
+    <Answer ID= "1" >A. Updating</Answer>
+    <Answer ID= "2" Correct="true">B. Viewing</Answer>
+    <Answer ID= "3">C. Deleting</Answer>
+    <Answer ID= "4" Correct="true">D. Inserting</Answer>
+    <Answer ID= "5">E. Truncating</Answer>
+      </Question>
+
+  <Question Text="QUESTION NO: 23
+Evaluate the SQL statement
+DROP TABLE DEPT;
+Which four statements are true of the SQL statement? (Choose four)" SelectionType= "2">
+    <Answer ID= "1" Correct="true">A. You cannot roll back this statement.</Answer>
+    <Answer ID= "2" Correct="true">B. All pending transactions are committed.</Answer>
+    <Answer ID= "3">C. All views based on the DEPT table are deleted.</Answer>
+    <Answer ID= "4" Correct="true">D. All indexes based on the DEPT table are dropped.</Answer>
+    <Answer ID= "5" Correct="true">E. All data in the table is deleted, and the table structure is also deleted.</Answer>
+      </Question>
+
+  <Question Text="QUESTION NO: 24
+ Which two are attributes of /SQL*Plus? (Choose two)" SelectionType= "2">
+    <Answer ID= "1" >A. /SQL*Plus commands cannot be abbreviated.</Answer>
+    <Answer ID= "2">B. /SQL*Plus commands are accesses from a browser.</Answer>
+    <Answer ID= "3" Correct="true">C. /SQL*Plus commands are used to manipulate data in tables.</Answer>
+    <Answer ID= "4" Correct="true">D. /SQL*Plus commands manipulate table definitions in the database.</Answer>
+    <Answer ID= "5">E. /SQL*Plus is the Oracle proprietary interface for executing SQL statements.</Answer>
+   </Question>
+
+  <Question Text="QUESTION NO: 25
+  Which are DML statements? (Choose all that apply)" SelectionType= "2">
+    <Answer ID= "1" >A. COMMIT…</Answer>
+    <Answer ID= "2" Correct="true">B. MERGE…</Answer>
+    <Answer ID= "3" Correct="true">C. UPDATE…</Answer>
+    <Answer ID= "4" Correct="true">D. DELETE…</Answer>
+    <Answer ID= "5">E. CREATE…</Answer>
+   </Question>
+
+  <Question Text="QUESTION NO: 26
+Which SQL statement generates the alias Annual Salary for the calculated column
+SALARY*12?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT ename, salary*12 ‘Annual Salary’
+      FROM employees;
+    </Answer>
+    <Answer ID= "2" Correct="true">
+      B. SELECT ename, salary*12 “Annual Salary”
+      FROM employees;
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT ename, salary*12 AS Annual Salary
+      FROM employees;
+    </Answer>
+    <Answer ID= "4">
+      D. SELECT ename, salary*12 AS INITCAP(“ANNUAL SALARY”)
+      FROM employees
+    </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+     </Question>
+
+  
+  
+  <Question Text="QUESTION NO: 27
+Which clause would you use in a SELECT statement to limit the display to those
+employees whose salary is greater then 5000?" SelectionType= "1">
+    <Answer ID= "1" >A. ORDER BY SALARY > 5000</Answer>
+    <Answer ID= "2">B. GROUP BY SALARY > 5000</Answer>
+    <Answer ID= "3">C. HAVING SALARY > 5000</Answer>
+    <Answer ID= "4" Correct="true">D. WHERE SALARY > 5000</Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+      </Question>
+
+  <Question Text="QUESTION NO: 28
+  Which three statements about subqueries are true? (Choose three)" SelectionType= "2">
+    <Answer ID= "1" >A. A single row subquery can retrieve only one column and one row.</Answer>
+    <Answer ID= "2" Correct="true">B. A single row subquery can retrieve only one row but many columns.</Answer>
+    <Answer ID= "3" Correct="true">C. A multiple row subquery can retrieve multiple rows and multiple columns.</Answer>
+    <Answer ID= "4" Correct="true">D. A multiple row subquery can be compared by using the “>” operator.</Answer>
+    <Answer ID= "5">E. A single row subquery can use the IN operator.</Answer>
+      </Question>
+
+  <Question Text="QUESTION NO: 29
+The STUDENT_GRADES table has these columns:
+STUDENT_ID NUMBER(12)
+SEMESTER_END DATE
+GPA NUMBER(4,3)
+The registrar has asked for a report on the average grade point average (GPA) for
+students enrolled during semesters that end in the year 2000. Which statement
+accomplish this?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT AVERAGE(gpa)
+      FROM student_grades
+      WHERE semester_end > ’01-JAN-2000’ and semester end &lt; 31-DEC-2000’;
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT COUNT(gpa)
+      FROM student grades
+      WHERE semester_end > ’01-JAN-2000’ and semester end &lt; ’31-DEC-2000’;
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT MIN(gpa)
+      FROM student grades
+      WHERE semester_end > ’01-JAN-2000’ and semester end &lt; ’31-DEC-2000’;
+    </Answer>
+    <Answer ID= "4" Correct="true">
+      D. SELECT AVG(gpa)
+      FROM student_grades
+      WHERE semester_end BETWEEN ’01-JAN-2000’ and ’31.DEC.2000’;
+    </Answer>
+    <Answer ID= "5">
+      E. SELECT SUM(gpa)
+      FROM student grades
+      WHERE semester_end > ’01-JAN-2000’ and semester end &lt; ’31-DEC-2000’;
+    </Answer>
+      </Question>
+
+  <Question Text="QUESTION NO: 30
+ When should you create a role? (Choose two)" SelectionType= "2">
+    <Answer ID= "1" >
+      A. To simplify the process of creating new users using the CREATE USER xxx
+      IDENTIFIED by yyy statement.
+    </Answer>
+    <Answer ID= "2">B. To grant a group of related privileges to a user.</Answer>
+    <Answer ID= "3" Correct="true">C. When the number of people using the database is very high.</Answer>
+    <Answer ID= "4" Correct="true">D. To simplify the process of granting and revoking privileges.</Answer>
+    <Answer ID= "5">E. To simplify profile maintenance for a user who is constantly traveling.</Answer>
+    </Question>
+
+  <Question Text="QUESTION NO: 31
+Examine the description of the EMPLOYEES table:
+EMP_ID NUMBER(4) NOT NULL
+LAST_NAME VARCHAR2(30) NOT NULL
+FIRST_NAME VARCHAR2(30)
+DEPT_ID NUMBER(2)
+JOB_CAT VARCHAR2(30)
+SALARY NUMBER(8,2)
+Which statement shows the department ID, minimum salary, and maximum salary paid
+in that department, only of the minimum salary is less then 5000 and the maximum
+salary is more than 15000?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT dept_id, MIN(salary(, MAX(salary)
+      FROM employees
+      WHERE MIN(salary) &lt; 5000 AND MAX(salary) > 15000;
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT dept_id, MIN(salary), MAX(salary)
+      FROM employees
+      WHERE MIN(salary) &lt; 5000 AND MAX(salary) > 15000
+      GROUP BY dept_id;
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT dept_id, MIN(salary), MAX(salary)
+      FROM employees
+      HAVING MIN(salary) &lt; 5000 AND MAX(salary) > 15000;
+    </Answer>
+    <Answer ID= "4" Correct="true">
+      D. SELECT dept_id, MIN(salary), MAX(salary)
+      FROM employees
+      GROUP BY dept_id
+      HAVING MIN(salary) &lt; 5000 AND MAX(salary) > 15000;
+    </Answer>
+    <Answer ID= "5">
+      E. SELECT dept_id, MIN(salary), MAX(salary)
+      FROM employees
+      GROUP BY dept_id, salary
+      HAVING MIN(salary) &lt; 5000 AND MAX(salary) > 15000;
+    </Answer>
+      </Question>
+
+  <Question Text="QUESTION NO: 32
+  Which two statements about sequences are true? (Choose two)" SelectionType= "2">
+    <Answer ID= "1" >
+      A. You use a NEXTVAL pseudo column to look at the next possible value that would be
+      generated from a sequence, without actually retrieving the value.
+    </Answer>
+    <Answer ID= "2" Correct="true">
+      B. You use a CURRVAL pseudo column to look at the current value just generated from
+      a sequence, without affecting the further values to be generated from the sequence.
+    </Answer>
+    <Answer ID= "3" Correct="true">
+      C. You use a NEXTVAL pseudo column to obtain the next possible value from a
+      sequence by actually retrieving the value from the sequence.
+    </Answer>
+    <Answer ID= "4">
+      D. You use a CURRVAL pseudo column to generate a value from a sequence that would
+      be used for a specified database column.
+    </Answer>
+    <Answer ID= "5">
+      E. If a sequence starting from a value 100 and incremented by 1 is used by more then one
+      application, then all of these applications could have a value of 105 assigned to their
+      column whose value is being generated by the sequence.
+    </Answer>
+      </Question>
+
+  <Question Text="QUESTION NO: 33
+ Which four are correct guidelines for naming database tables? (Choose four)" SelectionType= "2">
+    <Answer ID= "1" Correct="true">A. Must begin with a letter.</Answer>
+    <Answer ID= "2" Correct="true">B. Must be 1-30 characters long.</Answer>
+    <Answer ID= "3" Correct="true">C. Should not be an Oracle Server reserved word.</Answer>
+    <Answer ID= "4">D. Must contain only A-Z, a-z, 0-+, _, *, and #.</Answer>
+    <Answer ID= "5" Correct="true">E. Must contain only A-Z, a-z, 0-9, _, $, and #.</Answer>
+      </Question>
+
+  <Question Text="QUESTION NO: 34
+ Which operator can be used with a multiple-row subquery?" SelectionType= "1">
+    <Answer ID= "1" >A. =</Answer>
+    <Answer ID= "2">B. LIKE</Answer>
+    <Answer ID= "3">C. BETWEEN</Answer>
+    <Answer ID= "4" Correct="true">D. NOT IN</Answer>
+    <Answer ID= "5">E. IS</Answer>
+     </Question>
+
+  <Question Text="QUESTION NO: 35
+You want to display the titles of books that meet these criteria:
+1. Purchased before January 21, 2001
+2. Price is less then $500 or greater than $900
+You want to sort the results by their data of purchase, starting with the most recently
+bought book.
+Which statement should you use?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT book_title
+      FROM books
+      WHERE price between 500 and 900
+      AND purchase_date &lt; ’21-JAN-2001’
+      ORDER BY purchase_date;
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT book_title
+      FROM books
+      WHERE price IN (500,900)
+      AND purchase_date &lt; ’21-JAN-2001’
+      ORDER BY purchase date ASC;
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT book_title
+      FROM books
+      WHERE price &lt; 500 or > 900
+      AND purchase_date &lt; ’21-JAN-2001’
+      ORDER BY purchase date DESC;
+    </Answer>
+    <Answer ID= "4" Correct="true">
+      D. SELECT book_title
+      FROM books
+      WHERE (price &lt; 500 OR price > 900)
+      AND purchase_date &lt; ’21-JAN-2001’
+      ORDER BY purchase date DESC;
+    </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+      </Question>
+
+  <Question Text="QUESTION NO: 36
+Examine the description of the MARKS table:
+STD_ID NUMBER(4)
+STUDENT_NAME VARCHAR2(30)
+SUBJ1 NUMBER(3)
+SUBJ2 NUMBER(3)
+SUBJ1 and SUBJ2 indicate the marks obtained by a student in two subjects.
+Examine this SELECT statement based on the MARKS table:
+SELECT subj1+subj2 total_marks, std_id
+FROM marks
+WHERE subj1 > AVG(subj1) AND subj2 > AVG(subj2)
+ORDER BY total_marks;
+What is the result of the SELECT statement?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. The statement executes successfully and returns the student ID and sum of all marks
+      for each student who obtained more than the average mark in each subject.
+    </Answer>
+    <Answer ID= "2">B. The statement returns an error at the SELECT clause.</Answer>
+    <Answer ID= "3" Correct="true">C. The statement returns an error at the WHERE clause.</Answer>
+    <Answer ID= "4">D. The statement returns an error at the ORDER BY clause.</Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+      </Question>
+
+  <Question Text="QUESTION NO: 37
+You need to display the last names of those employees who have the letter “A” as the
+second character in their names.
+Which SQL statement displays the required results?" SelectionType= "1">
+    <Answer ID= "1" Correct="true">
+      A. SELECT last_name
+      FROM EMP
+      WHERE last_name LIKE ‘_A%’;
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT last_name
+      FROM EMP
+      WHERE last name =’*A%’
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT last_name
+      FROM EMP
+      WHERE last name =’_A%’;
+    </Answer>
+    <Answer ID= "4">
+      D. SELECT last_name
+      FROM EMP
+      WHERE last name LIKE ‘*A%’
+    </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+      </Question>
+
+  <Question Text="QUESTION NO: 38
+Evaluate this SQL statement:
+SELECT e.EMPLOYEE_ID,e.LAST_NAME,e.DEPARTMENT_ID, d.DEPARTMENT_NAME
+FROM EMP e, DEPARTMENT d
+WHERE e.DEPARTMENT_ID = d.DEPARTMENT_ID;
+In the statement, which capabilities of a SELECT statement are performed?" SelectionType= "1">
+    <Answer ID= "1" Correct="true">A. Selection, projection, join</Answer>
+    <Answer ID= "2">B. Difference, projection, join</Answer>
+    <Answer ID= "3">C. Selection, intersection, join</Answer>
+    <Answer ID= "4">D. Intersection, projection, join</Answer>
+    <Answer ID= "5">E. Difference, projection, product</Answer>
+   </Question>
+
+  <Question Text="QUESTION NO: 39
+Which two are character manipulation functions? (Choose two.)" SelectionType= "1">
+    <Answer ID= "1" Correct="true">A. TRIM</Answer>
+    <Answer ID= "2" Correct="true">B. REPLACE</Answer>
+    <Answer ID= "3">C. TRUNC</Answer>
+    <Answer ID= "4">D. TO_DATE</Answer>
+    <Answer ID= "5">E. MOD</Answer>
+   </Question>
+
+  <Question Text="QUESTION NO: 40
+Examine the structures of the EMPLOYEES and TAX tables.
+EMPLOYEES
+EMPLOYEE_ID NUMBER NOT NULL, Primary Key
+EMP_NAME VARCHAR2 (30)
+JOB_ID VARCHAR2 (20)
+SALARY NUMBER
+MGR_ID NUMBER References EMPLOYEE_ID column
+DEPARTMENT_ID NUMBER Foreign key to DEPARTMENT_ID column of the
+DEPARTMENTS table
+TAX
+MIN_SALARY NUMBER
+MAX_SALARY NUMBER
+TAX_PERCENT NUMBER Percentage tax for given salary range
+You need to find the percentage tax applicable for each employee. Which SQL statement
+would you use?" SelectionType= "1">
+    <Answer ID= "1" Correct="true">
+      A. SELECT employee_id, salary, tax_percent
+      FROM employees e, tax t
+      WHERE e.salary BETWEEN t.min_salary AND t.max_salary;
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT employee_id, salary, tax_percent
+      FROM employees e, tax t
+      WHERE e.salary > t.min_salary, tax_percent
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT employee_id, salary, tax_percent
+      FROM employees e, tax t
+      WHERE MIN(e.salary) = t.min_salary
+      AND MAX(e.salary) = t.max_salary
+    </Answer>
+    <Answer ID= "4">
+      D. You cannot find the information because there is no common column between the two
+      tables.
+    </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+   </Question>
+
+  <Question Text="QUESTION NO: 41
+You need to calculate the total of all salaries in the accounting department. Which group
+function should you use?" SelectionType= "1">
+    <Answer ID= "1" >A. MAX</Answer>
+    <Answer ID= "2">B. MIN</Answer>
+    <Answer ID= "3" Correct="true">C. SUM</Answer>
+    <Answer ID= "4">D. COUNT</Answer>
+    <Answer ID= "5">E. TOTAL</Answer>
+   </Question>
+
+  <Question Text="QUESTION NO: 42
+You need to perform certain data manipulation operations through a view called
+EMP_DEPT_VU, which you previously created.
+You want to look at the definition of the view (the SELECT statement on which the view
+was create.)
+How do you obtain the definition of the view?" SelectionType= "1">
+    <Answer ID= "1" >A. Use the DESCRIBE command in the EMP_DEPT VU view.</Answer>
+    <Answer ID= "2">B. Use the DEFINE VIEW command on the EMP_DEPT VU view.</Answer>
+    <Answer ID= "3">C. Use the DESCRIBE VIEW command on the EMP_DEPT VU view.</Answer>
+    <Answer ID= "4" Correct="true">
+      D. Query the USER_VIEWS data dictionary view to search for the EMP_DEPT_VU
+      view.
+    </Answer>
+    <Answer ID= "5">
+      E. Query the USER_SOURCE data dictionary view to search for the EMP_DEPT_VU
+      view.
+    </Answer>
+    <Answer ID= "6">
+      Answer: D
+      Explanation:
+      To look on the view definition you need to query the USER_VIEWS data dictionary view and
+      search for the EMP_DEPT_VU view.
+    </Answer>
+  </Question>
+
+  <Question Text="QUESTION NO: 43
+You define a multiple-row subquery in the WHERE clause of an SQL query with a
+comparison operator &quot;=&quot;.
+What happens when the main query is executed?" SelectionType= "1">
+    <Answer ID= "1" >A. The main query executes with the first value returned by the subquery.</Answer>
+    <Answer ID= "2">B. The main query executes with the last value returned by the subquery.</Answer>
+    <Answer ID= "3">C. The main query executes with all the values returned by the subquery.</Answer>
+    <Answer ID= "4" Correct="true">
+      D. The main query fails because the multiple-row subquery cannot be used with the
+      comparison operator.
+    </Answer>
+    <Answer ID= "5">E. You cannot define a multiple-row subquery in the WHERE clause of a SQL query.</Answer>
+      </Question>
+
+  <Question Text="QUESTION NO: 44
+ What is true about joining tables through an equijoin?" SelectionType= "1">
+    <Answer ID= "1" >A. You can join a maximum of two tables through an equijoin.</Answer>
+    <Answer ID= "2">B. You can join a maximum of two columns through an equijoin.</Answer>
+    <Answer ID= "3">
+      C. You specify an equijoin condition in the SELECT or FROM clauses of a SELECT
+      statement.
+    </Answer>
+    <Answer ID= "4">
+      D. To join two tables through an equijoin, the columns in the join condition must be
+      primary key and foreign key columns.
+    </Answer>
+    <Answer ID= "5" Correct="true">
+      E. You can join n tables (all having single column primary keys) in a SQL statement by
+      specifying a minimum of n-1 join conditions.
+    </Answer>
+      </Question>
+
+  <Question Text="QUESTION NO: 45
+ Which clause should you use to exclude group results?" SelectionType= "1">
+    <Answer ID= "1" >A. WHERE</Answer>
+    <Answer ID= "2" Correct="true">B. HAVING</Answer>
+    <Answer ID= "3">C. RESTRICT</Answer>
+    <Answer ID= "4">D. GROUP BY</Answer>
+    <Answer ID= "5">E. ORDER BY</Answer>
+      </Question>
+
+  <Question Text="QUESTION NO: 46
+Scott issues the SQL statements:
+CREATE TABLE dept
+(deptno NUMBER(2),
+dname VARCHAR2(14),
+loc VARCHAR2(13)};
+GRANT SELECT
+ON DEPT
+TO SUE;
+If Sue needs to select from Scott's DEPT table, which command should she use?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT *
+      FROM DEPT;
+    </Answer>
+    <Answer ID= "2" Correct="true">
+      B. SELECT *
+      FROM SCOTT.DEPT;
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT *
+      FROM DBA.SCOTT.DEPT;
+    </Answer>
+    <Answer ID= "4">
+      D. SELECT *
+      FROM ALL_USERS
+      WHERE USER_NAME = 'SCOTT'
+      AND TABLE NAME = 'DEPT';
+    </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+      </Question>
+
+  <Question Text="QUESTION NO: 47
+ A subquery can be used to _________." SelectionType= "1">
+    <Answer ID= "1" >A. Create groups of data</Answer>
+    <Answer ID= "2">B. Sort data in a specific order</Answer>
+    <Answer ID= "3">C. Convert data to a different format</Answer>
+    <Answer ID= "4" Correct="true">D. Retrieve data based on an unknown condition</Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    </Question>
+
+  <Question Text="QUESTION NO: 48
+Which SELECT statement should you use to extract the year from the system date and
+display it in the format &quot;1998&quot;?" SelectionType= "1">
+    <Answer ID= "1" Correct="true">
+      A. SELECT TO_CHAR(SYSDATE,'yyyy')
+      FROM dual;
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT TO_DATE(SYSDATE,'yyyy')
+      FROM dual;
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT DECODE(SUBSTR(SYSDATE, 8), 'YYYY')
+      FROM dual;
+    </Answer>
+    <Answer ID= "4">
+      D. SELECT DECODE(SUBSTR(SYSDATE, 8), 'year')
+      FROM dual;
+    </Answer>
+    <Answer ID= "5">
+      E. SELECT TO_CHAR(SUBSTR(SYSDATE, 8,2),'yyyy')
+      FROM dual;
+    </Answer>
+    </Question>
+
+  <Question Text="QUESTION NO: 49
+ Which is an /SQL*Plus command?" SelectionType= "1">
+    <Answer ID= "1" >A. INSERT</Answer>
+    <Answer ID= "2">B. UPDATE</Answer>
+    <Answer ID= "3">C. SELECT</Answer>
+    <Answer ID= "4" Correct="true">D. DESCRIBE</Answer>
+    <Answer ID= "5">E. DELETE</Answer>
+   </Question>
+
+  <Question Text="QUESTION NO: 50
+ What does the TRUNCATE statement do?" SelectionType= "1">
+    <Answer ID= "1" >A. Removes the table</Answer>
+    <Answer ID= "2" Correct="true">B. Removes all rows from a table</Answer>
+    <Answer ID= "3">C. Shortens the table to 10 rows</Answer>
+    <Answer ID= "4">D. Removes all columns from a table</Answer>
+    <Answer ID= "5">E. Removes foreign keys from a table</Answer>
+   </Question>
+
+  <Question Text="QUESTION NO: 51
+ You are granted the CREATE VIEW privilege. What does this allow you to do?" SelectionType= "1">
+    <Answer ID= "1" >A. Create a table view.</Answer>
+    <Answer ID= "2">B. Create a view in any schema.</Answer>
+    <Answer ID= "3" Correct="true">C. Create a view in your schema.</Answer>
+    <Answer ID= "4">D. Create a sequence view in any schema.</Answer>
+    <Answer ID= "5">E. Create a view that is accessible by everyone.</Answer>
+   </Question>
+
+  <Question Text="QUESTION NO: 52
+ In which scenario would TOP N analysis be the best solution?" SelectionType= "1">
+    <Answer ID= "1" >A. You want to identify the most senior employee in the company.</Answer>
+    <Answer ID= "2">B. You want to find the manager supervising the largest number of employees.</Answer>
+    <Answer ID= "3">C. You want to identify the person who makes the highest salary for all employees.</Answer>
+    <Answer ID= "4" Correct="true">
+      D. You want to rank the top three sales representatives who have sold the maximum
+      number of products.
+    </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+   </Question>
+  
+  
+  
+  
+</questions>

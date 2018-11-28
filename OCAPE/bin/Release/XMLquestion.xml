@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<questions>
+  <Question Text="QUESTION  NO: 1
+Examine the data in the EMPLOYEES and DEPARTMENTS tables.
+EMPLOYEES
+LAST_NAME DEPARTMENT_ID SALARY
+Getz 10 3000
+Davis 20 1500
+King 20 2200
+Davis 30 5000
+Kochhar 5000
+DEPARTMENTS
+DEPARTMENT_ID DEPARTMENT_NAME
+10 Sales
+20 Marketing
+30 Accounts
+40 Administration
+You want to retrieve all employees, whether or not they have matching departments in
+the departments table. Which query would you use?" SelectionType= "1">
+  <Answer ID= "1"  >
+    A. SELECT last_name, department_name
+    FROM employees , departments(+);
+  </Answer>
+  <Answer ID= "2">
+    B. SELECT last_name, department_name
+    FROM employees JOIN departments (+);
+  </Answer>
+  <Answer ID= "3">
+    C. SELECT last_name, department_name
+    FROM employees(+) e JOIN departments d
+    ON (e.department_id = d.department_id);
+
+  </Answer>
+    <Answer ID= "4">
+      D. SELECT last_name, department_name
+      FROM employees e
+      RIGHT OUTER JOIN departments d ON (e.department_id = d.department_id);
+    </Answer>
+  <Answer ID="5" Correct= "true">
+    E. SELECT last_name, department_name
+    FROM employees e LEFT OUTER
+    JOIN departments d ON (e.department_id = d.department_id);
+  </Answer>
+  </Question>
+
+  <Question  Text= "QUESTION NO: 2
+Examine the structure of the EMPLOYEES table:
+EMPLOYEE_ID NUMBER Primary Key
+FIRST_NAME VARCHAR2(25)
+LAST_NAME VARCHAR2(25)
+Which three statements inserts a row into the table? (Choose three)" SelectionType= "2">
+  <Answer ID="1" >
+    A. INSERT INTO employees
+    VALUES ( NULL, ‘John’,‘Smith’);
+  </Answer>
+  <Answer ID= "2" >
+
+    B. INSERT INTO employees( first_name, last_name)
+    VALUES(‘John’,‘Smith’);
+  </Answer>
+  <Answer ID= "3" Correct= "true">
+    C. INSERT INTO employees
+    VALUES (‘1000’,‘John’,NULL);
+  </Answer>
+  <Answer ID= "4" Correct= "true">
+    D. INSERT INTO employees (employee_id)
+    VALUES (1000);
+  </Answer>
+  <Answer ID= "5" Correct= "true">
+    E. INSERT INTO employees (employee_id, first_name, last_name)
+    VALUES ( 1000, ‘John’,‘’);
+  </Answer >
+  </Question>
+
+  <Question Text="QUESTION NO: 3
+You need to give the MANAGER role the ability to select from, insert into, and modify
+existing rows in the STUDENT_GRADES table. Anyone given this MANAGER role
+should be able to pass those privileges on to others.
+Which statement accomplishes this?" SelectionType="1">
+  <Answer ID= "1" >
+    A. GRANT select, insert, update
+    ON student_grades
+    TO manager;
+  </Answer>
+  <Answer ID= "2">
+    B. GRANT select, insert, update
+    ON student_grades
+    TO ROLE manager;
+  </Answer>
+  <Answer ID= "3">
+    C. GRANT select, insert, modify
+    ON student_grades
+    TO manager
+    WITH GRANT OPTION;
+  </Answer>
+  <Answer ID= "4" Correct= "true">
+    D. GRANT select, insert, update
+    ON student_grades
+    TO manager
+    WITH GRANT OPTION;
+  </Answer>
+  <Answer ID= "5">
+    E. GRANT select, insert, update
+    ON student_grades
+    TO ROLE manager
+    WITH GRANT OPTION;
+  </Answer>
+  </Question>
+
+  <Question Text="QUESTION NO: 4
+Examine the data in the EMPLOYEES table:
+LAST_NAME DEPARTMENT_ID SALARY
+Getz 10 3000
+Davis 20 1500
+King 20 2200
+Davis 30 5000
+…........
+Which three subqueries work? (Choose three)" SelectionType= "2">
+  <Answer ID= "1" >
+    A. SELECT *
+    FROM employees
+    where salary > (SELECT MIN(salary)
+    FROM employees
+    GROUP BY department.id);
+  </Answer>
+  <Answer ID= "2">
+    B. SELECT *
+    FROM employees
+    WHERE salary = (SELECT AVG(salary)
+    FROM employees
+    GROUP BY department_id);
+  </Answer>
+  <Answer ID= "3" Correct="true">
+    C. SELECT distinct department_id
+    FROM employees
+    Where salary > ANY (SELECT AVG(salary)
+    FROM employees
+    GROUP BY department_id);
+  </Answer>
+  <Answer ID= "4" Correct="true">
+    D. SELECT department_id
+    FROM employees
+    WHERE SALARY > ALL (SELECT AVG(salary)
+    FROM employees
+    GROUP BY department_id);
+  </Answer>
+  <Answer ID= "5" Correct="true">
+    E. SELECT last_name
+    FROM employees
+    Where salary > ANY (SELECT MAX(salary)
+    FROM employees
+    GROUP BY department_id);
+  </Answer>
+  </Question>
+
+  <Question Text="QUESTION NO: 5
+The database administrator of your company created a public synonym called HR for
+the HUMAN_RESOURCES table of the GENERAL schema, because many users
+frequently use this table.
+As a user of the database, you created a table called HR in your schema. What happens
+when you execute this query?
+SELECT *
+FROM HR;" SelectionType= "1">
+  <Answer ID= "1" >
+    A. You obtain the results retrieved from the public synonym HR created by the database
+    administrator.
+  </Answer>
+  <Answer ID= "2" Correct="true">
+    B. You obtain the results retrieved from the HR table that belongs to your schema.
+  </Answer>
+  <Answer ID= "3">
+    C. You get an error message because you cannot retrieve from a table that has the same
+    name as a public synonym.
+  </Answer>
+  <Answer ID= "4">
+    D. You obtain the results retrieved from both the public synonym HR and the HR table
+    that belongs to your schema, as a Cartesian product.
+  </Answer>
+  <Answer ID= "5">
+    E. You obtain the results retrieved from both the public synonym HR and the HR table
+    that belongs to your schema, as a FULL JOIN.
+  </Answer>
+  </Question>
+
+  <Question  Text="QUESTION NO: 6
+Which two statements about views are true? (Choose two.)" SelectinType= "2">
+  <Answer ID= "1" Correct="true">
+    A. A view can be created as read only.
+  </Answer>
+  <Answer ID= "2" Correct="true">
+    B. A view can be created as a join on two or more tables.
+  </Answer>
+  <Answer ID= "3">
+    C. A view cannot have an ORDER BY clause in the SELECT statement.
+  </Answer>
+  <Answer ID= "4">
+    D. A view cannot be created with a GROUP BY clause in the SELECT statement.
+  </Answer>
+  <Answer ID= "5">
+    E. A view must have aliases defined for the column names in the SELECT statement.
+  </Answer>
+  </Question>
+
+  <Question Text="QUESTION NO: 7
+Examine the description of the EMPLOYEES table:
+EMP_ID NUMBER(4) NOT NULL
+LAST_NAME VARCHAR2(30) NOT NULL
+FIRST_NAME VARCHAR2(30)
+DEPT_ID NUMBER(2)
+JOB_CAT VARCHARD2(30)
+SALARY NUMBER(8,2)
+Which statement shows the maximum salary paid in each job category of each
+department?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT dept_id, job_cat, MAX(salary)
+      FROM employees
+      WHERE salary > MAX(salary);
+    </Answer>
+    <Answer ID= "2" Correct= "true">
+      B. SELECT dept_id, job_cat, MAX(salary)
+      FROM employees
+      GROUP BY dept_id, job_cat;
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT dept_id, job_cat, MAX(salary)
+      FROM employees;
+    </Answer>
+    <Answer ID= "4">
+      D. SELECT dept_id, job_cat, MAX(salary)
+      FROM employees
+      GROUP BY dept_id;
+    </Answer>
+    <Answer ID= "5">
+      E. SELECT dept_id, job_cat, MAX(salary)
+      FROM employees
+      GROUP BY dept_id, job_cat, salary;
+    </Answer>
+  </Question>
+
+  <Question Text="QUESTION NO: 8
+Management has asked you to calculate the value 12*salary* commission_pct for all the
+employees in the EMP table. The EMP table contains these columns:
+LAST NAME VARCNAR2(35) NOT NULL
+SALARY NUMBER(9,2) NOT NULL
+COMMISION_PCT NUMBER(4,2)
+Which statement ensures that a value is displayed in the calculated columns for all
+employees?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT last_name, 12*salary* commission_pct
+      FROM emp;
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT last_name, 12*salary* (commission_pct,0)
+      FROM emp;
+    </Answer>
+    <Answer ID= "3" Correct="true">
+      C. SELECT last_name, 12*salary*(nvl(commission_pct,0))
+      FROM emp;
+    </Answer>
+    <Answer ID= "4">
+      D. SELECT last_name, 12*salary*(decode(commission_pct,0))
+      FROM emp;
+    </Answer>
+    <Answer ID= "5">None of these.</Answer>
+  </Question>
+
+  <Question Text="QUESTION NO: 9
+Which syntax turns an existing constraint on?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. ALTER TABLE table_name
+      ENABLE constraint_name;
+    </Answer>
+    <Answer ID= "2">
+      B. ALTER TABLE table_name
+      STATUS = ENABLE CONSTRAINT constraint_name;
+    </Answer>
+    <Answer ID= "3" Correct="true">
+      C. ALTER TABLE table_name
+      ENABLE CONSTRAINT constraint_name;
+    </Answer>
+    <Answer ID= "4">
+      D. ALTER TABLE table_name
+      STATUS ENABLE CONSTRAINT constraint_name;
+    </Answer>
+    <Answer ID= "5">
+      E. ALTER TABLE table_name
+      TURN ON CONSTRAINT constraint_name;
+    </Answer>
+  </Question>
+
+  <Question Text="QUESTION NO: 10
+Examine the description of the STUDENTS table:
+STD_ID NUMBER(4)
+COURSE_ID VARCHARD2(10)
+START_DATE DATE
+END_DATE DATE
+Which two aggregate functions are valid on the START_DATE column? (Choose two)" SelectionType= "2">
+    <Answer ID= "1" >
+      A. SUM(start_date)
+    </Answer>
+    <Answer ID= "2">
+      B. AVG(start_date)
+    </Answer>
+    <Answer ID= "3" Correct="true">
+      C. COUNT(start_date)
+    </Answer>
+    <Answer ID= "4">
+      D. AVG(start_date, end_date)
+    </Answer>
+    <Answer ID= "5" Correct="true">
+      E. MIN(start_date)
+    </Answer>
+  </Question>
+
+  <Question Text="QUESTION NO: 11
+The EMPLOYEE tables has these columns:
+LAST_NAME VARCHAR2(35)
+SALARY NUMBER(8,2)
+COMMISSION_PCT NUMBER(5,2)
+You want to display the name and annual salary multiplied by the commission_pct for
+all employees. For records that have a NULL commission_pct, a zero must be displayed
+against the calculated column.
+Which SQL statement displays the desired results?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT last_name, (salary * 12) * commission_pct
+      FROM EMPLOYEES;
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT last_name, (salary * 12) * IFNULL(commission_pct, 0)
+      FROM EMPLOYEES;
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT last_name, (salary * 12) * NVL2(commission_pct, 0)
+      FROM EMPLOYEES;
+    </Answer>
+    <Answer ID= "4" Correct="true">
+      D. SELECT last_name, (salary * 12) * NVL(commission_pct, 0)
+      FROM EMPLOYEES;
+    </Answer>
+    <Answer ID= "5">
+      None of these
+    </Answer>
+  </Question>
+
+  <Question Text="QUESTION NO: 12
+Examine the data from the ORDERS and CUSTOMERS table.
+ORDERS
+ORD_ID ORD_DATE CUST_ID ORD_TOTAL
+100 12-JAN-2000 15 10000
+101 09-MAR-2000 40 8000
+102 09-MAR-2000 35 12500
+103 15-MAR-2000 15 12000
+104 25-JUN-2000 15 6000
+105 18-JUL-2000 20 5000
+106 18-JUL-2000 35 7000
+107 21-JUL-2000 20 6500
+108 04-AUG-2000 10 8000
+
+CUSTOMERS
+CUST_ID CUST_NAME CITY
+10 Smith Los Angeles
+15 Bob San Francisco
+20 Martin Chicago
+25 Mary New York
+30 Rina Chicago
+35 Smith New York
+40 Linda New York
+Which SQL statement retrieves the order ID, customer ID, and order total for the
+orders that are placed on the same day that Martin places his orders?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT ord_id, cust_id, ord_total
+      FROM orders, customers
+      WHERE cust_name=’Mating’
+      AND ord_date IN (’18-JUL-2000’,’21-JUL-2000’);
+    </Answer>
+    <Answer ID= "2" Correct="true">
+      B. SELECT ord_id, cust_id, ord_total
+      FROM orders
+      Where ord_date IN (SELECT ord_date
+      FROM orders
+      WHERE cust_id = (SELECT cust_id
+      FROM customers
+      WHERE cust_name =
+      ‘Martin’));
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT ord_id, cust_id, ord_total
+      FROM orders
+      Where ord_date IN (SELECT ord_date
+      FROM orders, customers
+      Where cust_name = ‘Martin’);
+    </Answer>
+    <Answer ID= "4">
+      D. SELECT ord_id, cust_id, ord_total
+      FROM orders
+      WHERE cust_id IN (SELECT cust_id
+      FROM customers
+      WHERE cust name = ‘Martin’);
+    </Answer>
+    <Answer ID= "5">
+      None of these.
+    </Answer>
+    
+  </Question>
+  <Question Text="QUESTION NO: 13
+You need to modify the STUDENTS table to add a primary key on the STUDENT_ID
+column. The table is currently empty.
+Which statement accomplishes this task?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. ALTER TABLE students
+      ADD PRIMARY KEY student_id;
+    </Answer>
+    <Answer ID= "2">
+      B. ALTER TABLE students
+      ADD CONSTRAINT PRIMARY KEY (student_id);
+    </Answer>
+    <Answer ID= "3">
+      C. ALTER TABLE students
+      ADD CONSTRAINT stud_id_pk PRIMARY KEY student_id;
+    </Answer>
+    <Answer ID= "4" Correct="true">
+      D. ALTER TABLE students
+      ADD CONSTRAINT stud_id_pk PRIMARY KEY (student_id);
+    </Answer>
+    <Answer ID= "5">
+      E. ALTER TABLE students
+      MODIFY CONSTRAINT stud_id_pk PRIMARY KEY (student_id);
+    </Answer>
+  </Question>
+
+  <Question Text="Question1" SelectionType= "1">
+    <Answer ID= "1" Correct="true">1</Answer>
+    <Answer ID= "2">10</Answer>
+    <Answer ID= "3">11</Answer>
+    <Answer ID= "4">12</Answer>
+    <Answer ID= "5">13</Answer>
+  </Question>
+
+  <Question Text="Question1" SelectionType= "1">
+    <Answer ID= "1" Correct="true">1</Answer>
+    <Answer ID= "2">10</Answer>
+    <Answer ID= "3">11</Answer>
+    <Answer ID= "4">12</Answer>
+    <Answer ID= "5">13</Answer>
+  </Question>
+
+  <Question Text="Question1" SelectionType= "1">
+    <Answer ID= "1" Correct="true">1</Answer>
+    <Answer ID= "2">10</Answer>
+    <Answer ID= "3">11</Answer>
+    <Answer ID= "4">12</Answer>
+    <Answer ID= "5">13</Answer>
+  </Question>
+
+  <Question Text="Question1" SelectionType= "1">
+    <Answer ID= "1" Correct="true">1</Answer>
+    <Answer ID= "2">10</Answer>
+    <Answer ID= "3">11</Answer>
+    <Answer ID= "4">12</Answer>
+    <Answer ID= "5">13</Answer>
+  </Question>
+
+  <Question Text="Question1" SelectionType= "1">
+    <Answer ID= "1" Correct="true">1</Answer>
+    <Answer ID= "2">10</Answer>
+    <Answer ID= "3">11</Answer>
+    <Answer ID= "4">12</Answer>
+    <Answer ID= "5">13</Answer>
+  </Question>
+
+  <Question Text="Question1" SelectionType= "1">
+    <Answer ID= "1" Correct="true">1</Answer>
+    <Answer ID= "2">10</Answer>
+    <Answer ID= "3">11</Answer>
+    <Answer ID= "4">12</Answer>
+    <Answer ID= "5">13</Answer>
+  </Question>
+  
+  
+
+
+</questions>

@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<questions>
+<Question Text="The database administrator of your company created a public synonym called HR for
+the HUMAN_RESOURCES table of the GENERAL schema, because many users
+frequently use this table.
+As a user of the database, you created a table called HR in your schema. What happens
+when you execute this query?
+SELECT *
+FROM HR;" SelectionType= "1">
+  <Answer ID= "1" >
+    A. You obtain the results retrieved from the public synonym HR created by the database
+    administrator.
+  </Answer>
+  <Answer ID= "2" Correct="true">B. You obtain the results retrieved from the HR table that belongs to your schema.</Answer>
+  <Answer ID= "3">
+    C. You get an error message because you cannot retrieve from a table that has the same
+    name as a public synonym.
+  </Answer>
+  <Answer ID= "4">
+    D. You obtain the results retrieved from both the public synonym HR and the HR table
+    that belongs to your schema, as a Cartesian product.
+  </Answer>
+  <Answer ID= "5">
+    E. You obtain the results retrieved from both the public synonym HR and the HR table
+    that belongs to your schema, as a FULL JOIN.
+  </Answer>
+  <Answer ID= "6">
+    Answer: B
+    Explanation:
+    By executing this query you will extract data from the HR table in your own schema, it will
+    not work with HR synonym for the HUMAN_RESOURCES table of the GENERAL schema.
+  </Answer>
+</Question>
+
+<Question Text="Which two statements about views are true? (Choose two.)" SelectionType= "2">
+  <Answer ID= "1" Correct="true">A. A view can be created as read only.</Answer>
+  <Answer ID= "2" Correct="true">B. A view can be created as a join on two or more tables.</Answer>
+  <Answer ID= "3">C. A view cannot have an ORDER BY clause in the SELECT statement.</Answer>
+  <Answer ID= "4">D. A view cannot be created with a GROUP BY clause in the SELECT statement.</Answer>
+  <Answer ID= "5">E. A view must have aliases defined for the column names in the SELECT statement.</Answer>
+  <Answer ID= "6">
+    Answer: A, B
+    Explanation:
+    A view can be created as read only object. However, it is possible to change data in the
+    underlying table(s) with some restrictions.A view also can be created as a join on two or more
+    tables. This type of view is called complex view. Complex views provide complicated data
+    models where many base tables are drawn together into one virtual table.
+  </Answer>
+</Question>
+
+<Question Text="Which syntax turns an existing constraint on?" SelectionType= "1">
+  <Answer ID= "1" >
+    A. ALTER TABLE table_name
+    ENABLE constraint_name;
+  </Answer>
+  <Answer ID= "2">
+    B. ALTER TABLE table_name
+    STATUS = ENABLE CONSTRAINT constraint_name;
+  </Answer>
+  <Answer ID= "3" Correct="true">
+    C. ALTER TABLE table_name
+    ENABLE CONSTRAINT constraint_name;
+  </Answer>
+  <Answer ID= "4">
+    D. ALTER TABLE table_name
+    STATUS ENABLE CONSTRAINT constraint_name;
+  </Answer>
+  <Answer ID= "5">
+    E. ALTER TABLE table_name
+    TURN ON CONSTRAINT constraint_name;
+  </Answer>
+  <Answer ID= "6">
+    Answer: C
+    Explanation:
+    ALTER TABLE statement with ENABLE CONSTRAINT keywords is correct answer to
+    enable an existing constraint.
+  </Answer>
+</Question>
+
+<Question Text="Which three are DATETIME data types that can be used when specifying column
+definitions? (Choose three.)" SelectionType= "2">
+  <Answer ID= "1" Correct="true">A. TIMESTAMP</Answer>
+  <Answer ID= "2">B. INTERVAL MONTH TO DAY</Answer>
+  <Answer ID= "3" Correct="true">C. INTERVAL DAY TO SECOND</Answer>
+  <Answer ID= "4" Correct="true">D. INTERVAL YEAR TO MONTH</Answer>
+  <Answer ID= "5">E. TIMESTAMP WITH DATABASE TIMEZONE</Answer>
+  <Answer ID= "6">
+    Answer: A, C, D
+    Explanation:
+    TIMESTAMP, INTERVAL DAY TO SECOND and INTERVAL YEAR TO MONTH can be
+    used to specify column definition.
+  </Answer>
+</Question>
+
+<Question Text="Evaluate the set of SQL statements:
+CREATE TABLE dept
+(deptno NUMBER(2),
+dname VARCNAR2(14),
+loc VARCNAR2(13));
+ROLLBACK;
+DESCRIBE DEPT
+What is true about the set???" SelectionType= "1">
+  <Answer ID= "1" Correct="true">A. The DESCRIBE DEPT statement displays the structure of the DEPT table.</Answer>
+  <Answer ID= "2">B. The ROLLBACK statement frees the storage space occupies by the DEPT table.</Answer>
+  <Answer ID= "3">
+    C. The DESCRIBE DEPT statement returns an error ORA-04043: object DEPT does not
+    exist.
+  </Answer>
+  <Answer ID= "4">
+    D. The DESCRIBE DEPT statement displays the structure of the DEPT table only if
+    there is a COMMIT statement introduced before the ROLLBACK statement.
+  </Answer>
+  <Answer ID= "5">E. None of these.</Answer>
+  <Answer ID= "6">
+    Answer: A
+    Explanation:
+    The structure of the DEPT table will be displayed because the CREATE TABLE statement is
+    DDL operation and it cannot be rolled back because implicit commit occurs on the database
+    when a user exits SQL*Plus or issues a data-definition language (DDL) command such as a
+    create table statement, user to create a database object, or an alter table statement, used to
+    alter a database object.
+  </Answer>
+</Question>
+  
+  <Question Text="Which data dictionary table should you query to view the object privileges granted to
+the user on specific columns?" SelectionType= "1">
+    <Answer ID= "1" >A. USER_TAB_PRIVS_MADE</Answer>
+    <Answer ID= "2">B. USER_TAB_PRIVS</Answer>
+    <Answer ID= "3">C. USER_COL_PRIVS_MADE</Answer>
+    <Answer ID= "4" Correct="true">D. USER_COL_PRIVS</Answer>
+    <Answer ID= "5">E.None of these.</Answer>
+    <Answer ID= "6">
+      Answer: D
+      Explanation:
+      The USER_COL_PRIVS data dictionary view will show the object privileges granted to the
+      user on specific columns.
+    </Answer>
+  </Question>
+
+  <Question Text="Evaluate the SQL statement:
+SELECT ROUND(TRUNC(MOD(1600,10),-1),2)
+FROM dual;
+What will be displayed?" SelectionType= "1">
+    <Answer ID= "1" Correct="true">A. 0</Answer>
+    <Answer ID= "2">B. 1</Answer>
+    <Answer ID= "3">C. 0.00</Answer>
+    <Answer ID= "4">D. An error statement</Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: A
+      Explanation:
+      Result will be 0. MOD(x,y) function calculates the modulus of x, defined in long division as
+      the integer remainder when x is divided by y until no further whole number can be produced.
+      TRUNC() function truncates x to the decimal precision of y. ROUND(x,y) rounds x to the
+      decimal precision of y.
+    </Answer>
+  </Question>
+
+  <Question Text="Which /SQL*Plus feature can be used to replace values in the WHERE clause?" SelectionType= "1">
+    <Answer ID= "1" Correct="true">A. Substitution variables</Answer>
+    <Answer ID= "2">B. Replacement variables</Answer>
+    <Answer ID= "3">C. Prompt variables</Answer>
+    <Answer ID= "4">D. Instead-of variables</Answer>
+    <Answer ID= "5">E. This feature cannot be implemented through /SQL*Plus.</Answer>
+    <Answer ID= "6">
+      Answer: A
+      Explanation:
+      Lexical substitution variables can be used to replace values in the WHERE clause.
+    </Answer>
+  </Question>
+
+  <Question Text="Which statement explicitly names a constraint?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. ALTER TABLE student_grades
+      ADD
+      FOREIGN KEY (student_id) REFERENCES students(student_id);
+    </Answer>
+    <Answer ID= "2">
+      B. ALTER TABLE student_grades
+      ADD CONSTRAINT NAME = student_id_fk
+      FOREIGN KEY (student_id) REFERENCES students(student_id);
+    </Answer>
+    <Answer ID= "3" Correct="true">
+      C. ALTER TABLE student_grades
+      ADD CONSTRAINT student_id_fk
+      FOREIGN KEY (student_id) REFERENCES students(student_id);
+    </Answer>
+    <Answer ID= "4">
+      D. ALTER TABLE student grades
+      ADD NAMED CONSTRAINT student_id_fk
+      FOREIGN KEY (student_id) REFERENCES students(student_id);
+    </Answer>
+    <Answer ID= "5">
+      E. ALTER TABLE student grades
+      ADD NAME student_id_fk
+      FOREIGN KEY (student_id) REFERENCES students(student_id);
+    </Answer>
+    <Answer ID= "6">
+      Answer: C
+      Explanation:
+      This statement provides correct syntax to add a foreign key constraint to the existing table.
+    </Answer>
+  </Question>
+
+  <Question Text="For which two constraints does the Oracle Server implicitly create a unique index?
+(Choose two.)" SelectionType= "2">
+    <Answer ID= "1" >A. NOT NULL</Answer>
+    <Answer ID= "2" Correct="true">B. PRIMARY KEY</Answer>
+    <Answer ID= "3">C. FOREIGN KEY</Answer>
+    <Answer ID= "4">D. CHECK</Answer>
+    <Answer ID= "5" Correct="true">E. UNIQUE</Answer>
+    <Answer ID= "6">
+      Answer: B, E
+      Explanation:
+      Indexes are created automatically by Oracle to support integrity constraints that enforce
+      uniqueness. The two types of integrity constraints that enforce uniqueness are PRIMARY
+      KEY and UNIQUE constraints. When the primary key or UNIQUE constraint is declared, a
+      unique index to support the column’s uniqueness is also created, and all values in all columns
+      that were defined as part of the primary key or UNIQUE constraint are placed into the index.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the structure if the EMPLOYEES table:
+Column name Data Type Remarks
+EMPLOYEE_ID NUMBER NOT NULL, Primary Key
+EMP_NAME VARCHAR2(30)
+JOB_ID VARCHAR2(20) NOT NULL
+SAL NUMBER
+MGR_ID NUMBER References EMPLOYEE_ID column
+DEPARTMENT_ID NUMBER Foreign key to DEPARTMENT_ID
+column of the DEPARTMENTS table
+You need to create a view called EMP_VU that allows the user to insert rows through
+the view. Which SQL statement, when used to create the EMP_VU view, allows the user
+to insert rows?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. CREATE VIEW emp_Vu AS
+      SELECT employee_id, emp_name,
+      department_id
+      FROM employees
+      WHERE mgr_id IN (102, 120);
+    </Answer>
+    <Answer ID= "2" Correct="true">
+      B. CREATE VIEW emp_Vu AS
+      SELECT employee_id, emp_name, job_id
+      department_id
+      FROM employees
+      WHERE mgr_id IN (102, 120);
+    </Answer>
+    <Answer ID= "3">
+      C. CREATE VIEW emp_Vu AS
+      SELECT department_id, SUM(sal) TOTALSAL
+      FROM employees
+      WHERE mgr_id IN (102, 120)
+      GROUP BY department_id;
+    </Answer>
+    <Answer ID= "4">
+      D. CREATE VIEW emp_Vu AS
+      SELECT employee_id, emp_name, job_id,
+      DISTINCT department_id
+      FROM employees;
+    </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: B
+      Explanation:
+      This statement will create view that can be used to change tables in underlying table through
+      simple views. It includes primary key, NOT NULL column and foreign key to avoid
+      constraint restrictions.
+    </Answer>
+  </Question>
+
+  <Question Text="Which two are true about aggregate functions? (Choose two.)" SelectionType= "2">
+    <Answer ID= "1" >A. You can use aggregate functions in any clause of a SELECT statement.</Answer>
+    <Answer ID= "2">
+      B. You can use aggregate functions only in the column list of the SELECT clause and in
+      the WHERE clause of a SELECT statement.
+    </Answer>
+    <Answer ID= "3" Correct="true">
+      C. You can mix single row columns with aggregate functions in the column list of a
+      SELECT statement by grouping on the single row columns.
+    </Answer>
+    <Answer ID= "4" Correct="true">
+      D. You can pass column names, expressions, constants, or functions as parameters to an
+      aggregate function.
+    </Answer>
+    <Answer ID= "5">
+      E. You can use aggregate functions on a table, only by grouping the whole table as one
+      single group.
+    </Answer>
+    <Answer ID= "6">
+      Answer: C, D
+      Explanation:
+      It is possible to mix single row columns with aggregate functions in the column list of a
+      SELECT statement by grouping on the single row columns. Also it is acceptable to pass
+      column names, expressions, constraints, or other functions as parameters to an aggregate
+      function.
+    </Answer>
+  </Question>
+
+  <Question Text="In a SELECT statement that includes a WHERE clause, where is the GROUP BY clause
+placed in the SELECT statement?" SelectionType= "1">
+    <Answer ID= "1" >A. Immediately after the SELECT clause</Answer>
+    <Answer ID= "2">B. Before the WHERE clause</Answer>
+    <Answer ID= "3">C. Before the FROM clause</Answer>
+    <Answer ID= "4">D. After the ORDER BY clause</Answer>
+    <Answer ID= "5" Correct="true">E. After the WHERE clause</Answer>
+    <Answer ID= "6">
+      Answer: E
+      Explanation:
+      The GROUP BY clause can be place only after the WHERE clause, or after FROM clause if
+      there is no the WHERE clause in the statement.
+    </Answer>
+  </Question>
+
+  <Question Text="The ORDERS table has these columns:
+ORDER_ID NUMBER(4) NOT NULL
+CUSTOMER_ID NUMBER(12) NOT NULL
+ORDER_TOTAL NUMBER(10,2)
+The ORDERS table tracks the Order number, the order total, and the customer to
+whom the Order belongs. Which two statements retrieve orders with an inclusive total
+that ranges between 100.00 and 2000.00 dollars? (Choose two.)" SelectionType= "2">
+    <Answer ID= "1" >
+      A. SELECT customer_id, order_id, order_total
+      FROM orders
+      RANGE ON order_total (100 AND 2000) INCLUSIVE;
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT customer_id, order_id, order_total FROM orders
+      HAVING order_total BETWEEN 100 and 2000;
+    </Answer>
+    <Answer ID= "3" Correct="true">
+      C. SELECT customer_id, order_id, order_total
+      FROM orders
+      WHERE order_total BETWEEN 100 and 2000;
+    </Answer>
+    <Answer ID= "4">
+      D. SELECT customer_id, order_id, order_total
+      FROM orders
+      WHERE order_total >= 100 and  2000=>;
+    </Answer>
+    <Answer ID= "5" Correct="true">
+      E. SELECT customer_id, order_id, order_total
+      FROM orders
+      WHERE order_total >= 100 and order_total  2000>=;
+    </Answer>
+    <Answer ID= "6">
+      Answer: C, E
+      Explanation:
+      Answers C and E provide correct results to show. You can use BETWEEN or comparison
+      operations to retrieve data.
+    </Answer>
+  </Question>
+
+    <Question Text="Which two statements about subqueries are true? (Choose two.)" SelectionType= "1">
+      <Answer ID= "1" > 
+        A. A single row subquery can retrieve data from only one table.
+      </Answer>
+      <Answer ID= "2" Correct="true">
+        B. A SQL query statement cannot display data from table B that is referred to in its
+        subquery, unless table B is included in the main query's FROM clause.
+      </Answer>
+      <Answer ID= "3">
+        C. A SQL query statement can display data from table B that is referred to in its
+        subquery, without including table B in its own FROM clause.
+      </Answer>
+      <Answer ID= "4" Correct="true">
+        D. A single row subquery can retrieve data from more than one table.
+      </Answer>
+      <Answer ID= "5">
+        E. A single row subquery cannot be used in a condition where the LIKE operator is used
+        for comparison.
+      </Answer>
+      <Answer ID= "6">
+        Answer: B, D
+        Explanation:
+        A SQL query statement cannot display data from table B that is referred to in its sub-query,
+        unless table B is included in the main query's FROM clause. And a single row sub-query can
+        retrieve data from more than one table.
+      </Answer>
+    </Question>
+
+      <Question Text="You added a PHONE_NUMBER column of NUMBER data type to an existing
+EMPLOYEES table. The EMPLOYEES table already contains records of 100
+employees. Now, you want to enter the phone numbers of each of the 100 employees into
+the table.
+Some of the employees may not have a phone number available.
+Which data manipulation operation do you perform?" SelectionType= "1">
+        <Answer ID= "1" >A. MERGE</Answer>
+        <Answer ID= "2">B. INSERT</Answer>
+        <Answer ID= "3" Correct="true">C. UPDATE</Answer>
+        <Answer ID= "4">D. ADD</Answer>
+        <Answer ID= "5">E. ENTER</Answer>
+        <Answer ID= "6">
+          Answer: C
+          Explanation:
+          To update information you need to use UPDATE command.
+        </Answer>
+      </Question>
+
+        <Question Text="In which case would you use a FULL OUTER JOIN?" SelectionType= "1">
+          <Answer ID= "1" >A. Both tables have NULL values.</Answer>
+          <Answer ID= "2">B. You want all unmatched data from one table.</Answer>
+          <Answer ID= "3">C. You want all matched data from both tables.</Answer>
+          <Answer ID= "4" Correct="true">D. You want all unmatched data from both tables.</Answer>
+          <Answer ID= "5">E. One of the tables has more data than the other.</Answer>
+          <Answer ID= "6">
+            Answer: D
+            Explanation:
+            Oracle9i also makes it possible for you to easily execute a full outer join, including all records
+            from the tables that would have been displayed if you had used both LEFT OUTER JOIN or
+            RIGTH OUTER JOIN clauses.
+          </Answer>
+        </Question>
+
+          <Question Text="What is necessary for your query on an existing view to execute successfully?" SelectionType= "1">
+            <Answer ID= "1" >A. The underlying tables must have data.</Answer>
+            <Answer ID= "2" Correct="true">B. You need SELECT privileges on the view.</Answer>
+            <Answer ID= "3">C. The underlying tables must be in the same schema.</Answer>
+            <Answer ID= "4">D. You need SELECT privileges only on the underlying tables.</Answer>
+            <Answer ID= "5">E. None of these.</Answer>
+            <Answer ID= "6">
+              Answer: B
+              Explanation:
+              To query an existing view you need to have SELECT privileges on the view.
+            </Answer>
+          </Question>
+
+  <Question Text="From SQL*Plus, you issue this SELECT statement:
+SELECT*
+From orders;
+You use this statement to retrieve data from a data table for __________. (Choose all
+that apply)" SelectionType= "2">
+    <Answer ID= "1" >A. Updating</Answer>
+    <Answer ID= "2" Correct="true">B. Viewing</Answer>
+    <Answer ID= "3">C. Deleting</Answer>
+    <Answer ID= "4" Correct="true">D. Inserting</Answer>
+    <Answer ID= "5">E. Truncating</Answer>
+    <Answer ID= "6">
+      Answer: B, D
+      Explanation:
+      You can use SELECT statement to display and to insert data into different table.
+    </Answer>
+  </Question>
+
+  <Question Text="Which two tasks can your perform by using the TO_CHAR function? (Choose two)" SelectionType= "2">
+    <Answer ID= "1" >A. Convert 10 to ‘TEN’</Answer>
+    <Answer ID= "2">B. Convert ‘10’ to 10</Answer>
+    <Answer ID= "3" Correct="true">C. Convert ‘10’ to ‘10’</Answer>
+    <Answer ID= "4">D. Convert ‘TEN’ to 10</Answer>
+    <Answer ID= "5" Correct="true">E. Convert a date to a character expression</Answer>
+    <Answer ID= "6">
+      Answer: C, E
+      Explanation:
+      TO_CHAR(x) function is used to convert the value x to a character or converts a date to a
+      character string using formatting conventions.
+    </Answer>
+  </Question>
+
+  <Question Text="Which two statements are true regarding the ORDER BY clause? (Choose two)" SelectionType= "2">
+    <Answer ID= "1" Correct="true">A. The sort is in ascending by order by default.</Answer>
+    <Answer ID= "2">B. The sort is in descending order by default.</Answer>
+    <Answer ID= "3">C. The ORDER BY clause must precede the WHERE clause.</Answer>
+    <Answer ID= "4">D. The ORDER BY clause is executed on the client side.</Answer>
+    <Answer ID= "5" Correct="true">E. The ORDER BY clause comes last in the SELECT statement.</Answer>
+    <Answer ID= "6">
+      Answer: A, E
+      Explanation:
+      The ORDER BY clause does sort data in ascending order by default. And the ORDER BY
+      clause comes last in the SELECT statement: after FROM or WHERE or GROUP BY clause.
+    </Answer>
+  </Question>
+
+  <Question Text="Which are DML statements? (Choose all that apply)" SelectionType= "2">
+    <Answer ID= "1" >A. COMMIT…</Answer>
+    <Answer ID= "2" Correct="true">B. MERGE…</Answer>
+    <Answer ID= "3" Correct="true">C. UPDATE…</Answer>
+    <Answer ID= "4" Correct="true">D. DELETE…</Answer>
+    <Answer ID= "5">E. CREATE…</Answer>
+    <Answer ID= "6">
+      Answer: B, C, D
+      Explanation:
+      MERGE, UPDATE and DELETE commands are data manipulation language (DML)
+      statements.
+    </Answer>
+  </Question>
+
+  <Question Text="In which scenario would index be most useful?" SelectionType= "1">
+    <Answer ID= "1" >A. The indexed column is declared as NOT NULL.</Answer>
+    <Answer ID= "2">B. The indexed columns are used in the FROM clause.</Answer>
+    <Answer ID= "3">C. The indexed columns are part of an expression.</Answer>
+    <Answer ID= "4" Correct="true">D. The indexed column contains a wide range of values.</Answer>
+    <Answer ID= "5">E. No ne of these.</Answer>
+    <Answer ID= "6">
+      Answer: D
+      Explanation:
+      Index will be useful if the indexed column contains a wide range of values. Especially B-tree
+      indexes will work better for tables with a wide range of values. But for tables just with some
+      distinct values bitmap indexes will be more helpful.
+    </Answer>
+  </Question>
+
+  <Question Text="Which SQL statement generates the alias Annual Salary for the calculated column
+SALARY*12?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT ename, salary*12 ‘Annual Salary’
+      FROM employees;
+    </Answer>
+    <Answer ID= "2" Correct="true">
+      B. SELECT ename, salary*12 “Annual Salary”
+      FROM employees;
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT ename, salary*12 AS Annual Salary
+      FROM employees;
+    </Answer>
+    <Answer ID= "4">
+      D. SELECT ename, salary*12 AS INITCAP(“ANNUAL SALARY”)
+      FROM employees
+    </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: B
+      Explanation:
+      This SQL statement provides correct syntax to generate the alias Annual Salary for the
+      calculated column SALARY*12.
+    </Answer>
+  </Question>
+
+  <Question Text="Which clause would you use in a SELECT statement to limit the display to those
+employees whose salary is greater then 5000?" SelectionType= "1">
+    <Answer ID= "1" >A. ORDER BY SALARY > 5000</Answer>
+    <Answer ID= "2">B. GROUP BY SALARY > 5000</Answer>
+    <Answer ID= "3">C. HAVING SALARY > 5000</Answer>
+    <Answer ID= "4" Correct="true">D. WHERE SALARY > 5000</Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: D
+      Explanation:
+      You need to use the WHERE clause to limit the display to those employees whose salary is
+      greater then 5000.
+    </Answer>
+  </Question>
+
+  <Question Text="When should you create a role? (Choose two)" SelectionType= "2">
+    <Answer ID= "1" >
+      A. To simplify the process of creating new users using the CREATE USER xxx
+      IDENTIFIED by yyy statement.
+    </Answer>
+    <Answer ID= "2">B. To grant a group of related privileges to a user.</Answer>
+    <Answer ID= "3" Correct="true">C. When the number of people using the database is very high.</Answer>
+    <Answer ID= "4" Correct="true">D. To simplify the process of granting and revoking privileges.</Answer>
+    <Answer ID= "5">E. To simplify profile maintenance for a user who is constantly traveling.</Answer>
+    <Answer ID= "6">
+      Answer: C, D
+      Explanation:
+      You should use roles to grant a group of privileges to a user. You grant the appropriate
+      privileges to the role and after that grant this role to specific users. By granting to or revoking
+      privileges from the role you can simplify procedure of users privileges maintainance: you
+      don’t need to grant/revoke privileges to/from each user. It’s especially very helpful when you
+      are experiencing a high number of people using the database.
+    </Answer>
+  </Question>
+
+  <Question Text="Which four are correct guidelines for naming database tables? (Choose four)" SelectionType= "2">
+    <Answer ID= "1" Correct="true">A. Must begin with a letter.</Answer>
+    <Answer ID= "2" Correct="true">B. Must be 1-30 characters long.</Answer>
+    <Answer ID= "3" Correct="true">C. Should not be an Oracle Server reserved word.</Answer>
+    <Answer ID= "4">D. Must contain only A-Z, a-z, 0-+, _, *, and #.</Answer>
+    <Answer ID= "5" Correct="true">E. Must contain only A-Z, a-z, 0-9, _, $, and #.</Answer>
+    <Answer ID= "6">
+      Answer: A, B, C, E
+      Explanation:
+      Oracle database object must begin with a letter and can usually be between 1 and 30
+      characters long, except for databases (which have a maximum of eight characters) and
+      database links (with a maximum of 128 characters). Name cannot be an Oracle Server
+      reserved word. Name must contain only A-Z, a-z, 0-9, _, $, and #.
+    </Answer>
+  </Question>
+
+  <Question Text="Which operator can be used with a multiple-row subquery?" SelectionType= "1">
+    <Answer ID= "1" >A. =</Answer>
+    <Answer ID= "2">B. LIKE</Answer>
+    <Answer ID= "3">C. BETWEEN</Answer>
+    <Answer ID= "4" Correct="true">D. NOT IN</Answer>
+    <Answer ID= "5">E. IS</Answer>
+    <Answer ID= "6">
+      Answer: D
+      Explanation:
+      Only NOT IN operator can be used with a multi-row sub-query. All others may be used with
+      single-row sub-query only.
+    </Answer>
+  </Question>
+
+  <Question Text="Evaluate this SQL statement:
+SELECT e.EMPLOYEE_ID,e.LAST_NAME,e.DEPARTMENT_ID, d.DEPARTMENT_NAME
+FROM EMP e, DEPARTMENT d
+WHERE e.DEPARTMENT_ID = d.DEPARTMENT_ID;
+In the statement, which capabilities of a SELECT statement are performed?" SelectionType= "1">
+    <Answer ID= "1" Correct="true">A. Selection, projection, join</Answer>
+    <Answer ID= "2">B. Difference, projection, join</Answer>
+    <Answer ID= "3">C. Selection, intersection, join</Answer>
+    <Answer ID= "4">D. Intersection, projection, join</Answer>
+    <Answer ID= "5">E. Difference, projection, product</Answer>
+    <Answer ID= "6">
+      Answer: A
+      Explanation:
+      Selection, projection and join capabilities of a SELECT statement are performed in this view.
+    </Answer>
+  </Question>
+
+  <Question Text="Which two are character manipulation functions? (Choose two.)" SelectionType= "1">
+    <Answer ID= "1" Correct="true">A. TRIM</Answer>
+    <Answer ID= "2" Correct="true">B. REPLACE</Answer>
+    <Answer ID= "3">C. TRUNC</Answer>
+    <Answer ID= "4">D. TO_DATE</Answer>
+    <Answer ID= "5">E. MOD</Answer>
+    <Answer ID= "6">
+      Answer: A, B
+      Explanation:
+      TRIM() and REPLACE() are character manipulation functions.
+    </Answer>
+  </Question>
+
+  <Question Text="You need to calculate the total of all salaries in the accounting department. Which group
+function should you use?" SelectionType= "1">
+    <Answer ID= "1" >A. MAX</Answer>
+    <Answer ID= "2">B. MIN</Answer>
+    <Answer ID= "3" Correct="true">C. SUM</Answer>
+    <Answer ID= "4">D. COUNT</Answer>
+    <Answer ID= "5">E. TOTAL</Answer>
+    <Answer ID= "6">
+      Answer: C
+      Explanation:
+      Function SUM(x) calculates the sum of all values in column x in all rows returned by the
+      SELECT statement.
+    </Answer>
+  </Question>
+
+  <Question Text="Which clause should you use to exclude group results?" SelectionType= "1">
+    <Answer ID= "1" >A. WHERE</Answer>
+    <Answer ID= "2" Correct="true">B. HAVING</Answer>
+    <Answer ID= "3">C. RESTRICT</Answer>
+    <Answer ID= "4">D. GROUP BY</Answer>
+    <Answer ID= "5">E. ORDER BY</Answer>
+    <Answer ID= "6">
+      Answer: B
+      Explanation:
+      HAVING clause is used to weed out unwanted data once the data is grouped using the
+      GROUP BY statement.
+    </Answer>
+  </Question>
+
+  <Question Text="A subquery can be used to _________." SelectionType= "1">
+    <Answer ID= "1" >A. Create groups of data</Answer>
+    <Answer ID= "2">B. Sort data in a specific order</Answer>
+    <Answer ID= "3">C. Convert data to a different format</Answer>
+    <Answer ID= "4" Correct="true">D. Retrieve data based on an unknown condition</Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: D
+      Explanation:
+      A sub-query can be used to retrieve data based on an unknown condition
+    </Answer>
+  </Question>
+
+  <Question Text="Which is an /SQL*Plus command?" SelectionType= "1">
+    <Answer ID= "1" >A. INSERT</Answer>
+    <Answer ID= "2">B. UPDATE</Answer>
+    <Answer ID= "3">C. SELECT</Answer>
+    <Answer ID= "4" Correct="true">D. DESCRIBE</Answer>
+    <Answer ID= "5">E. DELETE</Answer>
+    <Answer ID= "6">
+      Answer: D
+      Explanation:
+      There is only one SQL*Plus command in this list: DESCRIBE. It cannot be used as SQL
+      command. This command returns a description of tablename, including all columns in that
+      table, the datatype for each column, and an indication of whether the column permits storage
+      of NULL values.
+    </Answer>
+  </Question>
+
+  <Question Text="You are granted the CREATE VIEW privilege. What does this allow you to do?" SelectionType= "1">
+    <Answer ID= "1" >A. Create a table view.</Answer>
+    <Answer ID= "2">B. Create a view in any schema.</Answer>
+    <Answer ID= "3" Correct="true">C. Create a view in your schema.</Answer>
+    <Answer ID= "4">D. Create a sequence view in any schema.</Answer>
+    <Answer ID= "5">E. Create a view that is accessible by everyone.</Answer>
+    <Answer ID= "6">
+      Answer: C
+      Explanation:
+      You can create a view in your own schema only if you are granted the CREATE VIEW
+      privilege.
+    </Answer>
+  </Question>
+
+  <Question Text="Which two statements about views are true?(choose two)" SelectionType= "2">
+    <Answer ID= "1" Correct="true">A. A view can be created as read only.</Answer>
+    <Answer ID= "2" Correct="true">B. A view can be created as a join of two or more tables.</Answer>
+    <Answer ID= "3">C. A view cannot have an ORDER BY clause in the select statement.</Answer>
+    <Answer ID= "4">D. A view cannot be created with a group by clause in the select statement.</Answer>
+    <Answer ID= "5">E. A view must have aliases defined for the column names in the SELECT statement.</Answer>
+    <Answer ID= "6">Answer: A,B</Answer>
+  </Question>
+
+  <Question Text="You drop a table in an oracle database that is the parent table in a parent-child relationship.
+            which of the following objects will not be dropped when you drop the parent table?" SelectionType= "1">
+    <Answer ID= "1" >A. Associated constraint.</Answer>
+    <Answer ID= "2" Correct="true">B. The child column.</Answer>
+    <Answer ID= "3">C. Associated triggers.</Answer>
+    <Answer ID= "4">D. Associated indexes.</Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">Answer: B</Answer>
+  </Question>
+
+  <Question Text="you have just removed 1700 rows from a table. in order to save the changes you've made to the database,
+            which of the following statements is used? " SelectionType= "1">
+    <Answer ID= "1" >A. savepoint</Answer>
+    <Answer ID= "2" Correct="true">B. Commit</Answer>
+    <Answer ID= "3">C. Rollback</Answer>
+    <Answer ID= "4">D. Set transaction</Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">Answer: B</Answer>
+  </Question>
+
+  <Question Text="You are defining SQL queries in Oracle. Which of the following database objects
+            cannot be referenced directly from a select statement?" SelectionType= "1">
+    <Answer ID= "1" >A. Tables</Answer>
+    <Answer ID= "2">B. Sequences</Answer>
+    <Answer ID= "3" Correct="true">C. Indexes</Answer>
+    <Answer ID= "4">D. Views</Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">Answer: C</Answer>
+  </Question>
+
+  <Question Text="You are busy creating your tables based on a logical data model.
+            Which of the following constraints requires the references privilege in order to be created" SelectionType= "1">
+    <Answer ID= "1" >A. Unique</Answer>
+    <Answer ID= "2" Correct="true">B. Foreign key</Answer>
+    <Answer ID= "3">C. Check</Answer>
+    <Answer ID= "4">D. not NULL</Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">Answer: B</Answer>
+  </Question>
+
+
+  </questions>

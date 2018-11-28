@@ -1,0 +1,1054 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<questions>
+  <Question Text="
+Examine the structure of the EMPLOYEES table:
+EMPLOYEE_ID NUMBER Primary Key
+FIRST_NAME VARCHAR2(25)
+LAST_NAME VARCHAR2(25)
+Which three statements inserts a row into the table? (Choose three)" SelectionType="2">
+    <Answer ID="1" >
+      A. INSERT INTO employees
+      VALUES ( NULL, ‘John’,‘Smith’);
+    </Answer>
+    <Answer ID="2">
+      B. INSERT INTO employees( first_name, last_name)
+      VALUES(‘John’,‘Smith’);
+    </Answer>
+    <Answer ID="3">
+      C. INSERT INTO employees
+      VALUES (‘1000’,‘John’,NULL);
+    </Answer>
+    <Answer ID="4" Correct="true">
+      D. INSERT INTO employees (employee_id)
+      VALUES (1000);
+    </Answer>
+    <Answer ID="5" Correct="true">
+      E. INSERT INTO employees (employee_id, first_name, last_name)
+      VALUES ( 1000, ‘John’,‘’);
+    </Answer>
+    <Answer ID="6" Correct="true">
+      Answer: C,D, E
+      Explanation:
+      Since EMPLOYEE_ID column is used as primary key, it cannot be NULL, so only INSERT
+      statements in C, D and E are correct. You can insert the row with NULL LAST_NAME as in
+      answer C, or only the row with EMPLOYEE_ID as in answer D, or the row with empty
+      LAST_NAME column.
+    </Answer>
+  </Question>
+  
+  <Question Text="
+You need to give the MANAGER role the ability to select from, insert into, and modify
+existing rows in the STUDENT_GRADES table. Anyone given this MANAGER role
+should be able to pass those privileges on to others.
+Which statement accomplishes this?" SelectionType="1">
+    <Answer ID="1" >
+      A. GRANT select, insert, update
+      ON student_grades
+      TO manager;
+    </Answer>
+    <Answer ID="2" >
+      B. GRANT select, insert, update
+      ON student_grades
+      TO ROLE manager;
+    </Answer>
+    <Answer ID="3" >
+      C. GRANT select, insert, modify
+      ON student_grades
+      TO manager
+      WITH GRANT OPTION;
+    </Answer>
+    <Answer ID="4" >
+      D. GRANT select, insert, update
+      ON student_grades
+      TO manager
+      WITH GRANT OPTION;
+    </Answer>
+    <Answer ID="5" Correct="true">
+      E. GRANT select, insert, update
+      ON student_grades
+      TO ROLE manager
+      WITH GRANT OPTION;
+    </Answer>
+    <Answer ID="6" >
+      Answer: D
+      Explanation:
+      This answer provides correct syntax of GRANT command to give the MANAGER role all
+      asked privileges. Clause WITH GRANT OPTION will allow this role to pass those privileges
+      on to others.
+    </Answer>
+  </Question>
+
+  <Question Text="
+Examine the data in the EMPLOYEES table:
+LAST_NAME DEPARTMENT_ID SALARY
+Getz 10 3000
+Davis 20 1500
+King 20 2200
+Davis 30 5000
+…
+Which three subqueries work? (Choose three)" SelectionType="2">
+    <Answer ID="1" >
+      A. SELECT *
+      FROM employees
+      where salary > (SELECT MIN(salary)
+      FROM employees
+      GROUP BY department.id);
+    </Answer>
+    <Answer ID="2" >
+      B. SELECT *
+      FROM employees
+      WHERE salary = (SELECT AVG(salary)
+      FROM employees
+      GROUP BY department_id);
+    </Answer>
+    <Answer ID="3" Correct="true" >
+      C. SELECT distinct department_id
+      FROM employees
+      Where salary > ANY (SELECT AVG(salary)
+      FROM employees
+      GROUP BY department_id);
+    </Answer>
+    <Answer ID="4" Correct="true">
+      D. SELECT department_id
+      FROM employees
+      WHERE SALARY > ALL (SELECT AVG(salary)
+      FROM employees
+      GROUP BY department_id);
+    </Answer>
+    <Answer ID="5" Correct="true">
+      E. SELECT last_name
+      FROM employees
+      Where salary > ANY (SELECT MAX(salary)
+      FROM employees
+      GROUP BY department_id);
+    </Answer>
+    <Answer ID="6" >
+      Answer: C, D, E
+      Explanation:
+      These answers show correct syntax, because they use ANY and ALL keywords for convert
+      multi-row output of sub-query to one-row result.
+    </Answer>
+  </Question>
+
+  <Question Text="Management has asked you to calculate the value 12*salary* commission_pct for all the
+employees in the EMP table. The EMP table contains these columns:
+LAST NAME VARCNAR2(35) NOT NULL
+SALARY NUMBER(9,2) NOT NULL
+COMMISION_PCT NUMBER(4,2)
+
+Which statement ensures that a value is displayed in the calculated columns for all
+employees?" SelectionType="1">
+    <Answer ID="1" >
+      A. SELECT last_name, 12*salary* commission_pct
+      FROM emp;
+    </Answer>
+    <Answer ID="2" >
+      B. SELECT last_name, 12*salary* (commission_pct,0)
+      FROM emp;
+    </Answer>
+    <Answer ID="3" Correct="true">
+      C. SELECT last_name, 12*salary*(nvl(commission_pct,0))
+      FROM emp;
+    </Answer>
+    <Answer ID="4" >
+      D. SELECT last_name, 12*salary*(decode(commission_pct,0))
+      FROM emp;
+    </Answer>
+    <Answer ID="5" >E. None of these.</Answer>
+    <Answer ID="6" >
+      Answer: C
+      Explanation:
+      This SELECT statement provides correct usage of NVL function to calculate columns for all
+      employees. Oracle give you possibility to substitute a value in place of NULL. The basic
+      syntax for NVL() is NVL(column_name, value_if_null). Notice that the column specified in
+      NVL() contains an actual value. That value is what Oracle returns; when the column is NULL,
+      the special string is returned. The value specified to be returned if the column value is NULL
+      must be the same datatype as the column specified.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the description of the STUDENTS table:
+STD_ID NUMBER(4)
+COURSE_ID VARCHARD2(10)
+START_DATE DATE
+END_DATE DATE
+Which two aggregate functions are valid on the START_DATE column? (Choose two)" SelectionType="2">
+    <Answer ID="1" >A. SUM(start_date)</Answer>
+    <Answer ID="2" >B. AVG(start_date)</Answer>
+    <Answer ID="3" Correct="true" >C. COUNT(start_date)</Answer>
+    <Answer ID="4" >D. AVG(start_date, end_date)</Answer>
+    <Answer ID="5" Correct="true">E. MIN(start_date)</Answer>
+    <Answer ID="6" >
+      Answer: C, E
+      Explanation:
+      It is possible to apply COUNT() and MIN() functions on the column with DATE data type.
+    </Answer>
+  </Question>
+
+  <Question Text="You need to modify the STUDENTS table to add a primary key on the STUDENT_ID
+column. The table is currently empty.
+Which statement accomplishes this task?" SelectionType="1">
+    <Answer ID="1" >
+      A. ALTER TABLE students
+      ADD PRIMARY KEY student_id;
+    </Answer>
+    <Answer ID="2" >
+      B. ALTER TABLE students
+      ADD CONSTRAINT PRIMARY KEY (student_id);
+    </Answer>
+    <Answer ID="3" >
+      C. ALTER TABLE students
+      ADD CONSTRAINT stud_id_pk PRIMARY KEY student_id;
+    </Answer>
+    <Answer ID="4" Correct="true">
+      D. ALTER TABLE students
+      ADD CONSTRAINT stud_id_pk PRIMARY KEY (student_id);
+    </Answer>
+    <Answer ID="5" >
+      E. ALTER TABLE students
+      MODIFY CONSTRAINT stud_id_pk PRIMARY KEY (student_id);
+    </Answer>
+    <Answer ID="6" >
+      Answer: D
+      Explanation:
+      This statement provides correct syntax to add a primary key on the STUDENT_ID column of
+      the STUDENT table.
+    </Answer>
+  </Question>
+
+  <Question Text="Which SQL statement defines the FOREIGN KEY constraint on the DEPTNO column
+of the EMP table?" SelectionType="1">
+    <Answer ID="1" >
+      A. CREATE TABLE EMP
+      (empno NUMBER(4),
+      ename VARCNAR2(35),
+      deptno NUMBER(7,2) NOT NULL
+      CONSTRAINT emp_deptno_fk FOREIGN KEY deptno
+      REFERENCES dept deptno);
+    </Answer>
+    <Answer ID="2" Correct="true">
+      B. CREATE TABLE EMP
+      (empno NUMBER(4),
+      ename VARCNAR2(35),
+      deptno NUMBER(7,2)
+      CONSTRAINT emp_deptno_fk REFERENCES dept (deptno));
+    </Answer>
+    <Answer ID="3" >
+      C. CREATE TABLE EMP
+      (empno NUMBER(4)
+      ename VARCHAR2(35),
+      deptno NUMBER(7,2) NOT NULL,
+      CONSTRAINT emp_deptno_fk REFERENCES dept (deptno)
+      FOREIGN KEY (deptno));
+    </Answer>
+    <Answer ID="4" >
+      D. CREATE TABLE EMP (empno NUMBER(4),
+      ename VARCNAR2(35),
+      deptno NUMBER(7,2) FOREIGN KEY
+      CONSTRAINT emp deptno fk REFERENCES dept (deptno));
+    </Answer>
+    <Answer ID="5" >E. None of these.</Answer>
+    <Answer ID="6" >
+      Answer: B
+      Explanation:
+      This statement provides correct syntax to define the FOREIGN KEY constraint on the
+      DEPTNO column of the EMP table.
+    </Answer>
+  </Question>
+
+  <Question Text="The EMP table contains these columns:
+LAST NAME VARCHAR2(25)
+SALARY NUMBER(6,2)
+DEPARTMENT_ID NUMBER(6)
+You need to display the employees who have not been assigned to any department.
+You write the SELECT statement:
+SELECT LAST_NAME, SALARY, DEPARTMENT_ID
+FROM EMP
+WHERE DEPARTMENT_ID = NULL;
+What is true about this SQL statement?" SelectionType="1">
+    <Answer ID="1" >A. The SQL statement displays the desired results.</Answer>
+    <Answer ID="2" >B. The column in the WHERE clause should be changed to display the desired results.</Answer>
+    <Answer ID="3" Correct="true">C. The operator in the WHERE clause should be changed to display the desired results.</Answer>
+    <Answer ID="4" >
+      D. The WHERE clause should be changed to use an outer join to display the desired
+      results.
+    </Answer>
+    <Answer ID="5" >E.None of these.</Answer>
+    <Answer ID="6" >
+      Answer: C
+      Explanation:
+      The operator in the WHERE clause should be changed to display the desired results. There are
+      times when you want to substitute a value in place of NULL. Oracle provides this
+      functionality with a special function, called NVL(). You cannot use operation equal with
+      NULL, but you can achieve desired results using NVL() function after the WHERE clause.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the SQL statements that creates ORDERS table:
+CREATE TABLE orders
+(SER_NO NUMBER UNIQUE,
+ORDER_ID NUMBER,
+ORDER_DATE DATE NOT NULL
+STATUS VARCHARD2(10)
+CHECK (status IN (‘CREDIT’,’CASH’)),
+PROD_ID_NUMBER
+REFERENCES PRODUCTS(PRODUCT_ID),
+ORD_TOTAL NUMBER,
+PRIMARY KEY (order id, order date));
+For which columns would an index be automatically created when you execute the above
+SQL statement? (Choose two)" SelectionType="2">
+    <Answer ID="1" Correct="true">A. SER_NO</Answer>
+    <Answer ID="2" >B. ORDER_ID</Answer>
+    <Answer ID="3" >C. STATUS</Answer>
+    <Answer ID="4" >D. PROD_ID</Answer>
+    <Answer ID="5" Correct="true">E. Composite index on ORDER_ID and ORDER_DATE</Answer>
+    <Answer ID="6" >
+      Answer: A, E
+      Explanation:
+      Indexes are created automatically by Oracle to support integrity constraints that enforce
+      uniqueness. The two types of integrity constraints that enforce uniqueness are PRIMARY
+      KEY and UNIQUE constraints. When the primary key or UNIQUE constraint is declared, a
+      unique index to support the column’s uniqueness is also created, and all values in all columns
+      that were defined as part of the primary key or UNIQUE constraint are placed into the index.
+    </Answer>
+  </Question>
+
+  <Question Text="Which three SELECT statements displays 2000 in the format “$2,000.00”? (Choose
+three)" SelectionType="2">
+    <Answer ID="1" Correct="true">
+      A. SELECT TO CNAR(2000, ‘$#,###.##’)
+      FROM dual;
+    </Answer>
+    <Answer ID="2" >
+      B. SELECT TO CNAR(2000, ‘$0,000.00’)
+      FROM dual;
+    </Answer>
+    <Answer ID="3" >
+      C. SELECT TO CNAR(2000, ‘$9,999.00’)
+      FROM dual;
+    </Answer>
+    <Answer ID="4" >
+      D. SELECT TO CNAR(2000, ‘$9,999.99’)
+      FROM dual;
+    </Answer>
+    <Answer ID="5" >
+      E. SELECT TO CNAR(2000, ‘$2,000.00’)
+      FROM dual;
+    </Answer>
+    <Answer ID="6" >
+      Answer: B, C, D
+      Explanation:
+      Only queries in answers B, C and D will show result as in the format “$2,000.00”.
+      
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the structure of the EMPLOYEES, DEPARTMENTS, and LOCATIONS
+tables.
+EMPLOYEES
+EMPLOYEE_ID NUMBER NOT NULL, Primary Key
+EMP_NAME VARCHAR2 (30)
+JOB_ID VARCHAR2 (20)
+SALARY NUMBER
+MGR_ID NUMBER References EMPLOYEE_ID column
+DEPARTMENT_ID NUMBER Foreign key to DEPARTMENT_ID column of the
+DEPARTMENTS table
+
+DEPARTMENTS
+DEPARTMENT_ID NUMBER NOT NULL, Primary Key
+DEPARTMENT_NAME VARCHAR2
+(30)
+MGR_ID NUMBER References NGR_ID column of the
+EMPLOYEES table
+LOCATION_ID NUMBER Foreign key to LOCATION_ID column of the
+LOCATIONS table
+
+LOCATIONS
+LOCATION_ID NUMBER NOT NULL, Primary Key
+CITY VARCHAR2 |30)
+Which two SQL statements produce the name, department name, and the city of all the
+employees who earn more then 10000? (Choose two)" SelectionType="2">
+    <Answer ID="1" >
+      A. SELECT emp_name, department_name, city
+      FROM employees e
+      JOIN departments d
+      USING (department_id)
+      JOIN locations 1
+      USING (location_id)
+      WHERE salary > 10000;
+    </Answer>
+    <Answer ID="2" Correct="true">
+      B. SELECT emp_name, department_name, city
+      FROM employees e, departments d, locations 1
+      JOIN ON (e.department_id = d.department id)
+      AND (d.location_id =1.location_id)
+      AND salary > 10000;
+    </Answer>
+    <Answer ID="3" >
+      C. SELECT emp_name, department_name, city
+      FROM employees e, departments d, locations 1
+      WHERE salary > 10000;
+    </Answer>
+    <Answer ID="4" Correct="true">
+      D. SELECT emp_name, department_name, city
+      FROM employees e, departments d, locations 1
+      WHERE e.department_id = d.department_id
+      AND d.location_id = 1.location_id
+      AND salary > 10000;
+    </Answer>
+    <Answer ID="5" >
+      E. SELECT emp_name, department_name, city
+      FROM employees e
+      NATURAL JOIN departments, locations
+      WHERE salary > 10000;
+    </Answer>
+    <Answer ID="6" >
+      Answer: B, D
+      Explanation:
+      These statements show correct syntax and semantics to receive correct results.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the structure if the EMPLOYEES and NEW EMPLOYEES tables:
+EMPLOYEES
+EMPLOYEE_ID NUMBER Primary Key
+FIRST_NAME VARCHAR2(25)
+LAST_NAME VARCHAR2(25)
+HIRE_DATE DATE
+NEW EMPLOYEES
+EMPLOYEE_ID NUMBER Primary Key
+NAME VARCHAR2(60)
+Which MERGE statement is valid?" SelectionType="1">
+    <Answer ID="1" Correct="true">
+      A. MERGE INTO new_employees c
+      USING employees e
+      ON (c.employee_id = e.employee_id)
+      WHEN MATCHED THEN
+      UPDATE SET
+      c.name = e.first_name ||’,’|| e.last_name
+      WHEN NOT MATCHED THEN
+      INSERT VALUES(e.employee_id, e.first_name ||’,
+      ‘||e.last_name);
+    </Answer>
+    <Answer ID="2" >
+      B. MERGE new_employees c
+      USING employees e
+      ON (c.employee_id = e.employee_id)
+      WHEN EXIST THEN
+      UPDATE SET
+      c.name = e.first_name ||’,’|| e.last_name
+      WHEN NOT MATCHED THEN
+      INSERT VALUES(e.employee_id, e.first_name ||’,
+      ‘||e.last_name);
+    </Answer>
+    <Answer ID="3" >
+      C. MERGE INTO new employees c
+      USING employees e
+      ON (c.employee_id = e.employee_id)
+      WHEN EXISTS THEN
+      UPDATE SET
+      c.name = e.first_name ||’,’|| e.last_name
+      WHEN NOT MATCHED THEN
+      INSERT VALUES(e.employee_id, e.first_name ||’,
+      ‘||e.last_name);
+    </Answer>
+    <Answer ID="4" >
+      D. MERGE new_employees c
+      FROM employees e
+      ON (c.employee_id = e.employee_id)
+      WHEN MATCHED THEN
+      UPDATE SET
+      c.name = e.first_name ||’,’|| e.last_name
+      WHEN NOT MATCHED THEN
+      INSERT INTO new_employees VALUES(e.employee_id, e.first_name ||’.’||e.last_name);
+    </Answer>
+    <Answer ID="5" >E.None of these.</Answer>
+    <Answer ID="6" >
+      Answer: A
+      Explanation:
+      Correct syntax for the MERGE command is MERGE INTO table1 USING table2 on
+      (join_condition) WHEN MATCHED UPDATE SET col1 = value WHEN NOT MATCHED
+      INSERT (column_list) values (column_values).
+    </Answer>
+  </Question>
+
+  <Question Text="The STUDENT_GRADES table has these columns:
+STUDENT_ID NUMBER(12)
+SEMESTER_END DATE
+GPA NUMBER(4,3)
+The register has requested a report listing the students' grade point averages (GPA),
+sorted from highest grade point average to lowest within each semester, starting from
+the earliest date. Which statement accomplishes this?" SelectionType="1">
+    <Answer ID="1" >
+      A. SELECT student_id, semester_end, gpa FROM student_grades
+      ORDER BY semester_end DESC, gpa DESC;
+    </Answer>
+    <Answer ID="2" >
+      B. SELECT student_id, semester_end, gpa
+      FROM student_grades
+      ORDER BY semester_end ASC, gpa ASC;
+    </Answer>
+    <Answer ID="3" Correct="true">
+      C. SELECT student_id, semester_end, gpa
+      FROM student_grades
+      ORDER BY semester_end, gpa DESC;
+    </Answer>
+    <Answer ID="4" >
+      D. SELECT student_id, semester_end, gpa
+      FROM student_grades
+      ORDER BY gpa DESC, semester_end DESC;
+    </Answer>
+    <Answer ID="5" >
+      E. SELECT student_id, semester_end, gpa
+      FROM student_grades
+      ORDER BY gpa DESC, semester_end ASC;
+    </Answer>
+    <Answer ID="6" >
+      Answer: C
+      Explanation:
+      This answer shows correct syntax and semantics to receive desired result.
+    </Answer>
+  </Question>
+
+  <Question Text="Which two statements accurately describe a role? (Choose two.)" SelectionType="2">
+    <Answer ID="1" >A. A role can be given to a maximum of 1000 users.</Answer>
+    <Answer ID="2" >B. A user can have access to a maximum of 10 roles.</Answer>
+    <Answer ID="3" >C. A role is a named group of related privileges that can be granted to the user.</Answer>
+    <Answer ID="4" Correct="true">D. Privileges are given to a role by using the CREATE ROLE statement.</Answer>
+    <Answer ID="5" Correct="true">
+      E. A user can have access to several roles, and several users can be assigned the same
+      role.
+    </Answer>
+    <Answer ID="6" >
+      Answer: D, E
+      Explanation:
+      Privileges can be given to a role by using the CREATE ROLE statement. A user can have
+      access to several roles, and several users can be assigned the same role.
+    </Answer>
+  </Question>
+
+    <Question Text="Evaluate these two SQL statements:
+SELECT last_name, salary , hire_date
+FROM EMPLOYEES
+ORDER BY salary DESC;
+SELECT last_name, salary, hire_date
+FROM EMPLOYEES
+ORDER BY 2 DESC;
+What is true about them?" SelectionType="1">
+      <Answer ID="1" Correct="true">A. The two statements produce identical results.</Answer>
+      <Answer ID="2" >B. The second statement returns a syntax error.</Answer>
+      <Answer ID="3" >
+        C. There is no need to specify DESC because the results are sorted in descending order
+        by default.
+      </Answer>
+      <Answer ID="4" >
+        D. The two statements can be made to produce identical results by adding a column alias
+        for the salary column in the second SQL statement.
+      </Answer>
+      <Answer ID="5" >E. None of these.</Answer>
+      <Answer ID="6" >
+        Answer: A
+        Explanation:
+        These two statements produce identical results, because it is possible even to use numbers to
+        indicate the column position where Oracle should order the output from a statement.
+      </Answer>
+    </Question>
+
+  <Question Text="You would like to display the system date in the format 'Monday, 01 June, 2001'.
+Which SELECT statement should you use?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT TO_DATE(SYSDATE, 'FMDAY, DD Month, YYYY')
+      FROM dual;
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT TO_CHAR(SYSDATE, 'FMDD, DY Month, 'YYY')
+      FROM dual;
+    </Answer>
+    <Answer ID= "3" Correct="true">
+      C. SELECT TO_CHAR(SYSDATE, 'FMDay, DD Month, YYYY')
+      FROM dual;
+    </Answer>
+    <Answer ID= "4">
+      D. SELECT TO_CHAR(SYSDATE, 'FMDY, DDD Month, YYYY')
+      FROM dual;
+    </Answer>
+    <Answer ID= "5">
+      E. SELECT TO_DATE(SYSDATE, 'FMDY, DDD Month, YYYY')
+      FROM dual;
+    </Answer>
+    <Answer ID= "6">
+      Answer: C
+      Explanation:
+      This answer is correct: “Day” shows the day spelled out, “DD” shows the two-digit date,
+      “Month” provides the month spelled out, “YYYY” shows the four-digit year. “FMDay” is
+      special format mask to suppresses the extra spaces between the name of the day and the
+      number of the date.
+    </Answer>
+  </Question>
+
+  <Question Text="Which SELECT statement will the result ‘ello world’ from the string ‘Hello World’?" SelectionType= "1">
+    <Answer ID= "1" >A. SELECT SUBSTR( ‘Hello World’,1) FROM dual;</Answer>
+    <Answer ID= "2">B. SELECT INITCAP(TRIM (‘Hello World’, 1,1)) FROM dual;</Answer>
+    <Answer ID= "3">C. SELECT LOWER(SUBSTR(‘Hello World’, 1, 1) FROM dual;</Answer>
+    <Answer ID= "4">D. SELECT LOWER(SUBSTR(‘Hello World’, 2, 1) FROM dual;</Answer>
+    <Answer ID= "5" Correct="true">E. SELECT LOWER(TRIM (‘H’ FROM ‘Hello World’)) FROM dual;</Answer>
+    <Answer ID= "6">
+      Answer: E
+      Explanation:
+      This statement will return correct result because function TRIM() will trim letter ‘H’ in the
+      ‘Hello World’ and function LOWER() will return data in string in lowercase.
+    </Answer>
+  </Question>
+
+  <Question Text="Evaluate this SQL statement:
+SELECT e.employee_id, (.15* e.salary) + (.5 * e.commission_pct)
++ (s.sales amount * (.35 * e.bonus)) AS CALC_VALUE
+FROM employees e, sales s
+WHERE e.employee_id = s.emp_id;
+What will happen if you remove all the parentheses from the calculation?" SelectionType= "1">
+    <Answer ID= "1" >A. The value displayed in the CALC_VALUE column will be lower.</Answer>
+    <Answer ID= "2">B. The value displayed in the CALC_VALUE column will be higher.</Answer>
+    <Answer ID= "3" Correct="true">C. There will be no difference in the value displayed in the CALC_VALUE column.</Answer>
+    <Answer ID= "4">D. An error will be reported.</Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: C
+      Explanation:
+      There will be no difference in the value displayed in the CALC_VALUE column because not
+      arithmetic operations or usage of alias for the calculated expression in the SELECT clause
+      will not cause change the value appearance.
+    </Answer>
+  </Question>
+
+  <Question Text="Which four statements correctly describe functions that are available in SQL? (Choose
+three)" SelectionType= "2">
+    <Answer ID= "1" Correct="true">A. INSTR returns the numeric position of a named character.</Answer>
+    <Answer ID= "2">B. NVL2 returns the first non-null expression in the expression list.</Answer>
+    <Answer ID= "3">C. TRUNCATE rounds the column, expression, or value to n decimal places.</Answer>
+    <Answer ID= "4" Correct="true">D. DECODE translates an expression after comparing it to each search value.</Answer>
+    <Answer ID= "5" Correct="true">E. TRIM trims the heading of trailing characters (or both) from a character string.</Answer>
+    <Answer ID= "6">
+      Answer: A, D, E
+      Explanation:
+      INSTR returns the numeric position of a named character. DECODE translates an expression
+      after comparing it to each search value. TRIM trims the heading of trailing characters (or
+      both) from a character string.
+    </Answer>
+  </Question>
+
+  <Question Text="The CUSTOMERS table has these columns:
+CUSTOMER_ID NUMBER(4) NOT NULL
+CUSTOMER_NAME VARCHAR2(100) NOT NULL
+STREET_ADDRESS VARCHAR2(150)
+CITY_ADDRESS VARCHAR2(50)
+STATE_ADDRESS VARCHAR2(50)
+PROVINCE_ADDRESS VARCHAR2(50)
+COUNTRY_ADDRESS VARCHAR2(50)
+POSTAL_CODE VARCHAR2(12)
+CUSTOMER_PHONE VARCHAR2(20)
+The CUSTOMER_ID column is the primary key for the table.
+Which two statements find the number of customers? (Choose two.)" SelectionType= "2">
+    <Answer ID= "1" >
+      A. SELECT TOTAL(*)
+      FROM customers;
+    </Answer>
+    <Answer ID= "2" Correct="true">
+      B. SELECT COUNT(*)
+      FROM customers;
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT TOTAL(customer_id)
+      FROM customers;
+    </Answer>
+    <Answer ID= "4" Correct="true">
+      D. SELECT COUNT(customer_id)
+      FROM customers;
+    </Answer>
+    <Answer ID= "5">
+      E. SELECT COUNT(customers)
+      FROM customers;
+    </Answer>
+    <Answer ID= "6">
+      Answer: B, D
+      Explanation:
+      These statements provide correct syntax and semantics to show the number of customers.
+      Function COUNT() can be used with substitution symbol of all columns “*” or just with one
+      column name. Last query will be processed a little bit faster.
+    </Answer>
+  </Question>
+
+  <Question Text="Which two are attributes of /SQL*Plus? (Choose two)" SelectionType= "2">
+    <Answer ID= "1" >A. /SQL*Plus commands cannot be abbreviated.</Answer>
+    <Answer ID= "2">B. /SQL*Plus commands are accesses from a browser.</Answer>
+    <Answer ID= "3" Correct="true">C. /SQL*Plus commands are used to manipulate data in tables.</Answer>
+    <Answer ID= "4" Correct="true">D. /SQL*Plus commands manipulate table definitions in the database.</Answer>
+    <Answer ID= "5">E. /SQL*Plus is the Oracle proprietary interface for executing SQL statements.</Answer>
+    <Answer ID= "6">
+      Answer: C, D
+      Explanation:
+      SQL*Plus commands can be used to manipulate data in tables and SQL*Plus commands
+      manipulate table definitions in the database.
+    </Answer>
+  </Question>
+
+  <Question Text="Which three statements about subqueries are true? (Choose three)" SelectionType= "2">
+    <Answer ID= "1" >A. A single row subquery can retrieve only one column and one row.</Answer>
+    <Answer ID= "2" Correct="true">B. A single row subquery can retrieve only one row but many columns.</Answer>
+    <Answer ID= "3" Correct="true">C. A multiple row subquery can retrieve multiple rows and multiple columns.</Answer>
+    <Answer ID= "4" Correct="true">D. A multiple row subquery can be compared by using the “>” operator.</Answer>
+    <Answer ID= "5">E. A single row subquery can use the IN operator.</Answer>
+    <Answer ID= "6">
+      Answer: B, C, D
+      Explanation:
+      A single row sub-query can retrieve only one row but many columns. A multiple row subquery
+      can retrieve one row or multiple rows and multiple columns. A multiple row sub-query
+      can be compared by using the “>” operator.
+    </Answer>
+  </Question>
+
+  <Question Text="Which two statements about sequences are true? (Choose two)" SelectionType= "2">
+    <Answer ID= "1" >
+      A. You use a NEXTVAL pseudo column to look at the next possible value that would be
+      generated from a sequence, without actually retrieving the value.
+    </Answer>
+    <Answer ID= "2" Correct="true">
+      B. You use a CURRVAL pseudo column to look at the current value just generated from
+      a sequence, without affecting the further values to be generated from the sequence.
+    </Answer>
+    <Answer ID= "3" Correct="true">
+      C. You use a NEXTVAL pseudo column to obtain the next possible value from a
+      sequence by actually retrieving the value from the sequence.
+    </Answer>
+    <Answer ID= "4">
+      D. You use a CURRVAL pseudo column to generate a value from a sequence that would
+      be used for a specified database column.
+    </Answer>
+    <Answer ID= "5">
+      E. If a sequence starting from a value 100 and incremented by 1 is used by more then one
+      application, then all of these applications could have a value of 105 assigned to their
+      column whose value is being generated by the sequence.
+    </Answer>
+    <Answer ID= "6">
+      Answer: B, C
+      Explanation:
+      You use a CURRVAL pseudo column to look at the current value just generated from a
+      sequence, without affecting the further values to be generated from the sequence. You use a
+      NEXTVAL pseudo column to obtain the next possible value from a sequence by actually
+      retrieving the value from the sequence.
+    </Answer>
+  </Question>
+
+  <Question Text="You need to display the last names of those employees who have the letter “A” as the
+second character in their names.
+Which SQL statement displays the required results?" SelectionType= "1">
+    <Answer ID= "1" Correct="true">
+      A. SELECT last_name
+      FROM EMP
+      WHERE last_name LIKE ‘_A%’;
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT last_name
+      FROM EMP
+      WHERE last name =’*A%’
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT last_name
+      FROM EMP
+      WHERE last name =’_A%’;
+    </Answer>
+    <Answer ID= "4">
+      D. SELECT last_name
+      FROM EMP
+      WHERE last name LIKE ‘*A%’
+    </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: A
+      Explanation:
+      Statement in this answer will show correct results because usage of operator LIKE and format
+      mask ‘_A%’ extract the last names of those employees who have the letter “A” as the second
+      character in their names. Symbol ‘_’ in format mask substitute exactly one symbol and cannot
+      be NULL.
+    </Answer>
+  </Question>
+
+  <Question Text="You need to perform certain data manipulation operations through a view called
+EMP_DEPT_VU, which you previously created.
+You want to look at the definition of the view (the SELECT statement on which the view
+was create.)
+How do you obtain the definition of the view?" SelectionType= "1">
+    <Answer ID= "1" >A. Use the DESCRIBE command in the EMP_DEPT VU view.</Answer>
+    <Answer ID= "2">B. Use the DEFINE VIEW command on the EMP_DEPT VU view.</Answer>
+    <Answer ID= "3">C. Use the DESCRIBE VIEW command on the EMP_DEPT VU view.</Answer>
+    <Answer ID= "4" Correct="true">
+      D. Query the USER_VIEWS data dictionary view to search for the EMP_DEPT_VU
+      view.
+    </Answer>
+    <Answer ID= "5">
+      E. Query the USER_SOURCE data dictionary view to search for the EMP_DEPT_VU
+      view.
+    </Answer>
+    <Answer ID= "6">
+      Answer: D
+      Explanation:
+      To look on the view definition you need to query the USER_VIEWS data dictionary view and
+      search for the EMP_DEPT_VU view.
+    </Answer>
+  </Question>
+
+  <Question Text="You define a multiple-row subquery in the WHERE clause of an SQL query with a
+comparison operator &quot;=&quot;.
+What happens when the main query is executed?" SelectionType= "1">
+    <Answer ID= "1" >A. The main query executes with the first value returned by the subquery.</Answer>
+    <Answer ID= "2">B. The main query executes with the last value returned by the subquery.</Answer>
+    <Answer ID= "3">C. The main query executes with all the values returned by the subquery.</Answer>
+    <Answer ID= "4" Correct="true">
+      D. The main query fails because the multiple-row subquery cannot be used with the
+      comparison operator.
+    </Answer>
+    <Answer ID= "5">E. You cannot define a multiple-row subquery in the WHERE clause of a SQL query.</Answer>
+    <Answer ID= "6">
+      Answer: D
+      Explanation:
+      The main query fails because the multiple-row sub-query cannot be used with the comparison
+      operator. Only single-row query can use comparison operators.
+    </Answer>
+  </Question>
+
+  <Question Text="What is true about joining tables through an equijoin?" SelectionType= "1">
+    <Answer ID= "1" >A. You can join a maximum of two tables through an equijoin.</Answer>
+    <Answer ID= "2">B. You can join a maximum of two columns through an equijoin.</Answer>
+    <Answer ID= "3">
+      C. You specify an equijoin condition in the SELECT or FROM clauses of a SELECT
+      statement.
+    </Answer>
+    <Answer ID= "4">
+      D. To join two tables through an equijoin, the columns in the join condition must be
+      primary key and foreign key columns.
+    </Answer>
+    <Answer ID= "5" Correct="true">
+      E. You can join n tables (all having single column primary keys) in a SQL statement by
+      specifying a minimum of n-1 join conditions.
+    </Answer>
+    <Answer ID= "6">
+      Answer: E
+      Explanation:
+      For N joined tables using Oracle or ANSI/ISO syntax for table joins, you need at least N-1
+      equijoin conditions in the WHERE clause of your SELECT statement or N-1 JOIN
+      table_name ON join_condition clauses in order to avoid a Cartesian product, respectively.
+    </Answer>
+  </Question>
+
+  <Question Text="Scott issues the SQL statements:
+CREATE TABLE dept
+(deptno NUMBER(2),
+dname VARCHAR2(14),
+loc VARCHAR2(13)};
+GRANT SELECT
+ON DEPT
+TO SUE;
+If Sue needs to select from Scott's DEPT table, which command should she use?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT *
+      FROM DEPT;
+    </Answer>
+    <Answer ID= "2" Correct="true">
+      B. SELECT *
+      FROM SCOTT.DEPT;
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT *
+      FROM DBA.SCOTT.DEPT;
+    </Answer>
+    <Answer ID= "4">
+      D. SELECT *
+      FROM ALL_USERS
+      WHERE USER_NAME = 'SCOTT'
+      AND TABLE NAME = 'DEPT';
+    </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: B
+      Explanation:
+      If the table doesn’t exist in your schema, you must prefix the table name with the schema
+      information, separating the owner from the table name with a period.
+    </Answer>
+  </Question>
+
+  <Question Text="Which SELECT statement should you use to extract the year from the system date and
+display it in the format &quot;1998&quot;?" SelectionType= "1">
+    <Answer ID= "1" Correct="true">
+      A. SELECT TO_CHAR(SYSDATE,'yyyy')
+      FROM dual;
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT TO_DATE(SYSDATE,'yyyy')
+      FROM dual;
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT DECODE(SUBSTR(SYSDATE, 8), 'YYYY')
+      FROM dual;
+    </Answer>
+    <Answer ID= "4">
+      D. SELECT DECODE(SUBSTR(SYSDATE, 8), 'year')
+      FROM dual;
+    </Answer>
+    <Answer ID= "5">
+      E. SELECT TO_CHAR(SUBSTR(SYSDATE, 8,2),'yyyy')
+      FROM dual;
+    </Answer>
+    <Answer ID= "6">
+      Answer: A
+      Explanation:
+      Function TO_CHAR(x, y) converts the value x to a character or converts a date to a character
+      string using formatting conventions.
+    </Answer>
+  </Question>
+
+  <Question Text="What does the TRUNCATE statement do?" SelectionType= "1">
+    <Answer ID= "1" >A. Removes the table</Answer>
+    <Answer ID= "2" Correct="true">B. Removes all rows from a table</Answer>
+    <Answer ID= "3">C. Shortens the table to 10 rows</Answer>
+    <Answer ID= "4">D. Removes all columns from a table</Answer>
+    <Answer ID= "5">E. Removes foreign keys from a table</Answer>
+    <Answer ID= "6">
+      Answer: B
+      Explanation:
+      Command TRUNCATE is used to remove all row data from the table, while leaving the
+      definition of the table intact, including the definition of constraints and any associated
+      database objects as indexes, constraints, and triggers on the table.
+    </Answer>
+  </Question>
+
+  <Question Text="In which scenario would TOP N analysis be the best solution?" SelectionType= "1">
+    <Answer ID= "1" >A. You want to identify the most senior employee in the company.</Answer>
+    <Answer ID= "2">B. You want to find the manager supervising the largest number of employees.</Answer>
+    <Answer ID= "3">C. You want to identify the person who makes the highest salary for all employees.</Answer>
+    <Answer ID= "4" Correct="true">
+      D. You want to rank the top three sales representatives who have sold the maximum
+      number of products.
+    </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: D
+      Explanation:
+      If you want to rank the top three sales representatives who have sold the maximum number of
+      products TOP-N query will be the best solution. TON-N queries use inline views and are
+      handy for displaying a short list of table data, based on “greatest” or “least” criteria.
+    </Answer>
+  </Question>
+
+  <Question Text="Which constraint can be defines only at the column level?" SelectionType= "1">
+    <Answer ID= "1" >A. UNIQUE</Answer>
+    <Answer ID= "2" Correct="true">B. NOT NULL</Answer>
+    <Answer ID= "3">C. CHECK</Answer>
+    <Answer ID= "4">D. PRIMARY KEY</Answer>
+    <Answer ID= "5">E. FOREIGN KEY</Answer>
+    <Answer ID= "6">
+      Answer: B
+      Explanation:
+      The NOT NULL constraint can be defined only at the column level. It enforces that a value
+      must be defined for this column such that the column may not be NULL for any row.
+    </Answer>
+  </Question>
+
+  <Question Text="Which substitution variable would you use if you want to reuse the variable without
+prompting the user each time?" SelectionType= "1">
+    <Answer ID= "1" >A. &amp;</Answer>
+    <Answer ID= "2">B. ACCEPT</Answer>
+    <Answer ID= "3">C. PROMPT</Answer>
+    <Answer ID= "4" Correct="true">D. &amp;&amp;</Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: D
+      Explanation:
+      To reuse the variable without prompting the user each time you can use &amp;&amp; substitution
+      variable.
+    </Answer>
+  </Question>
+
+  <Question Text="The DBA issues this SQL command:
+CREATE USER scott
+IDENTIFIES by tiger;
+What privileges does the user Scott have at this point?" SelectionType= "1">
+    <Answer ID= "1" Correct="true">A. No privileges.</Answer>
+    <Answer ID= "2">B. Only the SELECT privilege.</Answer>
+    <Answer ID= "3">C. Only the CONNECT privilege.</Answer>
+    <Answer ID= "4">D. All the privileges of a default user.</Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: A
+      Explanation:
+      There are no privileges for the user Scott at this point. They are not added themselves to the
+      user immediately after creation. The DBA needs to grant all privileges explicitly.
+    </Answer>
+  </Question>
+
+  <Question Text="Which statement describes the ROWID data type?" SelectionType= "1">
+    <Answer ID= "1" >A. Binary data up to 4 gigabytes.</Answer>
+    <Answer ID= "2">B. Character data up to 4 gigabytes.</Answer>
+    <Answer ID= "3">C. Raw binary data of variable length up to 2 gigabytes.</Answer>
+    <Answer ID= "4">D. Binary data stored in an external file, up to 4 gigabytes.</Answer>
+    <Answer ID= "5" Correct="true">E. A hexadecimal string representing the unique address of a row in its table.</Answer>
+    <Answer ID= "6">
+      Answer: E
+      Explanation:
+      The ROWID datatype stores information related to the disk location of table rows. They also
+      uniquely identify the rows in your table. The ROWID datatype is stored as a hexadecimal
+      string.
+    </Answer>
+  </Question>
+
+  <Question Text="Which two statements about creating constraints are true? (Choose two)" SelectionType= "2">
+    <Answer ID= "1" >A. Constraint names must start with SYS_C.</Answer>
+    <Answer ID= "2">B. All constraints must be defines at the column level.</Answer>
+    <Answer ID= "3" Correct="true">C. Constraints can be created after the table is created.</Answer>
+    <Answer ID= "4" Correct="true">D. Constraints can be created at the same time the table is created.</Answer>
+    <Answer ID= "5">E. Information about constraints is found in the VIEW_CONSTRAINTS dictionary view.</Answer>
+    <Answer ID= "6">
+      Answer: C, D
+      Explanation:
+      Constraints can be created after the table is created. Use ALTER TABLE command for that.
+      Constraints can be created at the same time the table is created (CREATE TABLE command).
+    </Answer>
+  </Question>
+
+  <Question Text="Which /SQL*Plus features can be used to rep;ace values in the where clause?" SelectionType= "1">
+    <Answer ID= "1" Correct="true">A. Substitution variables.</Answer>
+    <Answer ID= "2">B. Replacement variables</Answer>
+    <Answer ID= "3">C. Prompt variables</Answer>
+    <Answer ID= "4">Instead-of variables</Answer>
+    <Answer ID= "5">E. This feature cannot be implimented through /SQL * plus.</Answer>
+    <Answer ID= "6">Answer: A
+    Explantion: Lexical Substitution variables can be used to replace values in the WHERE clause.</Answer>
+  </Question>
+
+  <Question Text="You are manipulating data in oracle. Which of the following is not a SQL Cmmand?" SelectionType= "1">
+    <Answer ID= "1" >A. Select * from  dual;</Answer>
+    <Answer ID= "2" Correct="true">B. set define ?</Answer>
+    <Answer ID= "3">C. update emp set empno=6543 where ename='SMITHERS';</Answer>
+    <Answer ID= "4">D. create table employees( empid varchar2(10) primary key); </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">Answer: B</Answer>
+  </Question>
+
+  <Question Text="Which of the following methods should you use to add to the number of 
+            columns selected by a view? " SelectionType= "1">
+    <Answer ID= "1" >A. Add more columns to the underlying table.</Answer>
+    <Answer ID= "2">B. Issue the alter view statement.</Answer>
+    <Answer ID= "3">C. Use a correlated subquery in conjuction with the view.</Answer>
+    <Answer ID= "4" Correct="true">D. Drop and recreate the view with references to select more columns.</Answer>
+    <Answer ID= "5">E.None of these.</Answer>
+    <Answer ID= "6">Answer: D</Answer>
+  </Question>
+
+  <Question Text="Which of the following choices is a valid parameter for sequence creation?" SelectionType= "1">
+    <Answer ID= "1" >A. Identified by</Answer>
+    <Answer ID= "2">B. using tempory tablespace</Answer>
+    <Answer ID= "3" Correct="true">C. maxvalue</Answer>
+    <Answer ID= "4">D. on delete cascade</Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">Answer: C</Answer>
+  </Question>
+  
+</questions>

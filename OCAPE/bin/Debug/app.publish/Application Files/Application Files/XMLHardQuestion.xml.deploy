@@ -1,0 +1,1661 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<questions>
+<Question Text="
+Examine the data in the EMPLOYEES and DEPARTMENTS tables.
+EMPLOYEES
+LAST_NAME DEPARTMENT_ID SALARY
+Getz 10 3000
+Davis 20 1500
+King 20 2200
+Davis 30 5000
+Kochhar 5000
+DEPARTMENTS
+DEPARTMENT_ID DEPARTMENT_NAME
+10 Sales
+20 Marketing
+30 Accounts
+40 Administration
+You want to retrieve all employees, whether or not they have matching departments in
+the departments table. Which query would you use?" SelectionType= "1">
+  <Answer ID= "1" Correct="true">
+    A. SELECT last_name, department_name
+    FROM employees , departments(+);
+  </Answer>
+  <Answer ID= "2">
+    B. SELECT last_name, department_name
+    FROM employees JOIN departments (+);
+  </Answer>
+  <Answer ID= "3">
+    C. SELECT last_name, department_name
+    FROM employees(+) e JOIN departments d
+    ON (e.department_id = d.department_id);
+  </Answer>
+  <Answer ID= "4">
+    D. SELECT last_name, department_name
+    FROM employees e
+    RIGHT OUTER JOIN departments d ON (e.department_id = d.department_id);
+  </Answer>
+  <Answer ID= "5">
+    E. SELECT last_name, department_name
+    FROM employees e LEFT OUTER
+    JOIN departments d ON (e.department_id = d.department_id);
+  </Answer>
+  <Answer ID= "6">
+    Explanation:
+    Answer E is correct. This query shows correct syntax to retrieve all employees, whether or not
+    they have matching departments in the department table. Oracle9i extends its compliance with
+    ANSI/ISO by supporting that standard’s requirements for outer join syntax and semantics.
+  </Answer>
+</Question>
+
+  <Question Text="Examine the description of the EMPLOYEES table:
+EMP_ID NUMBER(4) NOT NULL
+LAST_NAME VARCHAR2(30) NOT NULL
+FIRST_NAME VARCHAR2(30)
+DEPT_ID NUMBER(2)
+JOB_CAT VARCHARD2(30)
+SALARY NUMBER(8,2)
+Which statement shows the maximum salary paid in each job category of each
+department?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT dept_id, job_cat, MAX(salary)
+      FROM employees
+      WHERE salary > MAX(salary);
+    </Answer>
+    <Answer ID= "2" Correct="true">
+      B. SELECT dept_id, job_cat, MAX(salary)
+      FROM employees
+      GROUP BY dept_id, job_cat;
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT dept_id, job_cat, MAX(salary)
+      FROM employees;
+    </Answer>
+    <Answer ID= "4">
+      D. SELECT dept_id, job_cat, MAX(salary)
+      FROM employees
+      GROUP BY dept_id;
+    </Answer>
+    <Answer ID= "5">
+      E. SELECT dept_id, job_cat, MAX(salary)
+      FROM employees
+      GROUP BY dept_id, job_cat, salary;
+    </Answer>
+    <Answer ID= "6">
+      Answer: B
+      Explanation:
+      This answer provides correct syntax and semantics to show the maximum salary paid in each
+      job category of each department.
+    </Answer>
+  </Question>
+
+  <Question Text="The EMPLOYEE tables has these columns:
+LAST_NAME VARCHAR2(35)
+SALARY NUMBER(8,2)
+COMMISSION_PCT NUMBER(5,2)
+You want to display the name and annual salary multiplied by the commission_pct for
+all employees. For records that have a NULL commission_pct, a zero must be displayed
+against the calculated column.
+Which SQL statement displays the desired results?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT last_name, (salary * 12) * commission_pct
+      FROM EMPLOYEES;
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT last_name, (salary * 12) * IFNULL(commission_pct, 0)
+      FROM EMPLOYEES;
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT last_name, (salary * 12) * NVL2(commission_pct, 0)
+      FROM EMPLOYEES;
+    </Answer>
+    <Answer ID= "4" Correct="true">
+      D. SELECT last_name, (salary * 12) * NVL(commission_pct, 0)
+      FROM EMPLOYEES;
+    </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: D
+      Explanation:
+      This SELECT statement provides correct usage of NVL function to calculate columns for all
+      employees. Oracle give you possibility to substitute a value in place of NULL. The basic
+      syntax for NVL() is NVL(column_name, value_if_null). Notice that the column specified in
+      NVL() contains an actual value. That value is what Oracle returns; when the column is NULL,
+      the special string isreturned. The value specified to be returned if the column value is NULL
+      must be the same datatype as the column specified.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the data from the ORDERS and CUSTOMERS table.
+ORDERS
+ORD_ID ORD_DATE CUST_ID ORD_TOTAL
+100 12-JAN-2000 15 10000
+101 09-MAR-2000 40 8000
+102 09-MAR-2000 35 12500
+103 15-MAR-2000 15 12000
+104 25-JUN-2000 15 6000
+105 18-JUL-2000 20 5000
+106 18-JUL-2000 35 7000
+107 21-JUL-2000 20 6500
+108 04-AUG-2000 10 8000
+CUSTOMERS
+CUST_ID CUST_NAME CITY
+10 Smith Los Angeles
+15 Bob San Francisco
+20 Martin Chicago
+25 Mary New York
+30 Rina Chicago
+35 Smith New York
+40 Linda New York
+Which SQL statement retrieves the order ID, customer ID, and order total for the
+orders that are placed on the same day that Martin places his orders?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT ord_id, cust_id, ord_total
+      FROM orders, customers
+      WHERE cust_name=’Mating’
+      AND ord_date IN (’18-JUL-2000’,’21-JUL-2000’);
+    </Answer>
+    <Answer ID= "2" Correct="true">
+      B. SELECT ord_id, cust_id, ord_total
+      FROM orders
+      Where ord_date IN (SELECT ord_date
+      FROM orders
+      WHERE cust_id = (SELECT cust_id
+      FROM customers
+      WHERE cust_name =
+      ‘Martin’));
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT ord_id, cust_id, ord_total
+      FROM orders Where ord_date IN (SELECT ord_date
+      FROM orders, customers
+      Where cust_name = ‘Martin’);
+    </Answer>
+    <Answer ID= "4">
+      D. SELECT ord_id, cust_id, ord_total
+      FROM orders
+      WHERE cust_id IN (SELECT cust_id
+      FROM customers
+      WHERE cust name = ‘Martin’);
+    </Answer>
+    <Answer ID= "5">E.None of these.</Answer>
+    <Answer ID= "6">
+      Answer: B
+      Explanation:
+      This query will return the order ID, customer ID, and order total for the orders that are placed
+      on the same day that Martin places his orders.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the data in the EMPLOYEES and DEPARTMENTS tables:
+EMPLOYEES
+EMPLOYEE_ID EMP_NAME DEPT_ID MGR_ID JOB_ID SALARY
+101 Smith 20 120 SA_REP 4000
+102 Martin 10 105 CLERK 2500
+103 Chris 20 120 IT_ADMIN 4200
+104 John 30 108 HR_CLERK 2500
+105 Diana 30 108 IT_ADMIN 5000
+106 Smith 40 110 AD_ASST 3000
+108 Jennifer 30 110 HR_DIR 6500
+110 Bob 40 EX_DIR 8000
+120 Ravi 20 110 SA*DIR 6500
+DEPARTMENTS
+DEPARTMENT_ID DEPARTMENT_NAME
+10 Admin
+20 Education
+30 IT
+40 Human Resources
+Also examine the SQL statements that create the EMPLOYEES and DEPARTMENTS
+tables:
+CREATE TABLE departments
+(department_id NUMBER PRIMARY KEY,
+department_name VARCHAR2(30));
+CREATE TABLE employees
+(EMPLOYEE_ID NUMBER PRIMARY KEY,
+EMP_NAME VARCHAR2(20),
+DEPT_ID NUMBER REFERENCES
+departments(department_id),
+MGR_ID NUMBER REFERENCES
+employees(employee id),
+MGR_ID NUMBER REFERENCES
+employees(employee id),
+JOB_ID VARCHAR2(15).
+SALARY NUMBER);
+ON the EMPLOYEES,
+On the EMPLOYEES table, EMPLOYEE_ID is the primary key.
+MGR_ID is the ID of managers and refers to the EMPLOYEE_ID.
+DEPT_ID is foreign key to DEPARTMENT_ID column of the DEPARTMENTS table.
+On the DEPARTMENTS table, DEPARTMENT_ID is the primary key.
+Examine this DELETE statement:
+DELETE
+FROM departments
+WHERE department id = 40;
+What happens when you execute the DELETE statement?" SelectionType= "1">
+    <Answer ID= "1" >A. Only the row with department ID 40 is deleted in the DEPARTMENTS table.</Answer>
+    <Answer ID= "2" Correct="true">
+      B. The statement fails because there are child records in the EMPLOYEES table with
+      department ID 40.
+    </Answer>
+    <Answer ID= "3">
+      C. The row with department ID 40 is deleted in the DEPARTMENTS table. Also the
+      rows with employee IDs 110 and 106 are deleted from the EMPLOYEES table.
+    </Answer>
+    <Answer ID= "4">
+      D. The row with department ID 40 is deleted in the DEPARTMENTS table. Also the
+      rows with employee IDs 106 and 110 and the employees working under employee 110
+      are deleted from the EMPLOYEES table.
+    </Answer>
+    <Answer ID= "5">
+      E. The row with department ID 40 is deleted in the DEPARTMENTS table. Also all the
+      rows in the EMPLOYEES table are deleted.
+    </Answer>
+    <Answer ID= "6">
+      Answer: B
+      Explanation:
+      It will be error generated because there are 2 child records in the EMPLOYEES table with
+      department number you try to delete from the DEPARTMENTS table.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the structure of the EMPLOYEES and DEPARTMENTS tables:
+EMPLOYEES
+Column name Data type Remarks
+EMPLOYEE_ID NUMBER NOT NULL, Primary Key
+EMP_NAME VARCHAR2 (30)
+JOB_ID VARCHAR2 (20)
+SALARY NUMBER
+MGR_ID NUMBER References EMPLOYEE_ID COLUMN
+DEPARTMENT ID NUMBER Foreign key to DEPARTMENT ID
+column of the DEPARTMENTS table
+DEPARTMENTS
+Column name Data type Remarks
+DEPARTMENT_ID NUMBER NOT NULL, Primary Key
+DEPARTMENT_NAME VARCHAR2(30)
+MGR_ID NUMBER References MGR_ID column of the
+EMPLOYEES table
+Evaluate this SQL statement:
+SELECT employee_id, e.department_id, department_name,
+salary
+FROM employees e, departments d
+WHERE e.department_id = d.department_id;
+Which SQL statement is equivalent to the above SQL statement?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT employee_id, department_id, department_name,
+      salary
+      FROM employees
+      WHERE department_id IN (SELECT department_id
+      FROM departments);
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT employee_id, department_id, department_name,
+      salary
+      FROM employees
+      NATURAL JOIN departments;
+    </Answer>
+    <Answer ID= "3" Correct="true">
+      C. SELECT employee_id, d.department_id, department_name,
+      salary
+      FROM employees e
+      JOIN departments d
+      ON e.department_id = d.department_id;
+    </Answer>
+    <Answer ID= "4">
+      D. SELECT employee_id, department_id, department_name,
+      Salary
+      FROM employees
+      JOIN departments
+      USING (e.department_id, d.department_id);
+    </Answer>
+    <Answer ID= "5">E.None of these.</Answer>
+    <Answer ID= "6">
+      Answer: C
+      Explanation:
+      This query shows correct JOIN ON clause syntax and provides equivalent to the above SQL
+      statement.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the description of the MARKS table:
+STD_ID NUMBER(4)
+STUDENT_NAME VARCHAR2(30)
+SUBJ1 NUMBER(3)
+SUBJ2 NUMBER(3)
+SUBJ1 and SUBJ2 indicate the marks obtained by a student in two subjects.
+Examine this SELECT statement based on the MARKS table:
+SELECT subj1+subj2 total_marks, std_id
+FROM marks
+WHERE subj1 > AVG(subj1) AND subj2 > AVG(subj2)
+ORDER BY total_marks;
+What is the result of the SELECT statement?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. The statement executes successfully and returns the student ID and sum of all marks
+      for each student who obtained more than the average mark in each subject.
+    </Answer>
+    <Answer ID= "2">B. The statement returns an error at the SELECT clause.</Answer>
+    <Answer ID= "3" Correct="true">C. The statement returns an error at the WHERE clause.</Answer>
+    <Answer ID= "4">D. The statement returns an error at the ORDER BY clause.</Answer>
+    <Answer ID= "5">E.None of these.</Answer>
+    <Answer ID= "6">
+      Answer: C
+      Explanation:
+      The statement returns an error at the WHERE clause because group function AVG() cannot be
+      used in the WHERE clause. Group functions can be used in SELECT clause and GROUP BY
+      clause. They allow you to perform data operations on several values in a column of data as
+      though the column were one collective group of data.
+    </Answer>
+  </Question>
+
+  <Question Text="You created a view called EMP_DEPT_VU that contains three columns from the
+EMPLOYEES and DEPARTMENTS tables:
+EMPLOYEE_ID, EMPLOYEE_NAME AND DEPARTMENT_NAME.
+The DEPARTMENT_ID column of the EMPLOYEES table is the foreign key to the
+primary key DEPARTMENT_ID column of the DEPARTMENTS table.
+You want to modify the view by adding a fourth column, MANAGER_ID of NUMBER
+data type from the EMPLOYEES tables.
+How can you accomplish this task?" SelectionType= "1">
+    <Answer ID= "1" >A. ALTER VIEW emp_dept_vu (ADD manager_id NUMBER);</Answer>
+    <Answer ID= "2">B. MODIFY VIEW emp_dept_vu (ADD manager_id NUMBER);</Answer>
+    <Answer ID= "3">
+      C. ALTER VIEW emp_dept_vu AS
+      SELECT employee_id, employee_name,
+      department_name, manager_id
+      FROM employee e, departments d
+      WHERE e.department_id = d.department_id;
+    </Answer>
+    <Answer ID= "4">
+      D. MODIFY VIEW emp_dept_vu AS
+      SELECT employee_id, employee_name,
+      department_name, manager_id
+      FROM employees e, departments d
+      WHERE e.department_id = d.department_id;
+    </Answer>
+    <Answer ID= "5" Correct="true">
+      E. CREATE OR REPLACE VIEW emp_dept_vu AS
+      SELECT employee_id, employee_name,
+      department_name, manager_id
+      FROM employees e, departments d
+      WHERE e.department_id = d.department_id;
+    </Answer>
+    <Answer ID= "6">
+      Answer: E
+      Explanation:
+      When we want to alter the underlying data used in the definition of a view, we use the
+      CREATE OR REPLACE VIEW statement. When a CREATE OR REPLACE VIEW
+      statement is issued, Oracle will disregard the error that arises when it encounters the view that
+      already exists with that name, and it will overwrite the definition for the old view with the
+      definition for the new one.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the structure of the EMPLOYEES and NEW_EMPLOYEES tables:
+EMPLOYEES
+EMPLOYEE_ID NUMBER Primary Key
+FIRST_NAME VARCHARD2(25)
+LAST_NAME VARCHARD2(25)
+HIRE_DATE DATE
+NEW EMPLOYEES
+EMPLOYEE_ID NUMBER Primary Key
+NAME VARCHAR2(60)
+Which UPDATE statement is valid?" SelectionType= "1">
+    <Answer ID= "1" Correct="true">
+      A. UPDATE new_employees SET name = (Select last_name||
+      first_name
+      FROM employees
+      Where employee_id
+      =180)
+      WHERE employee_id =180;
+    </Answer>
+    <Answer ID= "2">
+      B. UPDATE new_employees SET name = (SELECT
+      last_name||first_name
+      FROM employees)
+      WHERE employee_id =180;
+    </Answer>
+    <Answer ID= "3">
+      C. UPDATE new_employees SET name = (SELECT last_name||
+      first_name
+      FROM employees
+      WHERE employee_id
+      =180)
+      WHERE employee_id =(SELECT employee_id
+      FROM new employees);
+    </Answer>
+    <Answer ID= "4">
+      D. UPDATE new_employees SET name = (SELECT last name||
+      first_name
+      FROM employees
+      WHERE employee_id=
+      (SELECT employee_id
+      FROM new_employees))
+      WHERE employee_id
+      =180;
+    </Answer>
+    <Answer ID= "5">E.None of these.</Answer>
+    <Answer ID= "6">
+      Answer: A
+      Explanation:
+      Sub-query in this answer will return one row value, concatenated first and last name for the
+      employee with ID 180, so update will be successful. When sub-queries are linked to the
+      parent by equality comparisons, the parent query expects only one row of data from the subquery.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the data of the EMPLOYEES table.
+EMPLOYEES (EMPLOYEE_ID is the primary key. MGR_ID is the ID of managers
+and refers to the EMPLOYEE_ID)
+EMPLOYEE_ID EMP_NAME DEPT_ID MGR_ID JOB_ID SALARY
+101 Smith 20 120 SA_REP 4000
+102 Martin 10 105 CLERK 2500
+103 Chris 20 120 IT_ADMIN 4200
+104 John 30 108 HR_CLERK 2500
+105 Diana 30 108 HR_MGR 5000
+106 Bryan 40 110 AD_ASST 3000
+108 Jennifer 30 110 HR_DIR 6500
+110 Bob 40 EX_DIR 8000
+120 Ravi 20 110 SA_DIR 6500
+Which statement lists the ID, name, and salary of the employee, and the ID and name of
+the employee's manager, for all the employees who have a manager and earn more than
+4000?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT employee_id "Emp_id", emp_name "Employee",
+      salary,
+      employee_id "Mgr_id", emp_name "Manager"
+      FROM employees
+      WHERE salary > 4000;
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT e.employee_id "Emp_id", e.emp_name "Employee",
+      e.salary,
+      m.employee_id "Mgr_id", m.emp_name "Manager"
+      FROM employees e, employees m
+      WHERE e.mgr_id = m.mgr_id
+      AND e.salary > 4000;
+    </Answer>
+    <Answer ID= "3" Correct="true">
+      C. SELECT e.employee_id "Emp_id", e.emp_name "Employee",
+      e.salary,
+      m.employee_id "Mgr_id", m.emp_name "Manager"
+      FROM employees e, employees m
+      WHERE e.mgr_id = m.employee_id
+      AND e.salary > 4000;
+    </Answer>
+    <Answer ID= "4">
+      D. SELECT e.employee_id "Emp_id", e.emp_name "Employee",
+      e.salary,
+      m.mgr_id "Mgr_id", m.emp_name "manager"
+      FROM employees e, employees m
+      WHERE e.mgr_id = m.employee_id
+      AND e.salary > 4000;
+    </Answer>
+    <Answer ID= "5">
+      E. SELECT e.employee_id "Emp_id", e.emp_name "Employee",
+      e.salary,
+      m.mgr_id "Mgr_id", m.emp_name "Manager"
+      FROM employees e, employees m
+      WHERE e.employee_id = m.employee_id
+      AND e.salary > 4000;
+    </Answer>
+    <Answer ID= "6">
+      Answer: C
+      Explanation:
+      This statement lists the ID, name, and salary of the employee, and the ID and name of the
+      employee's manager, for all the employees who have a manager and earn more than 4000
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the data in the EMPLOYEES and EMP_HIST tables:
+EMPLOYEES
+EMPLOYEE_ID NAME DEPT_ID MGR_ID JOB_ID SALARY
+101 Smith 20 120 SA_REP 4000
+102 Martin 10 105 CLERK 2500
+103 Chris 20 120 IT_ADMIN 4200
+104 John 30 108 HR_CLERK 2500
+105 Diana 30 108 IT_ADMIN 5000
+106 Smith 40 110 AD_ASST 3000
+108 Jennifer 30 110 HR_DIR 6500
+110 Bob 40 EX_DIR 8000
+120 Ravi 20 110 SA_DIR 6500
+EMP_HIST
+EMPLOYEE_ID NAME JOB_ID SALARY
+101 Smith SA_CLERK 2000
+103 Chris IT_CLERK 2200
+104 John HR_CLERK 2000
+106 Smith AD_ASST 3000
+108 Jennifer HR_MGR 4500
+The EMP_HIST table is updated at the end of every year. The employee ID, name, job
+ID, and salary of each existing employee are modified with the latest data. New employee
+details are added to the table.
+Which statement accomplishes this task?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. UPDATE emp_hist
+      SET employee_id, name, job_id, salary =
+      (SELECT employee_id, name, job_id, salary
+      FROM employees)
+      WHERE employee_id IN
+      (SELECT employee_id
+      FROM employees);
+    </Answer>
+    <Answer ID= "2" Correct="true">
+      B. MERGE INTO emp_hist eh
+      USING employees e
+      ON (eh.employee_id = e.employee_id)
+      WHEN MATCHED THEN
+      UPDATE SET eh.name = e.name,
+      eh.job_id = e.job_id,
+      eh.salary = e.salary
+      WHEN NOT MATCHED THEN
+      INSERT VALUES (e.employee id, e.name,
+      e.job id, e.salary);
+    </Answer>
+    <Answer ID= "3">
+      C. MERGE INTO emp_hist eh
+      USING employees e
+      ON (eh.employee_id = e.employee_id)
+      WHEN MATCHED THEN
+      UPDATE emp hist SET eh.name = e.name,
+      eh.job_id = e.job_id,
+      eh.salary = e.salary
+      WHEN NOT MATCHED THEN
+      INSERT INTO emp_hist
+      VALUES (e.employee_id, e.name, e.job_id, e.salary);
+    </Answer>
+    <Answer ID= "4">
+      D. MERGE INTO emp_hist eh
+      USING employees e
+      WHEN MATCHED THEN
+      UPDATE emp_hist SET eh.name = e.name,
+      eh.job_id = e.job_id,
+      eh.salary = e.salary
+      WHEN NOT MATCHED THEN
+      INSERT INTO emp_hist
+      VALUES (e.employee_id, e.name, e.job_id, e.salary);
+    </Answer>
+    <Answer ID= "5">E.None of these.</Answer>
+    <Answer ID= "6">
+      Answer: B
+      Explanation:
+      This task can be done using the MERGE command. Correct syntax for the MERGE command
+      is MERGE INTO table1 USING table2 on (join_condition) WHEN MATCHED UPDATE
+      SET col1 = value WHEN NOT MATCHED INSERT (column_list) values (column_values).
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the data of the EMPLOYEES table.
+EMPLOYEES (EMPLOYEE_ID is the primary key. MGR_ID is the ID of managers
+and refers to the EMPLOYEE_ID)
+EMPLOYEE_ID EMP_NAME DEPT_ID MGR_ID JOB_ID SALARY
+101 Smith 20 120 SA_REP 4000
+102 Martin 10 105 CLERK 2500
+103 Chris 20 120 IT_ADMIN 4200
+104 John 30 108 HR_CLERK 2500
+105 Diana 30 108 HR_MGR 5000
+106 Bryan 40 110 AD_ASST 3000
+108 Jennifer 30 110 HR_DIR 6500
+110 Bob 40 EX_DIR 8000
+120 Ravi 20 110 SA_DIR 6500
+Evaluate this SQL statement:
+SELECT e.employee_id Emp_id, e.emp_name Employee, e.salary,
+m.employee_id Mgr_id, m.emp_name Manager
+FROM employees e, employees m
+WHERE e.mgr_id = m.employee_id
+AND e.salary > 4000;
+What is its output?" SelectionType= "1">
+    <Answer ID= "1" >
+      A.
+      EMP_id EMPLOYEE SALARY Mgr_id Manager
+      ------- ---------- --------- ------------- --------------
+      110 Bob 8000 Bob
+      120 Ravi 6500 110 Ravi
+      108 Jennifer 6500 110 Jennifer
+      103 Chris 4200 120 Chris
+      105 Diana 5000 108 Diana
+    </Answer>
+    <Answer ID= "2" Correct="true">
+      B.
+      EMP_id EMPLOYEE SALARY Mgr_id Manager
+      ------- ---------- --------- ------------- --------------
+      120 Ravi 6500 110 Bob
+      108 Jennifer 6500 110 Bob
+      103 Chris 4200 120 Ravi
+      105 Diana 5000 108 Jennifer
+    </Answer>
+    <Answer ID= "3">
+      C.
+      EMP_id EMPLOYEE SALARY Mgr_id Manager
+      ------- ---------- --------- ------------- --------------
+      110 Bob 8000
+      120 Ravi 6500 110 Bob
+      108 Jennifer 6500 110 Bob
+      103 Chris 4200 120 Ravi
+      105 Diana 5000 108 Jennifer
+    </Answer>
+    <Answer ID= "4">
+      D
+      EMP_id EMPLOYEE SALARY Mgr_id Manager
+      ------- ---------- --------- ------------- --------------
+      110 Bob 8000 110 Bob
+      120 Ravi 6500 120 Ravi
+      108 Jennifer 6500 108 Jennifer
+      103 Chris 4200 103 Chris
+      105 Diana 5000 105 Dina
+    </Answer>
+    <Answer ID= "5">E. The SQL statement produces an error.</Answer>
+    <Answer ID= "6">
+      Answer: B
+      Explanation:
+      This statement lists the ID, name, and salary of the employee, and the ID and name of the
+      employee's manager, for all the employees who have a manager and earn more than 4000
+    </Answer>
+  </Question>
+
+  <Question Text="The EMP table has these columns:
+ENAME VARCHAR2(35)
+SALARY NUMBER(8,2)
+HIRE_DATE DATE
+Management wants a list of names of employees who have been with the company for
+more than five years. Which SQL statement displays the required results?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT ENAME
+      FROM EMP
+      WHERE SYSDATE-HIRE_DATE > 5;
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT ENAME
+      FROM EMP
+      WHERE HIRE_DATE-SYSDATE > 5;
+    </Answer>
+    <Answer ID= "3" Correct="true">
+      C. SELECT ENAME
+      FROM EMP
+      WHERE (SYSDATE-HIRE_DATE)/365 > 5;
+    </Answer>
+    <Answer ID= "4">
+      D. SELECT ENAME
+      FROM EMP
+      WHERE (SYSDATE-HIRE_DATE)* 365 > 5;
+    </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: C
+      Explanation:
+      Expression SYSDATE-HIRE_DATE will show number of days after date of hiring employee,
+      so you need to divide result of expression on 365 and this compare result with 5.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the data in the EMPLOYEES table.
+EMPLOYEES
+EMPLOYEE_ID EMP_NAME DEPT_ID MGR_ID JOB_ID SALARY
+101 Smith 20 120 SA_REP 4000
+102 Martin 10 105 CLERK 2500
+103 Chris 20 120 IT_ADMIN 4200
+104 John 30 108 HR_CLERK 2500
+105 Diana 30 108 IT_ADMIN 5000
+106 Smith 40 110 AD.ASST 3000
+108 Jennifer 30 110 HR_DIR 6500
+110 Bob 40 EK_DIR 8000
+120 Revi 20 110 SA_DIR 6500
+On the EMPLOYEES table, EMPLOYEE_ID is the primary key. MGR_ID is the ID of
+managers and refers to the EMPLOYEE_ID. The JOB_ID column is a NOT NULL
+column.
+Evaluate this DELETE statement:
+DELETE employee_id, salary, job_id
+FROM employees
+WHERE dept_id = 90;
+Why does the DELETE statement fail when you execute it?" SelectionType= "1">
+    <Answer ID= "1" >A. There is no row with dept_id 90 in the EMPLOYEES table.</Answer>
+    <Answer ID= "2">B. You cannot delete the JOB_ID column because it is a NOT NULL column.</Answer>
+    <Answer ID= "3" Correct="true">C. You cannot specify column names in the DELETE clause of the DELETE statement.</Answer>
+    <Answer ID= "4">
+      D. You cannot delete the EMPLOYEE_ID column because it is the primary key of the
+      table.
+    </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: C
+      Explanation:
+      You cannot specify column names in the DELETE clause of the DELETE statement. Syntax
+      of this command is: DELETE FROM table_name WHERE column_name = value.
+    </Answer>
+  </Question>
+
+  <Question Text="The CUSTOMERS table has these columns:
+CUSTOMER_ID NUMBER(4) NOT NULL
+CUSTOMER_NAME VARCHAR2(100) NOT NULL
+STREET_ADDRESS VARCHAR2(150)
+CITY_ADDRESS VARCHAR2(50)
+STATE_ADDRESS VARCHAR2(50)
+PROVINCE_ADDRESS VARCHAR2(50)
+COUNTRY_ADDRESS VARCHAR2(50)
+POSTAL_CODE VARCHAR2(12)
+CUSTOMER_PHONE VARCHAR2(20)
+
+Which statement finds the rows in the CUSTOMERS table that do not have a postal
+code?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT customer_id, customer_name
+      FROM customers
+      WHERE postal_code CONTAINS NULL;
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT customer_id, customer_name
+      FROM customers
+      WHERE postal_code = '________';
+    </Answer>
+    <Answer ID= "3" Correct="true">
+      C. SELECT customer_id, customer_name
+      FROM customers
+      WHERE postal_code IS NULL;
+    </Answer>
+    <Answer ID= "4">
+      D. SELECT customer_id, customer_name
+      FROM customers
+      WHERE postal code IS NVL;
+    </Answer>
+    <Answer ID= "5">
+      E. SELECT customer_id, customer_name
+      FROM customers
+      WHERE postal_code = NULL;
+    </Answer>
+    <Answer ID= "6">
+      Answer: C
+      Explanation:
+      This statement returns the rows in the CUSTOMERS table that do not have a postal code. The
+      correct syntax to check NULL values is usage of “IS NULL” clause.
+    </Answer>
+  </Question>
+
+  <Question Text="You need to create a view EMP_VU. The view should allow the users to manipulate the
+records of only the employees that are working for departments 10 or 20.
+Which SQL statement would you use to create the view EMP_VU?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. CREATE VIEW emp_vu AS
+      SELECT *
+      FROM employees
+      WHERE department_id IN (10,20);
+    </Answer>
+    <Answer ID= "2">
+      B. CREATE VIEW emp_vu AS
+      SELECT *
+      FROM employees
+      WHERE department_id IN (10,20)
+      WITH READ ONLY;
+    </Answer>
+    <Answer ID= "3" Correct="true">
+      C. CREATE VIEW emp_vu AS
+      SELECT *
+      FROM employees
+      WHERE department_id IN (10,20)
+      WITH CHECK OPTION;
+    </Answer>
+    <Answer ID= "4">
+      D. CREATE FORCE VIEW emp_vu AS
+      SELECT *
+      FROM employees
+      WHERE department_id IN (10,20);
+    </Answer>
+    <Answer ID= "5">
+      E. CREATE FORCE VIEW emp_vu AS
+      SELECT *
+      FROM employees
+      WHERE department_id IN (10,20)
+      NO UPDATE;
+    </Answer>
+    <Answer ID= "6">
+      Answer: C
+      Explanation:
+      Tables that underlie views often have constraints that limit the data that can be added to those
+      tables. Views cannot add data to the underlying table that would violate the table’s
+      constraints. However, you can also define a view to restrict the user’s ability to change
+      underlying table data even further, effectively placing a special constraint for data
+      manipulation through the view. This additional constraint says that INSERT or UPDATE
+      statements issued against the view are cannot create rows that the view cannot subsequently
+      select. This constraint is configured when the view is defined by adding the WITH CHECK
+      OPTION to the CREATE VIEW statement.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the structure of the STUDENTS table:
+STUDENT_ID NUMBER NOT NULL, Primary Key
+STUDENT_NAME VARCHAR2(30)
+COURSE_ID VARCHAR2(10) NOT NULL
+MARKS NUMBER
+START_DATE DATE
+FINISH_DATE DATE
+You need to create a report of the 10 students who achieved the highest ranking in the
+course INT SQL and who completed the course in the year 1999.
+Which SQL statement accomplishes this task?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT student_ id, marks, ROWNUM "Rank"
+      FROM students
+      WHERE ROWNUM &gt;= 10
+      AND finish_date BETWEEN '01-JAN-99' AND '31-DEC-99'
+      AND course_id = 'INT_SQL'
+      ORDER BY marks DESC;
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT student_id, marks, ROWID "Rank"
+      FROM students
+      WHERE ROWID &gt;= 10
+      AND finish_date BETWEEN '01-JAN-99' AND '31-DEC-99'
+      AND course_id = 'INT_SQL'
+      ORDER BY marks;
+    </Answer>
+    <Answer ID= "3">
+      B. SELECT student_id, marks, ROWID "Rank"
+      FROM students
+      WHERE ROWID &gt;= 10
+      AND finish_date BETWEEN '01-JAN-99' AND '31-DEC-99'
+      AND course_id = 'INT_SQL'
+      ORDER BY marks;
+    </Answer>
+    <Answer ID= "4" Correct="true">
+      D. SELECT student_id, marks, ROWNUM "Rank:
+      FROM (SELECT student_id, marks
+      FROM students
+      ORDER BY marks)
+      WHERE ROWNUM &gt;= 10
+      AND finish_date BETWEEN '01-JAN-99' AND '31-DEC-99'
+      AND course_id = 'INT_SQL';
+    </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: D
+      Explanation:
+      This statement using inline sub-query will provide correct results to show 10 students who
+      achieved the highest ranking in the course INT SQL and who completed the course in the year
+      1999.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the data from the EMP table:
+EMP_ID DEPT_ID COMMISSION
+1 10 500
+2 20 1000
+3 10
+4 10 600
+5 30 800
+6 30 200
+7 10
+8 20 300
+The COMMISSION column shows the monthly commission earned by the employee.
+Which three tasks would require subqueries or joins in order to perform in a single
+step? (Choose three)" SelectionType= "2">
+    <Answer ID= "1" >A. Deleting the records of employees who do not earn commission.</Answer>
+    <Answer ID= "2" Correct="true">
+      B. Increasing the commission of employee 3 by the average commission earned in
+      department 20.
+    </Answer>
+    <Answer ID= "3">
+      C. Finding the number of employees who do NOT earn commission and are working for
+      department 20.
+    </Answer>
+    <Answer ID= "4" Correct="true">
+      D. Inserting into the table a new employee 10 who works for department 20 and earns a
+      commission that is equal to the commission earned by employee 3.
+    </Answer>
+    <Answer ID= "5" Correct="true">
+      E. Creating a table called COMMISSION that has the same structure and data as the
+      columns EMP_ID and COMMISSIONS of the EMP table.
+    </Answer>
+    <Answer ID= "6">
+      Answer: B, D, E
+      Explanation:
+      Increasing the commission of employee 3 by the average commission earned in department 20
+      will require sub-queries or joins in order to perform in a single step. Inserting into the table a
+      new employee 10 who works for department 20 and earns a commission that is equal to the
+      commission earned by employee 3 is correct answer also. To create a table that has the same
+      structure as subset of columns from another table it’s required to use a subquery in order to
+      perform in a single step.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the structures of the EMPLOYEES and TAX tables.
+EMPLOYEES
+EMPLOYEE_ID NUMBER NOT NULL, Primary Key
+EMP_NAME VARCHAR2 (30)
+JOB_ID VARCHAR2 (20)
+SALARY NUMBER
+MGR_ID NUMBER References EMPLOYEE_ID column
+DEPARTMENT_ID NUMBER Foreign key to DEPARTMENT_ID column of the
+DEPARTMENTS table
+TAX
+MIN_SALARY NUMBER
+MAX_SALARY NUMBER
+TAX_PERCENT NUMBER Percentage tax for given salary range
+You need to find the percentage tax applicable for each employee. Which SQL statement
+would you use?" SelectionType= "1">
+    <Answer ID= "1" Correct="true">
+      A. SELECT employee_id, salary, tax_percent
+      FROM employees e, tax t
+      WHERE e.salary BETWEEN t.min_salary AND t.max_salary;
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT employee_id, salary, tax_percent
+      FROM employees e, tax t
+      WHERE e.salary > t.min_salary, tax_percent
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT employee_id, salary, tax_percent
+      FROM employees e, tax t
+      WHERE MIN(e.salary) = t.min_salary
+      AND MAX(e.salary) = t.max_salary
+    </Answer>
+    <Answer ID= "4">
+      D. You cannot find the information because there is no common column between the two
+      tables.
+    </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: A
+      Explanation:
+      You can find the percentage tax applicable for each employee by using SQL statement in
+      answer A.
+    </Answer>
+  </Question>
+
+  <Question Text="Mary has a view called EMP_DEPT_LOC_VU that was created based on the
+EMPLOYEES, DEPARTMENTS, and LOCATIONS tables. She granted SELECT
+privilege to Scott on this view.
+Which option enables Scott to eliminate the need to qualify the view with the name
+MARY .EMP_DEP_LOC_VU each time the view is referenced?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. Scott can create a synonym for the EMP_DEPT_LOC_VU bus using the command:
+      CREATE PRIVATE SYNONYM EDL_VU
+      FOR mary.EMP DEPT_LOC_VU;
+      then he can prefix the columns with this synonymn.
+    </Answer>
+    <Answer ID= "2" Correct="true">
+      B. Scott can create a synonym for the EMP_DEPT_LOC_VU by using the command:
+      CREATE SYNONYM EDL_VU
+      FOR mary.EMP_DEPT_LOC_VU;
+      then he can prefix the columns with this synonym.
+    </Answer>
+    <Answer ID= "3">
+      C. Scott can create a synonym for the EMP_DEPT_LOC_VU by using the command:
+      CREATE LOCAL SYNONYM EDL_VU
+      FOR mary.EMP DEPT_LOC_VU;
+      then he can prefix the columns with this synonym.
+    </Answer>
+    <Answer ID= "4">
+      D. Scott can create a synonym for the EMP_DEPT_LOC_VU by using the command:
+      CREATE SYNONYM EDL_VU ON mary(EMP_DEPT_LOC_VU);
+      then he can prefix the columns with this synonym.
+    </Answer>
+    <Answer ID= "5">E. Scott cannot create a synonym because synonyms can be created only for tables.</Answer>
+    <Answer ID= "6">
+      Answer: B
+      Explanation:
+      Correct syntax to create a local synonym is CREATE SYNONYM synonym_name. With
+      PUBLIC keyword you can create public synonym.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the structure of the EMPLOYEES table:
+EMPLOYEE_ID NUMBER Primary Key
+FIRST_NAME VARCHAR2(25)
+LAST_NAME VARCHAR2(25)
+HIRE_DATE DATE
+You issue these statements:
+CREATE table new_emp ( employee_id NUMBER, name VARCHAR2(30));
+INSERT INTO new_emp SELECT employee_id , last_name from employees;
+Savepoint s1;
+UPDATE new_emp set name = UPPER(name);
+Savepoint s2;
+Delete from new_emp;
+Rollback to s2;
+Delete from new_emp where employee_id =180;
+UPDATE new_emp set name = 'James';
+Rollback to s2;
+UPDATE new_emp set name = 'James' WHERE employee_id =180;
+Rollback;
+At the end of this transaction, what is true?" SelectionType= "1">
+    <Answer ID= "1" Correct="true">A. You have no rows in the table.</Answer>
+    <Answer ID= "2">B. You have an employee with the name of James.</Answer>
+    <Answer ID= "3">C. You cannot roll back to the same savepoint more than once.</Answer>
+    <Answer ID= "4">
+      D. Your last update fails to update any rows because employee ID 180 was already
+      deleted.
+    </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: A
+      Explanation:
+      At the end of this transaction you will not have rows in the table.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the structure of the EMPLOYEES table:
+EMPLOYEE_ID NUMBER Primary Key
+FIRST_NAME VARCHAR2(25)
+LAST_NAME VARCHAR2(25)
+DEPARTMENT_ID NUMBER
+SALARY NUMBER
+What is the correct syntax for an inline view?" SelectionType= "1">
+    <Answer ID= "1" Correct="true">
+      A. SELECT a.last_name, a.salary, a.department_id,
+      b.maxsal
+      FROM employees a,
+      (SELECT department_id, max(salary)maxsal
+      FROM employees
+      GROUP BY department_id) b
+      WHERE a.department_id = b.department_id
+      AND a.salary &lt; b.maxsal;</Answer>
+    <Answer ID= "2">
+      B. SELECT a.last name, a.salary, a.department_id
+      FROM employees a
+      WHERE a.department_id IN
+      (SELECT department_id
+      FROM employees b
+      GROUP BY department_id having salary =
+      (SELECT max(salary) from employees))
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT a.last_name, a.salary, a.department_id
+      FROM employees a
+      WHERE a.salary =
+      (SELECT max(salary)
+      FROM employees b
+      WHERE a.department_id = b.department_id);
+    </Answer>
+    <Answer ID= "4">
+      D. SELECT a.last_name, a.salary, a.department_id
+      FROM employees a
+      WHERE (a.department_id, a.salary) IN
+      (SELECT department_id, a.salary) IN
+      (SELECT department_id max(salary)
+      FROM employees b
+      GROUP BY department_id
+      ORDER BY department_id);
+    </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: A
+      Explanation:
+      This SQL statement shows correct syntax to build inline views. You must enclose the query
+      text for the inline view in parentheses and also give a label for the inline view so that columns
+      in it can be referenced later. In answer A inline view is marked as B.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the structure of the EMPLOYEES table:
+EMPLOYEE_ID NUMBER NOT NULL
+EMP_NAME VARCHAR2(30)
+JOB_ID VARCHAR2(20) DEFAULT 'SA_REP'
+SAL NUMBER
+COMM_PCT NUMBER
+MGR_ID NUMBER
+DEPARTMENT_ID NUMBER
+You need to update the records of employees 103 and 115. The UPDATE statement you
+specify should update the rows with the values specified below:
+JOB_ID: Default value specified for this column definition.
+SAL: Maximum salary earned for the job ID SA_REP.
+COMM_PCT: Default value specified for this commission percentage column, if any.
+If no default value is specified for the column, the value should be
+NULL.
+DEPARTMENT_ID: Supplied by the user during run time through substitution variable.
+Which UPDATE statement meets the requirements?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. UPDATE employees
+      SET job_id = DEFAULT
+      AND Sal = (SELECT MAX(sal)
+      FROM employees
+      WHERE job_id = 'SA_REP')
+      AND comm_pct = DEFAULT
+      AND department_id = &amp;did
+      WHERE employee_id IN (103,115);
+    </Answer>
+    <Answer ID= "2">
+      B. UPDATE employees
+      SET job_id = DEFAULT
+      AND Sal = MAX(sal)
+      AND comm_pct = DEFAULT OR NULL
+      AND department_id = &amp;did
+      WHERE employee_id IN (103,115)
+      AND job_id = 'SA_REP';
+    </Answer>
+    <Answer ID= "3" Correct="true">
+      C. UPDATE employees
+      SET job_id = DEFAULT,
+      Sal = (SELECT MAX(sal)
+      FROM employees
+      WHERE job_id = 'SA_REP'),
+      comm_pct = DEFAULT,
+      department_id = &amp;did
+      WHERE employee_id IN (103,115);
+    </Answer>
+    <Answer ID= "4">
+      D. UPDATE employees
+      SET job_id = DEFAULT,
+      Sal = MAX(sal),
+      comm_pct = DEFAULT,
+      department_id = &amp;did
+      WHERE employee_id IN (103,115)
+      AND job_id = 'SA_REP';
+    </Answer>
+    <Answer ID= "5">
+      E. UPDATE employees
+      SET job_id = DEFAULT,
+      Sal = (SELECT MAX(sal)
+      FROM employees
+      WHERE job_id = 'SA_REP')
+      comm_pct = DEFAULT OR NULL,
+      department_id = &amp;did
+      WHERE employee_id IN (103,115);
+    </Answer>
+    <Answer ID= "6">
+      Answer: C
+      Explanation:
+      This UPDATE statement is correct to receive desired results. Correct syntax is UPDATE
+      table_name SET column_name1 = value, column_name2 = value2. You can also use the
+      DEFAULT keyword to set a column value to its specified default value in update statements
+      as well.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the structure of the EMPLOYEES table:
+Column name Data type Remarks
+EMPLOYEE_ID NUMBER NOT NULL, Primary Key
+LAST_NAME VARCNAR2(30)
+FIRST_NAME VARCNAR2(30)
+JOB_ID NUMBER
+SAL NUMBER
+MGR_ID NUMBER References EMPLOYEE_ID column
+DEPARTMENT_ID NUMBER
+You need to create an index called NAME_IDX on the first name and last name fields of
+the EMPLOYEES table. Which SQL statement would you use to perform this task?" SelectionType= "1">
+    <Answer ID= "1" >A. CREATE INDEX NAME_IDX (first_name, last_name);</Answer>
+    <Answer ID= "2">B. CREATE INDEX NAME_IDX (first_name AND last_name);</Answer>
+    <Answer ID= "3">
+      C. CREATE INDEX NAME_IDX
+      ON (first_name, last_name);
+    </Answer>
+    <Answer ID= "4">
+      D. CREATE INDEX NAME_IDX
+      ON employees (first_name AND last_name);
+    </Answer>
+    <Answer ID= "5" Correct="true">
+      E. CREATE INDEX NAME_IDX
+      ON employees(first_name, last_name);
+    </Answer>
+    <Answer ID= "6">
+      Answer: E
+      Explanation:
+      Answer E provides correct syntax to create index: CREATE INDEX index_name ON
+      table_name(list of columns).
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the structure of the EMPLOYEES, DEPARTMENTS, and TAX tables.
+            EMPLOYEES
+EMPLOYEE_ID NUMBER NOT NULL, Primary Key
+EMP_NAME VARCHAR2 (30)
+JOB_ID VARCHAR2 (20)
+SALARY NUMBER
+MGR_ID NUMBER References EMPLOYEE_ID column
+DEPARTMENT_ID NUMBER Foreign key to DEPARTMENT_ID column of
+the DEPARTMENTS table
+DEPARTMENTS
+DEPARTMENT_ID NUMBER NOT NULL, Primary Key
+DEPARTMENT_NAME VARCHAR2 |30|
+MGR_ID NUMBER References MGR_ID column of the
+EMPLOYEES table
+TAX
+MIN_SALARY NUMBER
+MAX_SALARY NUMBER
+TAX_PERCENT NUMBER
+For which situation would you use a nonequijoin query?" SelectionType= "1">
+    <Answer ID= "1" Correct="true">A. To find the tax percentage for each of the employees.</Answer>
+    <Answer ID= "2">B. To list the name, job id, and manager name for all the employees.</Answer>
+    <Answer ID= "3">
+      C. To find the name, salary, and department name of employees who are not working
+      with Smith.
+    </Answer>
+    <Answer ID= "4">
+      D. To find the number of employees working for the Administrative department and
+      earning less then 4000.
+    </Answer>
+    <Answer ID= "5">
+      E. To display name, salary, manager ID, and department name of all the employees, even
+      if the employees do not have a department ID assigned.
+    </Answer>
+    <Answer ID= "6">
+      Answer: A
+      Explanation:
+      You will use a nonequijoin query to find the tax percentage for each of the employees because
+      you will check range of salaries without usage of equality operations in a comparison joining
+      data from two tables.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the data from the ORDERS and CUSTOMERS tables.
+ORDERS
+ORD_ID ORD_DATE CUST_ID ORD_TOTAÖ
+100 12-JAN-2000 15 10000
+101 09-MAR-2000 40 8000
+102 09-MAR-2000 35 12500
+103 15-MAR-2000 15 12000
+104 25-JUN-2000 15 6000
+105 18-JUL-2000 20 5000
+106 18-JUL-2000 35 7000
+107 21-JUL-2000 20 6500
+109 04-AUG-2000 10 8000
+CUSTOMERS
+CUST_ID CUST_NAME CITY
+10 Smith Los Angeles
+15 Bob San Francisco
+20 Martin Chicago
+25 Mary New York
+30 Rina Chicago
+35 Smith New York
+40 Lind New York
+Evaluate the SQL statement:
+SELECT *
+FROM orders
+WHERE cust_id = (SELECT cust_id
+FROM customers
+WHERE cust_name = 'Smith');
+What is the result when the query is executed?" SelectionType= "1">
+    <Answer ID= "1" >
+      A.
+      ORD_ID ORD_DATE CUST_ID ORD_TOTAL
+      102 09-MAR-2000 35 12500
+      106 18-JUL-2000 35 7000
+      108 04-AUG-2000 10 8000
+    </Answer>
+    <Answer ID= "2">
+      B.
+      ORD_ID ORD_DATE CUST_ID ORD_TOTAL
+      102 09-MAR-2000 35 12500
+      106 18-JUL-2000 35 7000
+    </Answer>
+    <Answer ID= "3">
+      C.
+      ORD_ID ORD_DATE CUST_ID ORD_TOTAL
+      108 04-AUG-2000 10 8000
+    </Answer>
+    <Answer ID= "4" Correct="true">D. The query fails because the subquery returns more than one row.</Answer>
+    <Answer ID= "5">E. The query fails because the outer query and the inner query are using different tables.</Answer>
+    <Answer ID= "6">
+      Answer: D
+      Explanation:
+      The query fails because the sub-query returns more than one row: it is possible situation when
+      there are some customers with name Smith.
+    </Answer>
+  </Question>
+
+  <Question Text="Which three statements correctly describe the functions and use of constraints? (Choose
+three.)" SelectionType= "2">
+    <Answer ID= "1" >A. Constraints provide data independence.</Answer>
+    <Answer ID= "2">B. Constraints make complex queries easy.</Answer>
+    <Answer ID= "3" Correct="true">C. Constraints enforce rules at the view level.</Answer>
+    <Answer ID= "4" Correct="true">D. Constraints enforce rules at the table level.</Answer>
+    <Answer ID= "5" Correct="true">E. Constraints prevent the deletion of a table if there are dependencies.</Answer>
+    <Answer ID= "6">
+      Answer: C, D, E
+      Explanation:
+      Constraints have functions to enforce rules at the view and table levels and to prevent the
+      deletion of data if dependencies exist between tables.
+    </Answer>
+  </Question>
+
+  <Question Text="The EMPLOYEES table contains these columns:
+LAST_NAME VARCHAR2 (25)
+SALARY NUMBER (6,2)
+COMMISSION_PCT NUMBER (6)
+You need to write a query that will produce these results:
+1. Display the salary multiplied by the commission_pct.
+2. Exclude employees with a zero commission_pct.
+3. Display a zero for employees with a null commission value.
+Evaluate the SQL statement:
+SELECT LAST_NAME, SALARY*COMMISSION_PCT
+FROM EMPLOYEES
+WHERE COMMISSION_PCT IS NOT NULL;
+What does the statement provide?" SelectionType= "1">
+    <Answer ID= "1" >A. All of the desired results</Answer>
+    <Answer ID= "2">B. Two of the desired results</Answer>
+    <Answer ID= "3" Correct="true">C. One of the desired results</Answer>
+    <Answer ID= "4">D. An error statement</Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: C
+      Explanation:
+      This statement will provide only one of the desired results: display the salary multiplied by
+      the commission_pct. It will not exclude employees with a zero commission_pct and display a
+      zero for employees with a null commission value.
+    </Answer>
+  </Question>
+
+  <Question Text="You need to change the definition of an existing table. The COMMERCIALS table needs
+its DESCRIPTION column changed to hold varying length characters up to 2000 bytes.
+The column can currently hold 1000 bytes per value. The table contains 20000 rows.
+Which statement is valid?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. ALTER TABLE commercials
+      MODIFY (description CHAR2(2000));
+    </Answer>
+    <Answer ID= "2">
+      B. ALTER TABLE commercials
+      CHANGE (description CHAR2(2000));
+    </Answer>
+    <Answer ID= "3">
+      C. ALTER TABLE commercials
+      CHANGE (description VARCHAR2(2000));
+    </Answer>
+    <Answer ID= "4" Correct="true">
+      D. ALTER TABLE commercials
+      MODIFY (description VARCHAR2(2000));
+    </Answer>
+    <Answer ID= "5">E. You cannot increase the size of a column if the table has rows.</Answer>
+    <Answer ID= "6">Answer: D</Answer>
+  </Question>
+
+  <Question Text="Which statement creates a new user?" SelectionType= "1">
+    <Answer ID= "1" >A. CREATE USER susan;</Answer>
+    <Answer ID= "2">B. CREATE OR REPLACE USER susan;</Answer>
+    <Answer ID= "3">
+      C. CREATE NEW USER susan
+      DEFAULT;
+    </Answer>
+    <Answer ID= "4" Correct="true">
+      D. CREATE USER susan
+      IDENTIFIED BY blue;
+    </Answer>
+    <Answer ID= "5">
+      E. CREATE NEW USER susan
+      IDENTIFIED by blue;
+    </Answer>
+    <Answer ID= "6">
+      Answer: D
+      Explanation:
+      The correct statement to create user is: CREATE USER user_name IDENTIFIED BY
+      password.
+    </Answer>
+  </Question>
+
+  <Question Text="Which three are true regarding the use of outer joins? (Choose three.)" SelectionType= "2">
+    <Answer ID= "1" >A. You use (+) on both sides of the WHERE condition to perform an outerjoin.</Answer>
+    <Answer ID= "2">B. You use (*) on both sides of the WHERE condition to perform an outerjoin.</Answer>
+    <Answer ID= "3" Correct="true">C. You use an outerjoin to see only the rows that do not meet the join condition.</Answer>
+    <Answer ID= "4" Correct="true">
+      D. In the WHERE condition, you use (+) following the name of the column in the table
+      without matching rows, to perform an outerjoin.
+    </Answer>
+    <Answer ID= "5" Correct="true">
+      E. You cannot link a condition that is involved in an outerjoin to another condition by
+      using the OR operator.
+    </Answer>
+    <Answer ID= "6">
+      Answer: C, D, E
+      Explanation:
+      You can use an outerjoin to see only the rows that do not meet the join condition. In the
+      WHERE condition, you use (+) following the name of the column in the table without
+      matching rows, to perform an outerjoin. You cannot link a condition that is involved in an
+      outerjoin to another condition by using the OR operator.
+    </Answer>
+  </Question>
+
+  <Question Text="What is true about the WITH GRANT OPTION clause?" SelectionType= "1">
+    <Answer ID= "1" >A. It allows a grantee DBA privileges.</Answer>
+    <Answer ID= "2">B. It is required syntax for object privileges.</Answer>
+    <Answer ID= "3">C. It allows privileges on specified columns of tables.</Answer>
+    <Answer ID= "4">D. It is used to grant an object privilege on a foreign key column.</Answer>
+    <Answer ID= "5" Correct="true">E. It allows the grantee to grant object privileges to other users and roles.</Answer>
+    <Answer ID= "6">
+      Answer: E
+      Explanation:
+      The GRANT command with the WITH GRANT OPTION clause allows the grantee to grant
+      object privileges to other users and roles.
+    </Answer>
+  </Question>
+
+  <Question Text="The EMPLOYEES table has these columns:
+LAST NAME VARCHAR2(35)
+SALARY NUMBER(8,2)
+HIRE_DATE DATE
+Management wants to add a default value to the SALARY column. You plan to alter the
+table by using this SQL statement:
+ALTER TABLE EMPLOYEES
+MODIFY (SALARY DEFAULT 5000);
+What is true about your ALTER statement?" SelectionType= "1">
+    <Answer ID= "1" >A. Column definitions cannot be altered to add DEFAULT values.</Answer>
+    <Answer ID= "2" Correct="true">B. A change to the DEFAULT value affects only subsequent insertions to the table.</Answer>
+    <Answer ID= "3">
+      C. Column definitions cannot be altered at add DEFAULT values for columns with a
+      NUMBER data type.
+    </Answer>
+    <Answer ID= "4">
+      D. All the rows that have a NULL value for the SALARY column will be updated with
+      the value 5000.
+    </Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: B
+      Explanation:
+      A change to the DEFAULT value affects only subsequent insertions to the table. Existing
+      rows will not be affected.
+    </Answer>
+  </Question>
+
+  <Question Text="Which two statements complete a transaction? (Choose two)" SelectionType= "2">
+    <Answer ID= "1" >A. DELETE employees;</Answer>
+    <Answer ID= "2">B. DESCRIBE employees;</Answer>
+    <Answer ID= "3" Correct="true">C. ROLLBACK TO SAVEPOINT C;</Answer>
+    <Answer ID= "4">D. GRANT SELECT ON employees TO SCOTT;</Answer>
+    <Answer ID= "5" Correct="true">
+      E. ALTER TABLE employees
+      SET UNUSED COLUMN sal;
+    </Answer>
+    <Answer ID= "6">
+      Answer: C, E
+      Explanation:
+      It is important to understand that an implicit COMMIT occurs on the database when a user
+      exits SQL*Plus or issues a data-definition language (DDL) command such as a CREATE
+      TABLE statement, used to create a database object, or an ALTER TABLE statement, used to
+      alter a database object. Also after the ROLLBACK command is issued, a new transaction is
+      started implicitly by the database session.
+    </Answer>
+  </Question>
+
+  <Question Text="You need to produce a report for mailing labels for all customers. The mailing label
+must have only the customer name and address. The CUSTOMERS table has these
+columns:
+CUST_ID NUMBER(4) NOT NULL
+CUST_NAME VARCHAR2(100)
+CUST_ADDRESS VARCHAR2(150)
+CUST_PHONE VARCHAR2(20)
+Which SELECT statement accomplishes this task?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT*
+      FROM customers;
+    </Answer>
+    <Answer ID= "2">
+      B. SELECT name, address
+      FROM customers;
+    </Answer>
+    <Answer ID= "3">
+      C. SELECT id, name, address, phone
+      FROM customers;
+    </Answer>
+    <Answer ID= "4" Correct="true">
+      D. SELECT cust_name, cust_address
+      FROM customers;
+    </Answer>
+    <Answer ID= "5">
+      E. SELECT cust_id, cust_name, cust_address, cust_phone
+      FROM customers;
+    </Answer>
+    <Answer ID= "6">
+      Answer: D
+      Explanation:
+      This answer provides correct list of columns for the output.
+    </Answer>
+  </Question>
+
+  <Question Text="Evaluate the SQL statement
+DROP TABLE DEPT;
+Which four statements are true of the SQL statement? (Choose four)" SelectionType= "2">
+    <Answer ID= "1" Correct="true">A. You cannot roll back this statement.</Answer>
+    <Answer ID= "2" Correct="true">B. All pending transactions are committed.</Answer>
+    <Answer ID= "3">C. All views based on the DEPT table are deleted.</Answer>
+    <Answer ID= "4" Correct="true">D. All indexes based on the DEPT table are dropped.</Answer>
+    <Answer ID= "5" Correct="true">E. All data in the table is deleted, and the table structure is also deleted.</Answer>
+    <Answer ID= "6">
+      Answer: A, B, D, E
+      Explanation:
+      You cannot roll back DROP TABLE statement. All pending transactions related on this table
+      are committed. If the table is dropped, Oracle automatically drops any index, trigger and
+      constraint associated with the table as well. All data in the table is deleted, and the table
+      structure is also deleted.
+    </Answer>
+  </Question>
+
+  <Question Text="The STUDENT_GRADES table has these columns:
+STUDENT_ID NUMBER(12)
+SEMESTER_END DATE
+GPA NUMBER(4,3)
+The registrar has asked for a report on the average grade point average (GPA) for
+students enrolled during semesters that end in the year 2000. Which statement
+accomplish this?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT AVERAGE(gpa)
+      FROM student_grades
+      WHERE semester_end > ’01-JAN-2000’ and semester end &lt; 31-DEC-2000’;</Answer>
+    <Answer ID= "2">
+      B. SELECT COUNT(gpa)
+      FROM student grades
+      WHERE semester_end > ’01-JAN-2000’ and semester end &lt; ’31-DEC-2000’;</Answer>
+    <Answer ID= "3">
+      C. SELECT MIN(gpa)
+      FROM student grades
+      WHERE semester_end > ’01-JAN-2000’ and semester end &lt; ’31-DEC-2000’;</Answer>
+    <Answer ID= "4" Correct="true">
+      D. SELECT AVG(gpa)
+      FROM student_grades
+      WHERE semester_end BETWEEN ’01-JAN-2000’ and ’31.DEC.2000’;
+    </Answer>
+    <Answer ID= "5">
+      E. SELECT SUM(gpa)
+      FROM student grades
+      WHERE semester_end > ’01-JAN-2000’ and semester end &lt; ’31-DEC-2000’;</Answer>
+    <Answer ID= "6">
+      Answer: D
+      Explanation:
+      Statement in this answer will show correct result, using function AVG(). This function takes
+      the values for a single column on all rows returned by the query and calculates the average
+      value for that column.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the description of the EMPLOYEES table:
+EMP_ID NUMBER(4) NOT NULL
+LAST_NAME VARCHAR2(30) NOT NULL
+FIRST_NAME VARCHAR2(30)
+DEPT_ID NUMBER(2)
+JOB_CAT VARCHAR2(30)
+SALARY NUMBER(8,2)
+Which statement shows the department ID, minimum salary, and maximum salary paid
+in that department, only of the minimum salary is less then 5000 and the maximum
+salary is more than 15000?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT dept_id, MIN(salary(, MAX(salary)
+      FROM employees
+      WHERE MIN(salary) &lt; 5000 AND MAX(salary) > 15000;</Answer>
+    <Answer ID= "2">
+      B. SELECT dept_id, MIN(salary), MAX(salary)
+      FROM employees
+      WHERE MIN(salary) &lt; 5000 AND MAX(salary) > 15000
+GROUP BY dept_id;</Answer>
+    <Answer ID= "3">
+      C. SELECT dept_id, MIN(salary), MAX(salary)
+      FROM employees
+      HAVING MIN(salary) &lt; 5000 AND MAX(salary) > 15000;</Answer>
+    <Answer ID= "4" Correct="true">
+      D. SELECT dept_id, MIN(salary), MAX(salary)
+      FROM employees
+      GROUP BY dept_id
+      HAVING MIN(salary) &lt; 5000 AND MAX(salary) > 15000;</Answer>
+    <Answer ID= "5">
+      E. SELECT dept_id, MIN(salary), MAX(salary)
+      FROM employees
+      GROUP BY dept_id, salary
+      HAVING MIN(salary) &lt; 5000 AND MAX(salary) > 15000;</Answer>
+    <Answer ID= "6">
+      Answer: D
+      Explanation:
+      This SELECT statement shows correct result.
+    </Answer>
+  </Question>
+
+  <Question Text="You want to display the titles of books that meet these criteria:
+1. Purchased before January 21, 2001
+2. Price is less then $500 or greater than $900
+You want to sort the results by their data of purchase, starting with the most recently
+bought book.
+Which statement should you use?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. SELECT book_title
+      FROM books
+      WHERE price between 500 and 900
+      AND purchase_date &lt; ’21-JAN-2001’
+ORDER BY purchase_date;</Answer>
+    <Answer ID= "2">
+      B. SELECT book_title
+      FROM books
+      WHERE price IN (500,900)
+      AND purchase_date &lt; ’21-JAN-2001’
+ORDER BY purchase date ASC;</Answer>
+    <Answer ID= "3">
+      C. SELECT book_title
+      FROM books
+      WHERE price &lt; 500 or > 900
+AND purchase_date &lt; ’21-JAN-2001’
+ORDER BY purchase date DESC;</Answer>
+    <Answer ID= "4" Correct="true">
+      D. SELECT book_title
+      FROM books
+      WHERE (price &lt; 500 OR price > 900)
+AND purchase_date &lt; ’21-JAN-2001’
+ORDER BY purchase date DESC;</Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: D
+      Explanation:
+      This statement provides required results.
+    </Answer>
+  </Question>
+
+  <Question Text="Examine the description of the MARKS table:
+STD_ID NUMBER(4)
+STUDENT_NAME VARCHAR2(30)
+SUBJ1 NUMBER(3)
+SUBJ2 NUMBER(3)
+SUBJ1 and SUBJ2 indicate the marks obtained by a student in two subjects.
+Examine this SELECT statement based on the MARKS table:
+SELECT subj1+subj2 total_marks, std_id
+FROM marks
+WHERE subj1 > AVG(subj1) AND subj2 > AVG(subj2)
+ORDER BY total_marks;
+What is the result of the SELECT statement?" SelectionType= "1">
+    <Answer ID= "1" >
+      A. The statement executes successfully and returns the student ID and sum of all marks
+      for each student who obtained more than the average mark in each subject.
+    </Answer>
+    <Answer ID= "2">B. The statement returns an error at the SELECT clause.</Answer>
+    <Answer ID= "3" Correct="true">C. The statement returns an error at the WHERE clause.</Answer>
+    <Answer ID= "4">D. The statement returns an error at the ORDER BY clause.</Answer>
+    <Answer ID= "5">E. None of these.</Answer>
+    <Answer ID= "6">
+      Answer: C
+      Explanation:
+      The statement returns an error at the WHERE clause because group function AVG() cannot be
+      used in the WHERE clause. Group functions can be used in SELECT clause and GROUP BY
+      clause. They allow you to perform data operations on several values in a column of data as
+      though the column were one collective group of data.
+    </Answer>
+  </Question>
+  
+  
+
+</questions>
